@@ -42,4 +42,22 @@ public class UserDAO {
             users.add(new User(idUser,userName,password,phoneNumber,email,address,statusUser));
         }
     }
+    private User findUserById(int id){
+        try (PreparedStatement preparedStatement=connection.prepareStatement(SELECT_USER_BY_ID)){
+                preparedStatement.setInt(1,id);
+                ResultSet resultSet=preparedStatement.executeQuery();
+                while (resultSet.next()){
+                    String userName=resultSet.getString("username_user");
+                    String password=resultSet.getString("password");
+                    String phoneNumber=resultSet.getString("phoneNumber_user");
+                    String email=resultSet.getString("email_user");
+                    String address=resultSet.getString("address_user");
+                    int statusUser=resultSet.getInt("status_user");
+                    return new User(id,userName,password,phoneNumber,email,address,statusUser);
+                }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }return null;
+    }
+
 }
