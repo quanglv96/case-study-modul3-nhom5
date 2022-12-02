@@ -1,6 +1,6 @@
 package DAO;
 
-import Model.News;
+import Model.Newssdfgg;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -24,8 +24,8 @@ public class NewsDAO {
     public NewsDAO(){
         connection = getConnection();
     }
-    public List<News> selectAllNews() {
-        List<News> news = new ArrayList<>();
+    public List<Newssdfgg> selectAllNews() {
+        List<Newssdfgg> newssdfggs = new ArrayList<>();
         //sử dụng để thực thi các truy vấn được tham số hóa.
         String sql = "select * from user";
         try (Connection connection = getConnection();
@@ -39,21 +39,21 @@ public class NewsDAO {
                 Date dateNews = rs.getDate("date_news");
                 int idUser = rs.getInt("id_user");
                 int statusNews = rs.getInt("status_news");
-                news.add(new News(idNews, idCategory, tileNews, content, dateNews, idUser, statusNews));
+                newssdfggs.add(new Newssdfgg(idNews, idCategory, tileNews, content, dateNews, idUser, statusNews));
             }
         } catch (SQLException e) {
             printSQLException(e);
         }
-        return news;
+        return newssdfggs;
     }
-    public News selectNews(int idNews) {
-        News news = null;
-        return news;
+    public Newssdfgg selectNews(int idNews) {
+        Newssdfgg newssdfgg = null;
+        return newssdfgg;
     }
-    public void insertNews(News news) throws SQLException {
+    public void insertNews(Newssdfgg newssdfgg) throws SQLException {
 
     }
-    public void updateNews(News news) throws SQLException {
+    public void updateNews(Newssdfgg newssdfgg) throws SQLException {
 
 
     }
