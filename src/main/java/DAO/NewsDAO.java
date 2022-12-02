@@ -1,8 +1,6 @@
 package DAO;
 
 import Model.News;
-import Model.Newssdfgg;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -51,10 +49,10 @@ public class NewsDAO {
         News news = null;
         return news;
     }
-    public void insertNews(News newssdfgg) throws SQLException {
+    public void insertNews(News news) throws SQLException {
 
     }
-    public void updateNews(News newssdfgg) throws SQLException {
+    public void updateNews(News news) throws SQLException {
 
 
     }
