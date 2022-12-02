@@ -41,6 +41,5 @@ public class UserDAO {
             int statusUser =Integer.parseInt(resultSet.getString("status_user"));
             users.add(new User(idUser,userName,password,phoneNumber,email,address,statusUser));
         }
-
     }
 }
