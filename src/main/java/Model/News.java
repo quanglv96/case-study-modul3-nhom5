@@ -9,7 +9,7 @@ public class News {
     protected String content;
     protected Date dateNews;
     protected int idUser;    // khóa phụ
-    protected int statusNews = 0;
+    protected int statusNews = 1;
     protected String img;
 
     public News(int idNews, int idCategory, String tileNews, String content, Date dateNews, int idUser, int statusNews) {
