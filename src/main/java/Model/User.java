@@ -1,13 +1,78 @@
 package Model;
 
-public class User {
-    private int idUser;
-    private String userName;
-    private String password;
-    private int phoneNumber;
-    private String email;
-    private String address;
-    private int statusUser;
+
+import java.util.Date;
+
+public class News {
+    protected int idNews;
+    protected int idCategory;   // khóa phụ
+    protected String tileNews;
+    protected String content;
+    protected Date dateNews;
+    protected int idUser;    // khóa phụ
+    protected int statusNews = 0;
+    protected String img;
+
+    public News(int idNews, int idCategory, String tileNews, String content, Date dateNews, int idUser, int statusNews) {
+        this.idNews = idNews;
+        this.idCategory = idCategory;
+        this.tileNews = tileNews;
+        this.content = content;
+        this.dateNews = dateNews;
+        this.idUser = idUser;
+        this.statusNews = statusNews;
+        this.img = img;
+    }
+
+    public News(int idCategory, String tileNews, String content, Date dateNews, int idUser, int statusNews, String img) {
+        this.idCategory = idCategory;
+        this.tileNews = tileNews;
+        this.content = content;
+        this.dateNews = dateNews;
+        this.idUser = idUser;
+        this.statusNews = statusNews;
+        this.img = img;
+    }
+
+    public int getIdNews() {
+        return idNews;
+    }
+
+    public void setIdNews(int idNews) {
+        this.idNews = idNews;
+    }
+
+    public int getIdCategory() {
+        return idCategory;
+    }
+
+    public void setIdCategory(int idCategory) {
+        this.idCategory = idCategory;
+    }
+
+    public String getTileNews() {
+        return tileNews;
+    }
+
+    public void setTileNews(String tileNews) {
+        this.tileNews = tileNews;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public void getDateNews() {
+        return dateNews;
+    }
+
+    public void setDateNews(Date dateNews) {
+        this.dateNews = dateNews;
+    }
 
     public int getIdUser() {
         return idUser;
@@ -17,64 +82,19 @@ public class User {
         this.idUser = idUser;
     }
 
-    public String getUserName() {
-        return userName;
+    public int getStatusNews() {
+        return statusNews;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setStatusNews(int statusNews) {
+        this.statusNews = statusNews;
     }
 
-    public String getPassword() {
-        return password;
+    public String getImg() {
+        return img;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public int getPhoneNumber() {
-        return phoneNumber;
-    }
-
-    public void setPhoneNumber(int phoneNumber) {
-        this.phoneNumber = phoneNumber;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    public int getStatusUser() {
-        return statusUser;
-    }
-
-    public void setStatusUser(int statusUser) {
-        this.statusUser = statusUser;
-    }
-
-    public User() {
-    }
-
-    public User(int idUser, String userName, String password, int phoneNumber, String email, String address, int statusUser) {
-        this.idUser = idUser;
-        this.userName = userName;
-        this.password = password;
-        this.phoneNumber = phoneNumber;
-        this.email = email;
-        this.address = address;
-        this.statusUser = statusUser;
+    public void setImg(String img) {
+        this.img = img;
     }
 }
