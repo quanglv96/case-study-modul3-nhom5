@@ -4,7 +4,7 @@ public class User {
     private int idUser;
     private String userName;
     private String password;
-    private int phoneNumber;
+    private String phoneNumber;
     private String email;
     private String address;
     private int statusUser;
@@ -33,11 +33,11 @@ public class User {
         this.password = password;
     }
 
-    public int getPhoneNumber() {
+    public String getPhoneNumber() {
         return phoneNumber;
     }
 
-    public void setPhoneNumber(int phoneNumber) {
+    public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 
@@ -68,7 +68,16 @@ public class User {
     public User() {
     }
 
-    public User(int idUser, String userName, String password, int phoneNumber, String email, String address, int statusUser) {
+    public User(String userName, String password, String phoneNumber, String email, String address, int statusUser) {
+        this.userName = userName;
+        this.password = password;
+        this.phoneNumber = phoneNumber;
+        this.email = email;
+        this.address = address;
+        this.statusUser = statusUser;
+    }
+
+    public User(int idUser, String userName, String password, String phoneNumber, String email, String address, int statusUser) {
         this.idUser = idUser;
         this.userName = userName;
         this.password = password;
