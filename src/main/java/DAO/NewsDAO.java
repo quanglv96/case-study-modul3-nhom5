@@ -88,8 +88,14 @@ public class NewsDAO {
     }
 
     public void updateNews(News news) throws SQLException {
-
-
+        try (Connection connection = getConnection();
+             PreparedStatement statement = connection.prepareStatement(UPDATE_BY_ID);) {
+            statement.setString(1, news.getTileNews());
+            statement.setString(2, news.getContent());
+            statement.setDate(3, java.sql.Date.valueOf(java.time.LocalDate.now()));
+            statement.setString(4,news.getImg());
+            statement.executeUpdate();
+        }
     }
 
     public void deleteNews(int idNews) throws SQLException {
