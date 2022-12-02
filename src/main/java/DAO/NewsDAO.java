@@ -87,7 +87,7 @@ public class NewsDAO {
             printSQLException(e);
         }
     }
-
+ //
     public void updateNews(News news) throws SQLException {
         try (Connection connection = getConnection();
              PreparedStatement statement = connection.prepareStatement(UPDATE_BY_ID);) {
