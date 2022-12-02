@@ -16,11 +16,12 @@ import static DAO.MyConnection.getConnection;
 public class NewsDAO {
     private final Connection connection;
     private final String SELECT_ALL_NEWS = "select * from news;";
-    private final String INSERT_NEWS = "INSERT INTO news (id_category, tile_news, content , date_news,id_user, status_news, img) VALUES (?, ?, ?, ?, ?, ? ,?);";
-    private final String SELECT_BY_ID = "select * from news where id_news = ? and status_news=1 ";
-    private final String UPDATE_BY_ID = "update news set tile_news = ? , content = ? where id_news = ?;";
+    private final String INSERT_NEWS = "INSERT INTO news (id_category, tile_news, content , date_news ,id_user, status_news, img) VALUES (?, ?, ?, ?, ?, ? ,?);";
+    private final String SELECT_BY_ID = "select * from news where id_news = ?  ";
+    private final String UPDATE_BY_ID = "update news set tile_news = ? , content = ?, date_news = ?, img = ? where id_news = ?;";
     private final String DELETE_BY_ID = "updte news set status_news = 0 where id_news = ? ";
-    Category category = new Category();
+    private Category category;
+
 
     public NewsDAO() {
         connection = getConnection();
@@ -28,9 +29,8 @@ public class NewsDAO {
 
     public List<News> selectAllNews() {
         List<News> news = new ArrayList<>();
-        String sql = "select * from user";
         try (Connection connection = getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+             PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ALL_NEWS)) {
             ResultSet rs = preparedStatement.executeQuery();
             while (rs.next()) {
                 int idNews = rs.getInt("id_news");
@@ -40,6 +40,7 @@ public class NewsDAO {
                 Date dateNews = rs.getDate("date_news");
                 int idUser = rs.getInt("id_user");
                 int statusNews = rs.getInt("status_news");
+                String img = rs.getString("img");
                 news.add(new News(idNews, idCategory, tileNews, content, dateNews, idUser, statusNews));
             }
         } catch (SQLException e) {
@@ -48,14 +49,14 @@ public class NewsDAO {
         return news;
     }
 
-    public News selectNews(int id) {
+    public News selectNews(int idNews) {
         News news = null;
-        try (PreparedStatement preparedStatement = connection.prepareStatement(SELECT_BY_ID)) {
-            preparedStatement.setInt(1, id);
-            System.out.println(preparedStatement);
+        try (Connection connection = getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(SELECT_BY_ID)) {
+            preparedStatement.setInt(1, idNews);
             ResultSet rs = preparedStatement.executeQuery();
+            // duyệt bản ghi result
             while (rs.next()) {
-                int idNews = rs.getInt("id_user");
                 int idCategory = rs.getInt("id_category");
                 String tileNews = rs.getString("tile_news");
                 String content = rs.getString("content");
@@ -63,7 +64,7 @@ public class NewsDAO {
                 int idUser = rs.getInt("id_user");
                 int statusNews = rs.getInt("status_news");
                 String img = rs.getString("img");
-                news = new News(idNews, idCategory, tileNews, content, dateNews, idUser, statusNews, img);
+                news = new News(idCategory, tileNews, content, dateNews, idUser, statusNews,img );
             }
         } catch (SQLException e) {
             printSQLException(e);
@@ -74,11 +75,11 @@ public class NewsDAO {
     public void insertNews(News news) throws SQLException {
         try (Connection connection = getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(INSERT_NEWS)) {
-            preparedStatement.setInt(1, news.getIdCategory());// *
+            preparedStatement.setInt(1, news.getIdCategory());
             preparedStatement.setString(2, news.getTileNews());
             preparedStatement.setString(3, news.getContent());
             preparedStatement.setDate(4, java.sql.Date.valueOf(java.time.LocalDate.now()));
-            preparedStatement.setInt(5, news.getIdUser());//*
+            preparedStatement.setInt(5, news.getIdUser());
             preparedStatement.setInt(6, news.getStatusNews());
             preparedStatement.setString(7, news.getImg());
             preparedStatement.executeUpdate();
@@ -86,7 +87,7 @@ public class NewsDAO {
             printSQLException(e);
         }
     }
-
+ //
     public void updateNews(News news) throws SQLException {
         try (Connection connection = getConnection();
              PreparedStatement statement = connection.prepareStatement(UPDATE_BY_ID);) {
