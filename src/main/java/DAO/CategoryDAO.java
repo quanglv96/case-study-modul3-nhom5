@@ -22,8 +22,8 @@ public class CategoryDAO {
         try (PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ALL_CATEGORY)){
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
-                int id = resultSet.getInt("id");
-                String name = resultSet.getString("name");
+                int id = resultSet.getInt("id_category");
+                String name = resultSet.getString("name_category");
                 categories.add(new Category(id, name));
             }
         } catch (SQLException e) {
@@ -31,5 +31,19 @@ public class CategoryDAO {
         }
         return categories;
     }
-
+    public Category findCategoryById(int id) {
+        try (PreparedStatement preparedStatement =
+                     connection.prepareStatement(SELECT_CATEGORY_BY_ID)){
+            preparedStatement.setLong(1, id);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                int idDb = resultSet.getInt("id_category");
+                String name = resultSet.getString("name_category");
+                return new Category(idDb, name);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 }
