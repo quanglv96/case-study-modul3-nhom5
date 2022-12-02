@@ -1,5 +1,6 @@
 package Model;
 
+
 import java.util.Date;
 
 public class News {
@@ -24,6 +25,17 @@ public class News {
     }
 
     public News(int idCategory, String tileNews, String content, Date dateNews, int idUser, int statusNews, String img) {
+        this.idCategory = idCategory;
+        this.tileNews = tileNews;
+        this.content = content;
+        this.dateNews = dateNews;
+        this.idUser = idUser;
+        this.statusNews = statusNews;
+        this.img = img;
+    }
+
+    public News(int idNews, int idCategory, String tileNews, String content, Date dateNews, int idUser, int statusNews, String img) {
+        this.idNews = idNews;
         this.idCategory = idCategory;
         this.tileNews = tileNews;
         this.content = content;
