@@ -25,7 +25,7 @@
     <form action="manager/Login2.jsp">
         <button class="" type="submit">Login Admin</button>
     </form>
-    <form action="view_user/View.jsp">
+    <form action="/user">
         <button type="submit">DAO Blog</button>
     </form>
 </div>

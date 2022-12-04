@@ -104,6 +104,7 @@ public class NewsServlet extends HttpServlet {
         dispatcher.forward(request, response);
 
     }
+    //
 
     private void updateNews(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, IOException, ServletException {

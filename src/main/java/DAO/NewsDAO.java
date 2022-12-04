@@ -21,6 +21,7 @@ public class NewsDAO {
     private final String UPDATE_BY_ID = "update news set tile_news = ? , content = ?, date_news = ?, img = ? where id_news = ?;";
     private final String DELETE_BY_ID = "updte news set status_news = 0 where id_news = ? ";
     private Category category;
+<<<<<<< HEAD
     private News news;
 
 
@@ -28,12 +29,22 @@ public class NewsDAO {
     public NewsDAO() {
         NewsDAO newsDAO = new NewsDAO();
         connection = getConnection();
+=======
+    private UserDAO userDAO;
+    private CategoryDAO categoryDAO;
+
+
+    public NewsDAO() {
+        connection = MyConnection.getConnection();
+        category=new Category();
+        userDAO=new UserDAO();
+        categoryDAO=new CategoryDAO();
+>>>>>>> 713d0369c6c93a4ce20af2cc6edb87abb67ad7b1
     }
 
     public List<News> selectAllNews() {
         List<News> news = new ArrayList<>();
-        try (Connection connection = getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ALL_NEWS)) {
+        try (PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ALL_NEWS)) {
             ResultSet rs = preparedStatement.executeQuery();
             while (rs.next()) {
                 int idNews = rs.getInt("id_news");
@@ -44,7 +55,11 @@ public class NewsDAO {
                 int idUser = rs.getInt("id_user");
                 int statusNews = rs.getInt("status_news");
                 String img = rs.getString("img");
+<<<<<<< HEAD
                 news.add(new News(idNews, idCategory, tileNews, content, dateNews, idUser, statusNews, img));
+=======
+                news.add(new News(idNews, categoryDAO.findCategoryById(idCategory), tileNews, content, dateNews, userDAO.findUserById(idUser), statusNews,img));
+>>>>>>> 713d0369c6c93a4ce20af2cc6edb87abb67ad7b1
             }
         } catch (SQLException e) {
             printSQLException(e);
@@ -67,7 +82,11 @@ public class NewsDAO {
                 int idUser = rs.getInt("id_user");
                 int statusNews = rs.getInt("status_news");
                 String img = rs.getString("img");
+<<<<<<< HEAD
                 news = new News(idCategory, tileNews, content, dateNews, idUser, statusNews, img);
+=======
+                news = new News(categoryDAO.findCategoryById(idCategory), tileNews, content, dateNews, userDAO.findUserById(idUser), statusNews,img );
+>>>>>>> 713d0369c6c93a4ce20af2cc6edb87abb67ad7b1
             }
         } catch (SQLException e) {
             printSQLException(e);
@@ -78,11 +97,11 @@ public class NewsDAO {
     public void insertNews(News news) throws SQLException {
         try (Connection connection = getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(INSERT_NEWS)) {
-            preparedStatement.setInt(1, news.getIdCategory());
+            preparedStatement.setInt(1, news.getCategory().getIdCategory());
             preparedStatement.setString(2, news.getTileNews());
             preparedStatement.setString(3, news.getContent());
             preparedStatement.setDate(4, java.sql.Date.valueOf(java.time.LocalDate.now()));
-            preparedStatement.setInt(5, news.getIdUser());
+            preparedStatement.setInt(5, news.getUser().getIdUser());
             preparedStatement.setInt(6, news.getStatusNews());
             preparedStatement.setString(7, news.getImg());
             preparedStatement.executeUpdate();
