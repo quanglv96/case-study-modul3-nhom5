@@ -6,10 +6,13 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
     <title>Login2</title>
     <link rel="stylesheet" href="webapp/WEB-INF/bootstrap/css/bootstrap.min.css"/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     <style>
         body {
             background-image: url("https://wallpaperaccess.com/full/1782141.jpg");
@@ -49,6 +52,14 @@
             height:35%;
             opacity: 1;
         }
+        .btn-info {
+            margin-top: 20px;
+            margin-left: 50px;
+            width: 200px;
+            font-size: 20px;
+            text-align: center;
+            padding-top: 1px;
+        }
     </style>
 </head>
 <body>
@@ -58,23 +69,30 @@
         <form action="Manager.jsp" onsubmit="return checkLog()">
             <table>
                 <tr>
-                    <th>ID</th>
+                    <th><label class="label col-md-3 control-label" >Account</label></th>
                 </tr>
                 <tr>
-                    <td><input type="text" id="idAdmin" placeholder="Enter ID"></td>
+                    <td>
+                        <div class="col-md-12">
+                            <input type="text" class="form-control" name="userName" placeholder="username or email">
+                        </div>
+                    </td>
                 </tr>
                 <tr>
-                    <th>Password</th>
+                    <th><label class="label col-md-3 control-label" >Password</label></th>
                 </tr>
                 <tr>
-                    <td><input type="password" id="passAdmin" placeholder="Enter password"></td>
+                    <td><div class="col-md-12">
+                        <input type="password" class="form-control" name="password" placeholder="password">
+                        <small>Password must be 6 character</small>
+                    </div></td>
                 </tr>
                 <tr>
                     <td><div><p style="color: red" id="erro"></p></div></td>
                 </tr>
                 <tr>
                     <td>
-                        <button class="btn btn-primary" type="submit">Login</button>
+                        <input type="submit" class="btn btn-info" value="LOGIN"></td>
                     </td>
                 </tr>
             </table>

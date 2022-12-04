@@ -45,6 +45,8 @@ public class News {
         this.img = img;
     }
 
+
+
     public int getIdNews() {
         return idNews;
     }

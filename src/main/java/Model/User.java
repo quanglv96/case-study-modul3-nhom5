@@ -10,6 +10,10 @@ public class User {
     private String address;
     private int statusUser;
 
+    public int getIdUser() {
+        return idUser;
+    }
+
     public void setIdUser(int idUser) {
         this.idUser = idUser;
     }

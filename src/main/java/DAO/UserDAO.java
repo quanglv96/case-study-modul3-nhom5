@@ -95,7 +95,7 @@ public class UserDAO {
         }
     }
         private void deleteUser(int id){
-        try (PreparedStatement preparedStatement =connection.prepareStatement(DELETE_USER)){
+        try (PreparedStatement preparedStatement = connection.prepareStatement(DELETE_USER)){
             preparedStatement.setInt(1,id);
             preparedStatement.executeUpdate();
         } catch (SQLException e) {

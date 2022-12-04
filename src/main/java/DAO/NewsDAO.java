@@ -21,9 +21,12 @@ public class NewsDAO {
     private final String UPDATE_BY_ID = "update news set tile_news = ? , content = ?, date_news = ?, img = ? where id_news = ?;";
     private final String DELETE_BY_ID = "updte news set status_news = 0 where id_news = ? ";
     private Category category;
+    private News news;
+
 
 
     public NewsDAO() {
+        NewsDAO newsDAO = new NewsDAO();
         connection = getConnection();
     }
 
@@ -41,7 +44,7 @@ public class NewsDAO {
                 int idUser = rs.getInt("id_user");
                 int statusNews = rs.getInt("status_news");
                 String img = rs.getString("img");
-                news.add(new News(idNews, idCategory, tileNews, content, dateNews, idUser, statusNews));
+                news.add(new News(idNews, idCategory, tileNews, content, dateNews, idUser, statusNews, img));
             }
         } catch (SQLException e) {
             printSQLException(e);
@@ -64,7 +67,7 @@ public class NewsDAO {
                 int idUser = rs.getInt("id_user");
                 int statusNews = rs.getInt("status_news");
                 String img = rs.getString("img");
-                news = new News(idCategory, tileNews, content, dateNews, idUser, statusNews,img );
+                news = new News(idCategory, tileNews, content, dateNews, idUser, statusNews, img);
             }
         } catch (SQLException e) {
             printSQLException(e);
@@ -87,14 +90,16 @@ public class NewsDAO {
             printSQLException(e);
         }
     }
- //
+
+    //
     public void updateNews(News news) throws SQLException {
         try (Connection connection = getConnection();
              PreparedStatement statement = connection.prepareStatement(UPDATE_BY_ID);) {
             statement.setString(1, news.getTileNews());
             statement.setString(2, news.getContent());
             statement.setDate(3, java.sql.Date.valueOf(java.time.LocalDate.now()));
-            statement.setString(4,news.getImg());
+            statement.setString(4, news.getImg());
+            statement.setInt(5, news.getIdNews());
             statement.executeUpdate();
         }
     }
