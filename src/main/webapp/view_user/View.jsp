@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: QuangMax
@@ -69,17 +70,17 @@
 </div>
 <div>
     <div class="directional">
-        <form action="homePage" method="get">
-            <button type="submit">Trang chủ</button>
+        <form action="/user?action=&idUser=" method="get">
+            <button type="submit">Home</button>
         </form>
-        <form action="homePage" method="get">
-            <button type="submit">Trang chủ</button>
+        <form action="/user?action=&idUser=" method="get">
+            <button type="submit">New Post</button>
         </form>
-        <form action="homePage" method="get">
-            <button type="submit">Trang chủ</button>
+        <form action="/user?action=&idUser=" method="get">
+            <button type="submit">Sport</button>
         </form>
-        <form action="homePage" method="get">
-            <button type="submit">Trang chủ</button>
+        <form action="/user?action=&idUser=" method="get">
+            <button type="submit">Culture</button>
         </form>
     </div>
 </div>
@@ -87,7 +88,22 @@
     <div class="col-2">
         <div class=" col-8 ads"><img src="https://viewpro.in/blog/images/animated-gif-banner-ad.gif"/></div>
     </div>
-    <div class="showContent">
+    <div>
+        <c:forEach items="${listNews}" var="news">
+            <div>
+                <table>
+                    <tr>
+                        <td><c:out value="${news.getUser().getUserName()}"/></td>
+                    </tr>
+                    <tr>
+                        <td><c:out value="${news.getTileNews()}"/></td>
+                    </tr>
+                    <tr>
+                        <td><img src="${news.getImg()}" /></td>
+                    </tr>
+                </table>
+            </div>
+        </c:forEach>
     </div>
     <div class="col-2">
         <div class="ads"><img src="https://viewpro.in/blog/images/animated-gif-banner-ad.gif"/></div>

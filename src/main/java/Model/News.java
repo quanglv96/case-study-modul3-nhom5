@@ -5,42 +5,41 @@ import java.util.Date;
 
 public class News {
     protected int idNews;
-    protected int idCategory;   // khóa phụ
+    protected Category category;   // khóa phụ
     protected String tileNews;
     protected String content;
     protected Date dateNews;
-    protected int idUser;    // khóa phụ
+    protected User user;    // khóa phụ
     protected int statusNews = 1;
     protected String img;
 
-    public News(int idNews, int idCategory, String tileNews, String content, Date dateNews, int idUser, int statusNews) {
+    public News(int idNews, Category category, String tileNews, String content, Date dateNews, User user, int statusNews) {
         this.idNews = idNews;
-        this.idCategory = idCategory;
+        this.category = category;
         this.tileNews = tileNews;
         this.content = content;
         this.dateNews = dateNews;
-        this.idUser = idUser;
+        this.user = user;
+        this.statusNews = statusNews;
+    }
+
+    public News(Category category, String tileNews, String content, Date dateNews, User user, int statusNews, String img) {
+        this.category = category;
+        this.tileNews = tileNews;
+        this.content = content;
+        this.dateNews = dateNews;
+        this.user = user;
         this.statusNews = statusNews;
         this.img = img;
     }
 
-    public News(int idCategory, String tileNews, String content, Date dateNews, int idUser, int statusNews, String img) {
-        this.idCategory = idCategory;
-        this.tileNews = tileNews;
-        this.content = content;
-        this.dateNews = dateNews;
-        this.idUser = idUser;
-        this.statusNews = statusNews;
-        this.img = img;
-    }
-
-    public News(int idNews, int idCategory, String tileNews, String content, Date dateNews, int idUser, int statusNews, String img) {
+    public News(int idNews, Category category, String tileNews, String content, Date dateNews, User user, int statusNews, String img) {
         this.idNews = idNews;
-        this.idCategory = idCategory;
+        this.category = category;
         this.tileNews = tileNews;
         this.content = content;
         this.dateNews = dateNews;
-        this.idUser = idUser;
+        this.user = user;
         this.statusNews = statusNews;
         this.img = img;
     }
@@ -53,12 +52,12 @@ public class News {
         this.idNews = idNews;
     }
 
-    public int getIdCategory() {
-        return idCategory;
+    public Category getCategory() {
+        return category;
     }
 
-    public void setIdCategory(int idCategory) {
-        this.idCategory = idCategory;
+    public void setCategory(Category category) {
+        this.category = category;
     }
 
     public String getTileNews() {
@@ -85,12 +84,12 @@ public class News {
         this.dateNews = dateNews;
     }
 
-    public int getIdUser() {
-        return idUser;
+    public User getUser() {
+        return user;
     }
 
-    public void setIdUser(int idUser) {
-        this.idUser = idUser;
+    public void setIdUser(User user) {
+        this.user = user;
     }
 
     public int getStatusNews() {

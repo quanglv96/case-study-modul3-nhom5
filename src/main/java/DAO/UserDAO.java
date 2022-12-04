@@ -23,8 +23,7 @@ public class UserDAO {
 
     public List<User> findAll() {
         List<User> users = new ArrayList<>();
-        try (
-                PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ALL_USER)) {
+        try (PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ALL_USER)) {
             getListUsers(users, preparedStatement);
 
         } catch (SQLException e) {
@@ -33,7 +32,7 @@ public class UserDAO {
         return users;
     }
 
-    private void getListUsers(List<User> users, PreparedStatement preparedStatement) throws SQLException {
+    public void getListUsers(List<User> users, PreparedStatement preparedStatement) throws SQLException {
         ResultSet resultSet = preparedStatement.executeQuery();
         while (resultSet.next()) {
             int idUser = Integer.parseInt(resultSet.getString("id_user"));
@@ -47,7 +46,7 @@ public class UserDAO {
         }
     }
 
-    private User findUserById(int id) {
+    public User findUserById(int id) {
         try (PreparedStatement preparedStatement = connection.prepareStatement(SELECT_USER_BY_ID)) {
             preparedStatement.setInt(1, id);
             ResultSet resultSet = preparedStatement.executeQuery();
@@ -66,7 +65,7 @@ public class UserDAO {
         return null;
     }
 
-    private void insertUser(User user) {
+    public void insertUser(User user) {
         try (PreparedStatement preparedStatement = connection.prepareStatement(INSERT_USER)) {
             preparedStatement.setString(1, user.getUserName());
             preparedStatement.setString(2, user.getPassword());
@@ -81,7 +80,7 @@ public class UserDAO {
         }
     }
 
-    private void upDateUser(User user) {
+    public void upDateUser(User user) {
         try (PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_USER)) {
             preparedStatement.setString(1, user.getUserName());
             preparedStatement.setString(2, user.getPassword());
@@ -94,13 +93,14 @@ public class UserDAO {
             throw new RuntimeException(e);
         }
     }
-        private void deleteUser(int id){
-        try (PreparedStatement preparedStatement =connection.prepareStatement(DELETE_USER)){
-            preparedStatement.setInt(1,id);
+
+    public void deleteUser(int id) {
+        try (PreparedStatement preparedStatement = connection.prepareStatement(DELETE_USER)) {
+            preparedStatement.setInt(1, id);
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        }
+    }
 }
 
