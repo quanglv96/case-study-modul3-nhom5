@@ -1,5 +1,7 @@
 package Controller;
 
+import DAO.CategoryDAO;
+import DAO.UserDAO;
 import Model.News;
 import DAO.NewsDAO;
 
@@ -14,7 +16,9 @@ import java.util.List;
 @WebServlet(name = "NewsServlet", value = "/news")
 public class NewsServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
-    private NewsDAO newsDAO;
+    private NewsDAO newsDAO=new NewsDAO();
+    private UserDAO userDAO=new UserDAO();
+    private CategoryDAO categoryDAO=new CategoryDAO();
 
     public void init() {
         newsDAO = new NewsDAO();
@@ -86,11 +90,11 @@ public class NewsServlet extends HttpServlet {
         int idCategory = Integer.parseInt(request.getParameter("id_category"));
         String tileNews = request.getParameter("tile_news");
         String content = request.getParameter("content");
-        Date dateNews = request.getParameter("date_news");
+        Date dateNews = new Date(); // gọi thời gian hện tại của hệ thống
         int idUser = Integer.parseInt(request.getParameter("id_user"));
         int statusNews = Integer.parseInt(request.getParameter("status_news"));
         String img = request.getParameter("img");
-        News newNews = new News(idCategory, tileNews, content, dateNews, idUser, statusNews, img);
+        News newNews = new News(categoryDAO.findCategoryById(idCategory), tileNews, content, dateNews, userDAO.findUserById(idUser), statusNews, img);
         newsDAO.insertNews(newNews);
         response.sendRedirect("/news");
     }
@@ -104,16 +108,15 @@ public class NewsServlet extends HttpServlet {
         dispatcher.forward(request, response);
 
     }
-    //
 
     private void updateNews(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, IOException, ServletException {
         String tileNews = request.getParameter("tile_news");
         String content = request.getParameter("content");
-        Date dateNews = request.getParameter("date_news");
+        Date dateNews = new Date();
         int statusNews = Integer.parseInt(request.getParameter("status_news"));
         String img = request.getParameter("img");
-        News newNews = new News(tileNews, content, dateNews, statusNews,  img);
+        News newNews = new News(tileNews, content, dateNews, statusNews, img);
         newsDAO.updateNews(newNews);
         response.sendRedirect("/news");
     }
