@@ -74,7 +74,7 @@
                 <tr>
                     <td>
                         <div class="col-md-12">
-                            <input type="text" class="form-control" name="userName" placeholder="username or email">
+                            <input type="text" class="form-control" name="userName" placeholder="admin">
                         </div>
                     </td>
                 </tr>
