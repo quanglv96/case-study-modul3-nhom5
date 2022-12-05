@@ -105,9 +105,17 @@ public class NewsDAO {
         }
     }
 
-    public void deleteNews(int idNews) throws SQLException {
+//    public boolean deleteNews(int idNews) throws SQLException {
+//            try (PreparedStatement preparedStatement =
+//                         connection.prepareStatement(DELETE_BY_ID)) {
+//                preparedStatement.setLong(1, idNews);
+//                return preparedStatement.executeUpdate() > 0;
+//            } catch (SQLException e) {
+//                e.printStackTrace();
+//            }
+//            return false;
+//        }
 
-    }
 
 
     private void printSQLException(SQLException ex) {
