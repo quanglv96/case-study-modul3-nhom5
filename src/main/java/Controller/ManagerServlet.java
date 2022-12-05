@@ -29,19 +29,13 @@ public class ManagerServlet extends HttpServlet {
         if (action == null) {
             action = "";
         }
-        try {
-            switch (action) {
-                case "all_list_news":
-                    showAllUserForm(request, response);
-                    listUser(request, response);
-                    break;
-                case "all_list_user":
-                    showAllNewsForm(request, response);
-                    listNews(request, response);
-                    break;
-            }
-        } catch (SQLException ex) {
-            throw new ServletException(ex);
+        switch (action) {
+            case "all_list_news":
+                showAllNewsForm(request, response);
+                break;
+            case "all_list_user":
+                showAllUserForm(request, response);
+                break;
         }
     }
 
@@ -56,8 +50,12 @@ public class ManagerServlet extends HttpServlet {
         request.setAttribute("listUser", listUser);
         dispatcher.forward(request, response);
     }
+
     private void showAllNewsForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        response.sendRedirect("all_list_news.jsp");
+        List<News> listNews = newsDAO.selectAllNews();
+        RequestDispatcher dispatcher = request.getRequestDispatcher("admin_manager/all_list_news.jsp");
+        request.setAttribute("listNews", listNews);
+        dispatcher.forward(request, response);
     }
 
     private void listNews(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException, ServletException {

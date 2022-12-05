@@ -86,42 +86,30 @@
     </div>
 </div>
 <div class="directional">
-    <div class="col-2">
-        <div class=" col-8 ads"><img src="https://viewpro.in/blog/images/animated-gif-banner-ad.gif"/></div>
-    </div>
     <div align="center">
         <table border="1" cellpadding="5">
             <caption><h2>List of News</h2></caption>
             <tr>
-                <th>idNews</th>
-                <th>idCategory</th>
-                <th>tileNews</th>
-                <th>content</th>
-                <th>dateNews</th>
-                <th>statusNews</th>
-                <th>img</th>
-                <th>Lock News</th>
+                <th>ID</th>
+                <th>Category</th>
+                <th>Tile</th>
+                <th>Date</th>
+                <th>User</th>
+                <th>Delete News</th>
             </tr>
             <c:forEach var="news" items="${listNews}">
                 <tr>
-                    <td><c:out value="${news.idnews}"/></td>
-                    <td><c:out value="${news.idCategory}"/></td>
-                    <td><c:out value="${news.tileNews}"/></td>
-                    <td><c:out value="${news.content }"/></td>
-                    <td><c:out value="${news.dateNews }"/></td>
-                    <td><c:out value="${news.idUser}"/></td>
-                    <td><c:out value="${news.statusNews}"/></td>
-                    <td><c:out value="${news.img}"/></td>
+                    <td><c:out value="${news.getIdNews()}"/></td>
+                    <td><a href="/news?action=sort" <c:out value="${news.getCategory().getNameCategory()}"/></td>
+                    <td><a href="/news?action=content&id=${news.getIdNews()}" <c:out value="${news.getTileNews()}"/></td>
+                    <td><c:out value="${news.getDateNews()}"/></td>
+                    <td><c:out value="${news.getUser().getUserName()}"/></td>
                     <td>
-                        <a href="/news?action=delete_news&idNews=${user.id}" onclick="return test('${news.idNews}')">Delete</a>
-                        <a href="/news?action=delete_news&idNews=${user.id}" onclick="return test('${news.idNews}')">Status</a>
+                        <a href="/news?action=delete_news&idNews=${user.id}">🗑️</a>
                     </td>
                 </tr>
             </c:forEach>
         </table>
-    </div>
-    <div class="col-2">
-        <div class="ads"><img src="https://viewpro.in/blog/images/animated-gif-banner-ad.gif"/></div>
     </div>
 </div>
 </body>
