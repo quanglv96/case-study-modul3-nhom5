@@ -22,11 +22,10 @@
         .login {
             text-align: center;
             padding: 0;
-            width: 25%;
-            height: 100%;
-            margin-left: 70%;
             background: rgba(255, 255, 255, 0.4);
-            margin-right: 10%;
+            width: 100vw;
+            height: 100vh;
+            position: relative;
         }
 
         th{
@@ -36,17 +35,19 @@
             border-radius: 3px ;
             width: 300px;
             height: 30px;
+            position: center;
         }
-        /*button{*/
-        /*    width: 30px;*/
-        /*    height: 30px;*/
-        /*}*/
+
         tr td{
             text-align: center;
         }
         div form{
             text-align: center;
-            padding: 10%;
+
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
         }
         img{
             width:70% ;
@@ -70,8 +71,8 @@
 </head>
 <body>
 <div class="login">
-    <div><img src="logo.png"/></div>
-    <div>
+    <div style="clear: both; position: center"><img src="logo.png"/></div>
+    <div style="clear: both; position: center">
         <form action="Manager.jsp" onsubmit="return checkLog()">
             <table>
                 <tr>
