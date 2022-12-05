@@ -57,10 +57,12 @@
             color: white;
             margin-top: 20px;
         }
+
         small {
             font-size: 18px;
             color: yellow;
         }
+
         option {
             color: #666;
         }
@@ -71,59 +73,67 @@
             width: 180px;
             font-size: 25px;
         }
+        .error{
+            color: red;
+            size:25px;
+        }
     </style>
 </head>
 <body>
-<form action="/register" method="get">
-    <div class="container">
+
+<div class="container">
+    <form action="/register?action=check" method="post">
         <div class="row">
             <div class="col-md-3"></div>
             <div class="col-md-6">
                 <br>
                 <h1 class="text-center">REGISTER</h1>
-                <label style="color: red" class="label col-md-3 control-label" >UserName</label>
+                <label style="color: red" class="label col-md-3 control-label">UserName</label>
                 <div class="col-md-9">
-                    <input type="text" class="form-control" name="userName" id="userName" placeholder="username">
+                    <input type="text" class="form-control" name="userName" id="userName" placeholder="username" value="<c:out value="${userName}"/>">
+                </div>
+                <div>
+                    <p class="error" ><c:out value="${checkUser}"/></p>
                 </div>
 
                 <label style="color: red" class="label col-md-3 control-label">Password</label>
                 <div class="col-md-9">
                     <input type="password" class="form-control" name="password" placeholder="password">
-                    <small>Password must be 6 character</small>
+                </div>
+                <div>
+                    <p class="error"><c:out value="${checkPass}"/></p>
                 </div>
                 <label style="color: red" class="label col-md-3 control-label">RePassword</label>
                 <div class="col-md-9">
-                    <input type="password" class="form-control" name="repassword" placeholder="repassword">
-                    <small>RePassword must be 6 character</small>
+                    <input type="password" class="form-control" name="rePassword" placeholder="repassword">
+                </div>
+                <div>
+                    <p class="error"><c:out value="${checkRePass}"/></p>
                 </div>
                 <label style="color: red" class="label col-md-3 control-label">PhoneNumber</label>
                 <div class="col-md-9">
-                    <input type="text" class="form-control" name="phonenumber" placeholder="phonenumber">
-                    <small>PhoneNumber must be 10 character</small>
+                    <input type="text" class="form-control" name="phoneNumber" placeholder="phonenumber" value="<c:out value="${phoneNumber}"/>">
+                </div>
+                <div>
+                    <p class="error" ><c:out value="${checkPhone}"/></p>
                 </div>
                 <label style="color: red" class="label col-md-3 control-label">Email</label>
                 <div class="col-md-9">
-                    <input type="text" class="form-control" name="password" placeholder="Email">
-                    <small>Email must be Example@example.xx</small>
+                    <input type="text" class="form-control" name="email" placeholder="Email" value="<c:out value="${email}"/>">
+                </div>
+                <div>
+                    <p class="error" ><c:out value="${checkEmail}"/></p>
                 </div>
                 <label style="color: red" class="label col-md-3 control-label">Address</label>
                 <div class="col-md-9">
-                    <input type="text" class="form-control" name="address" placeholder="address">
-                    <small>Email must be Example@example.xx</small>
-                </div>
-                <label style="color: red" class="label col-md-3 control-label">Status</label>
-                <div class="col-md-9">
-                    <select class="form-control">
-                        <option>On</option>
-                        <option>Off</option>
-                    </select>
+                    <input type="text" class="form-control" name="address" placeholder="address" value="<c:out value="${address}"/>">
                 </div>
             </div>
             <div class="col-md-3"></div>
         </div>
-    </div>
-    <input type="submit" class="btn btn-info" value="Submit"></td>
-</form>
+        <button type="submit" class="btn btn-info">Submit</button>
+    </form>
+</div>
 </body>
 
 </html>

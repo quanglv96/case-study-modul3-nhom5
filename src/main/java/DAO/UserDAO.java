@@ -16,6 +16,7 @@ public class UserDAO {
     private final String INSERT_USER = "insert into user(username_user,password,phoneNumber_user,email_user,address_user,status_user) value(?,?,?,?,?,?);";
     private final String UPDATE_USER = "update user set username_user = ?, password = ?, phoneNumber_user = ?,email_user = ?, address_user = ?, status_user = ? where id_user = ?;";
     private final String DELETE_USER = "delete from user where id_user = ?;";
+    private final String LOCK_USER_AND_NEWS = "update user u, news m set u.status_user = 0, m.status_news = 0 where u.id_user = ? and m.id_user = ?;";
 
     public UserDAO() {
         connection = MyConnection.getConnection();
@@ -24,26 +25,21 @@ public class UserDAO {
     public List<User> findAll() {
         List<User> users = new ArrayList<>();
         try (PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ALL_USER)) {
-            getListUsers(users, preparedStatement);
-
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                int idUser = Integer.parseInt(resultSet.getString("id_user"));
+                String userName = resultSet.getString("username_user");
+                String password = resultSet.getString("password");
+                String phoneNumber = resultSet.getString("phoneNumber_user");
+                String email = resultSet.getString("email_user");
+                String address = resultSet.getString("address_user");
+                int statusUser = Integer.parseInt(resultSet.getString("status_user"));
+                users.add(new User(idUser, userName, password, phoneNumber, email, address, statusUser));
+            }
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
         return users;
-    }
-
-    public void getListUsers(List<User> users, PreparedStatement preparedStatement) throws SQLException {
-        ResultSet resultSet = preparedStatement.executeQuery();
-        while (resultSet.next()) {
-            int idUser = Integer.parseInt(resultSet.getString("id_user"));
-            String userName = resultSet.getString("username_user");
-            String password = resultSet.getString("password");
-            String phoneNumber = resultSet.getString("phoneNumber_user");
-            String email = resultSet.getString("email_user");
-            String address = resultSet.getString("address_user");
-            int statusUser = Integer.parseInt(resultSet.getString("status_user"));
-            users.add(new User(idUser, userName, password, phoneNumber, email, address, statusUser));
-        }
     }
 
     public User findUserById(int id) {
@@ -93,8 +89,17 @@ public class UserDAO {
             throw new RuntimeException(e);
         }
     }
+
     public void deleteUser(int id) {
         try (PreparedStatement preparedStatement = connection.prepareStatement(DELETE_USER)) {
+            preparedStatement.setInt(1, id);
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    public void lockAccount (int id) {
+        try (PreparedStatement preparedStatement = connection.prepareStatement(LOCK_USER_AND_NEWS)) {
             preparedStatement.setInt(1, id);
             preparedStatement.executeUpdate();
         } catch (SQLException e) {

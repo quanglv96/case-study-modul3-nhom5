@@ -96,6 +96,9 @@
         <form action="/user?action=&idUser=" method="get">
             <button type="submit">| Login  </button>
         </form>
+        <form action="view_user/Register.jsp" method="get">
+            <button type="submit">Register</button>
+        </form>
     </div>
 </div>
 <div class="directional" style="background: #b4d99f">
