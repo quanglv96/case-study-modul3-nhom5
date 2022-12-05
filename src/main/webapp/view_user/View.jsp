@@ -82,6 +82,9 @@
         <form action="/user?action=&idUser=" method="get">
             <button type="submit">Culture</button>
         </form>
+        <form action="view_user/Register.jsp" method="get">
+            <button type="submit">Register</button>
+        </form>
     </div>
 </div>
 <div class="directional">
