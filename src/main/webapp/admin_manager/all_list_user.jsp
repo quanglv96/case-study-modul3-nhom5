@@ -93,16 +93,15 @@
         <table border="1" cellpadding="5">
             <caption><h2>List of User</h2></caption>
             <tr>
-                <th>idNews</th>
-                <th>idCategory</th>
-                <th>tileNews</th>
-                <th>content</th>
-                <th>dateNews</th>
-                <th>statusNews</th>
-                <th>img</th>
-                <th>actions</th>
+                <th>Id User</th>
+                <th>User Name</th>
+                <th>Phone User</th>
+                <th>Email User</th>
+                <th>Address</th>
+                <th>Status</th>
+                <th>Actions</th>
             </tr>
-            <c:forEach var="news" items="${listNews}">
+            <c:forEach var="user" items="${listUser}">
                 <tr>
                     <td><c:out value="${news.idnews}"/></td>
                     <td><c:out value="${news.idCategory}"/></td>

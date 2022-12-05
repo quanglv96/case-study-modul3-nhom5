@@ -53,7 +53,11 @@
         <td><c:out value="${news.img}"/></td>
         <td>
           <a href="/news?action=edit_news&idNews=${news.idNews}">Edit</a>
+<<<<<<< HEAD
           <a href="/news?action=delete_news&idNews=${user.id}" onclick="return test('${news.idNews}')">Delete</a>
+=======
+          <a href="/news?action=delete_news&id=${user.id}" onclick="return test('${news.idNews}')">Delete</a>
+>>>>>>> 3b172f5c6a9a166050788511890ef2fd8e1acf5d
         </td>
       </tr>
     </c:forEach>
