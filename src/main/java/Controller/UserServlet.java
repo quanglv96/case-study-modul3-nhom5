@@ -11,7 +11,7 @@ import java.util.List;
 
 @WebServlet(name = "UserServlet", value = "/user")
 public class UserServlet extends HttpServlet {
-    private NewsDAO newsDAO = new NewsDAO();
+    private NewsDAO newsDAO ;
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
