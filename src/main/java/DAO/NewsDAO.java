@@ -24,12 +24,14 @@ public class NewsDAO {
     private News news;
     private UserDAO userDAO;
     private CategoryDAO categoryDAO;
+
     public NewsDAO() {
         connection = MyConnection.getConnection();
-        category=new Category();
-        userDAO=new UserDAO();
-        categoryDAO=new CategoryDAO();
+        category = new Category();
+        userDAO = new UserDAO();
+        categoryDAO = new CategoryDAO();
     }
+
     public List<News> selectAllNews() {
         List<News> news = new ArrayList<>();
         try (PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ALL_NEWS)) {
@@ -43,7 +45,7 @@ public class NewsDAO {
                 int idUser = rs.getInt("id_user");
                 int statusNews = rs.getInt("status_news");
                 String img = rs.getString("img");
-                news.add(new News(idNews, categoryDAO.findCategoryById(idCategory), tileNews, content, dateNews, userDAO.findUserById(idUser), statusNews,img));
+                news.add(new News(idNews, categoryDAO.findCategoryById(idCategory), tileNews, content, dateNews, userDAO.findUserById(idUser), statusNews, img));
             }
         } catch (SQLException e) {
             printSQLException(e);
@@ -66,7 +68,7 @@ public class NewsDAO {
                 int idUser = rs.getInt("id_user");
                 int statusNews = rs.getInt("status_news");
                 String img = rs.getString("img");
-                news = new News(categoryDAO.findCategoryById(idCategory), tileNews, content, dateNews, userDAO.findUserById(idUser), statusNews,img );
+                news = new News(categoryDAO.findCategoryById(idCategory), tileNews, content, dateNews, userDAO.findUserById(idUser), statusNews, img);
             }
         } catch (SQLException e) {
             printSQLException(e);
