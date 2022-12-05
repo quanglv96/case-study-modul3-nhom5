@@ -16,9 +16,9 @@ import java.util.List;
 @WebServlet(name = "NewsServlet", value = "/news")
 public class NewsServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
-    private NewsDAO newsDAO=new NewsDAO();
-    private UserDAO userDAO=new UserDAO();
-    private CategoryDAO categoryDAO=new CategoryDAO();
+    private NewsDAO newsDAO = new NewsDAO();
+    private UserDAO userDAO = new UserDAO();
+    private CategoryDAO categoryDAO = new CategoryDAO();
 
     public void init() {
         newsDAO = new NewsDAO();
@@ -33,9 +33,6 @@ public class NewsServlet extends HttpServlet {
         }
         try {
             switch (action) {
-                case "create_news":
-                    showCreatNewsForm(request, response);
-                    break;
                 case "edit_news":
                     showEditNewsForm(request, response);
                     break;
@@ -60,11 +57,13 @@ public class NewsServlet extends HttpServlet {
         }
         try {
             switch (action) {
-
+                case "openForm":
+                    showCreatNewsForm(request, response);
+                    break;
                 case "create_news":
                     insertNews(request, response);
                     break;
-                    case "edit_news":
+                case "edit_news":
                     updateNews(request, response);
                     break;
                 default:
@@ -84,9 +83,9 @@ public class NewsServlet extends HttpServlet {
     }
 
     private void showCreatNewsForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        int idUser= Integer.parseInt(request.getParameter("idUser"));
-        request.setAttribute("idLogin",idUser);
-        response.sendRedirect("create_news.jsp");
+        int idUser = Integer.parseInt(request.getParameter("idUser"));
+        request.setAttribute("idLogin", idUser);
+        response.sendRedirect("view_news/create_news.jsp");
     }
 
     private void insertNews(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException, ServletException {
