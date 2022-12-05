@@ -33,6 +33,7 @@
     <div class="row">
 <a href="http://localhost:8081/View.jsp?"> view</a>
     </div>
+
 </div>
 </body>
 </html>
