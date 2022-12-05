@@ -88,6 +88,7 @@ public class UserDAO {
             throw new RuntimeException(e);
         }
     }
+
     public void deleteUser(int id) {
         try (PreparedStatement preparedStatement = connection.prepareStatement(DELETE_USER)) {
             preparedStatement.setInt(1, id);
