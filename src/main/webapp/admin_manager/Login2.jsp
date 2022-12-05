@@ -88,7 +88,7 @@
                     </div></td>
                 </tr>
                 <tr>
-                    <td><div><p style="color: red" id="erro"></p></div></td>
+                    <td><div><p style="color: red" id="error"></p></div></td>
                 </tr>
                 <tr>
                     <td>
@@ -96,7 +96,7 @@
                     </td>
                 </tr>
             </table>
-            <div name="erro"></div>
+            <div name="error"></div>
         </form>
     </div>
 </div>
@@ -108,7 +108,7 @@
         if (id === "admin" && pass === "admin") {
             return true;
         } else {
-            document.getElementById("erro").innerText = "ID and Password are incorrect";
+            document.getElementById("error").innerText = "ID and Password are incorrect";
             return false;
         }
     }
