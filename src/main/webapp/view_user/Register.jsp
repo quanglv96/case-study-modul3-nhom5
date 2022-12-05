@@ -1,4 +1,5 @@
-<%--
+<%@ page import="java.util.regex.Matcher" %>
+<%@ page import="java.util.regex.Pattern" %><%--
   Created by IntelliJ IDEA.
   User: kungf
   Date: 12/4/2022
@@ -73,16 +74,16 @@
     </style>
 </head>
 <body>
-<form action="">
+<form action="/register" method="get">
     <div class="container">
         <div class="row">
             <div class="col-md-3"></div>
             <div class="col-md-6">
                 <br>
                 <h1 class="text-center">REGISTER</h1>
-                <label style="color: red" class="label col-md-3 control-label">UserName</label>
+                <label style="color: red" class="label col-md-3 control-label" >UserName</label>
                 <div class="col-md-9">
-                    <input type="text" class="form-control" name="userName" placeholder="username">
+                    <input type="text" class="form-control" name="userName" id="userName" placeholder="username">
                 </div>
 
                 <label style="color: red" class="label col-md-3 control-label">Password</label>
@@ -124,4 +125,5 @@
     <input type="submit" class="btn btn-info" value="Submit"></td>
 </form>
 </body>
+
 </html>
