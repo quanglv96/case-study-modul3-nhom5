@@ -16,7 +16,7 @@
     <style>
         body {
             background-image: url("https://wallpaperaccess.com/full/1782141.jpg");
-            background-size: 1580px 900px;
+            background-size: 100% 100%;
         }
 
         .login {
