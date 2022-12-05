@@ -45,7 +45,7 @@
     </style>
 </head>
 <body>
-<form action="/news?action=create_news" method="post">
+<form action="/news?action=create_news&idUser=${idUser}" method="post">
     <table width="800px" border="1">
         <tr>
             <th colspan="2"><h1 style="color: red; text-align: center; ">Add News</h1></th>

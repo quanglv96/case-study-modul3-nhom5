@@ -60,6 +60,7 @@ public class NewsServlet extends HttpServlet {
         }
         try {
             switch (action) {
+
                 case "create_news":
                     insertNews(request, response);
                     break;
@@ -83,6 +84,8 @@ public class NewsServlet extends HttpServlet {
     }
 
     private void showCreatNewsForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        int idUser= Integer.parseInt(request.getParameter("idUser"));
+        request.setAttribute("idLogin",idUser);
         response.sendRedirect("create_news.jsp");
     }
 
