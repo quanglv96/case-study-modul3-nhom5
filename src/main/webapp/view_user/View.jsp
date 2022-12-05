@@ -63,12 +63,18 @@
             width: 20%;
         }
         .col-3{
-            float: left;
+            width: 20%;
         }
-        .mid{
-
+        .mid{ ;
+            width: 60%;
         }
-
+        button{
+            font-family: "Arial";
+            color: rebeccapurple;
+        }
+        td{
+            font-family: Arial;
+        }
     </style>
 </head>
 <body>
@@ -80,7 +86,7 @@
     </div>
 </div>
 <div>
-    <div class="directional" style="background: #b4d99f ;border:solid 2px black ">
+    <div class="directional" style="background: #b4d99f ;border:solid 2px wheat ">
         <form action="/user?action=&idUser=" method="get">
             <button type="submit">Home</button>
         </form>
@@ -97,7 +103,7 @@
             <button type="submit">| Login  </button>
         </form>
         <form action="view_user/Register.jsp" method="get">
-            <button type="submit">Register</button>
+            <button type="submit">| Register</button>
         </form>
     </div>
 </div>
