@@ -80,12 +80,8 @@
         <form action="/user?action=&idUser=" method="get">
             <button type="submit">Culture</button>
         </form>
-        <form action="" method="">
-            <button type="submit">All List News</button>
-        </form>
-        <form action="" method="">
-            <button type="submit">All List User</button>
-        </form>
+        <a href="/manager?action">All List News</a>
+        <a href="">All List User</a>
     </div>
 </div>
 <div class="directional">

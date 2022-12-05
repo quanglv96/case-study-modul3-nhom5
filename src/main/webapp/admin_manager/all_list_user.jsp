@@ -80,34 +80,45 @@
         <form action="/manager?action=&idCategory=${2}" method="get">
             <button type="submit">Culture</button>
         </form>
-        <form action="/manager?action=&idCategory=${1}" method="">
-            <button type="submit">All List News</button>
-        </form>
-        <form action="" method="">
-            <button type="submit">All List User</button>
-        </form>
+        <a href="/manager?action">All List News</a>
+        <a href="">All List User</a>
+
     </div>
 </div>
 <div class="directional">
     <div class="col-2">
         <div class=" col-8 ads"><img src="https://viewpro.in/blog/images/animated-gif-banner-ad.gif"/></div>
     </div>
-    <div>
-        <c:forEach items="${listNews}" var="news">
-            <div>
-                <table>
-                    <tr>
-                        <td><c:out value="${news.getUser().getUserName()}"/></td>
-                    </tr>
-                    <tr>
-                        <td><c:out value="${news.getTileNews()}"/></td>
-                    </tr>
-                    <tr>
-                        <td><img src="${news.getImg()}" /></td>
-                    </tr>
-                </table>
-            </div>
-        </c:forEach>
+    <div align="center">
+        <table border="1" cellpadding="5">
+            <caption><h2>List of User</h2></caption>
+            <tr>
+                <th>idNews</th>
+                <th>idCategory</th>
+                <th>tileNews</th>
+                <th>content</th>
+                <th>dateNews</th>
+                <th>statusNews</th>
+                <th>img</th>
+                <th>actions</th>
+            </tr>
+            <c:forEach var="news" items="${listNews}">
+                <tr>
+                    <td><c:out value="${news.idnews}"/></td>
+                    <td><c:out value="${news.idCategory}"/></td>
+                    <td><c:out value="${news.tileNews}"/></td>
+                    <td><c:out value="${news.content }"/></td>
+                    <td><c:out value="${news.dateNews }"/></td>
+                    <td><c:out value="${news.idUser}"/></td>
+                    <td><c:out value="${news.statusNews}"/></td>
+                    <td><c:out value="${news.img}"/></td>
+                    <td>
+                        <a href="/news?action=edit_news&idNews=${news.idNews}">Edit</a>
+                        <a href="/news?action=delete_news&idNews=${user.id}" onclick="return test('${news.idNews}')">Delete</a>
+                    </td>
+                </tr>
+            </c:forEach>
+        </table>
     </div>
     <div class="col-2">
         <div class="ads"><img src="https://viewpro.in/blog/images/animated-gif-banner-ad.gif"/></div>

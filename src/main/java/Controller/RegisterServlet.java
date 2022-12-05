@@ -86,5 +86,4 @@ public class RegisterServlet extends HttpServlet {
             userDAO.insertUser(user);
         }
     }
-
 }
