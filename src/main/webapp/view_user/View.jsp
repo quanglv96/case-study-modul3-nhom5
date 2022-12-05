@@ -96,7 +96,7 @@
             <button type="submit">Home</button>
         </form>
         <c:if test="${not empty idLogin}">
-            <form action="/user?action=create_news&idUser=${idLogin}" method="post">
+            <form action="/news?action=openForm&idUser=${idLogin}" method="post">
                 <button type="submit">| New Post</button>
             </form>
         </c:if>
