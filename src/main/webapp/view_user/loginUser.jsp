@@ -17,7 +17,7 @@
 </head>
 <body>
 <div class="container">
-    <div align="center">
+    <td align="center">
         <form action="/user?action=login" method="post">
             <div><h2>Login</h2></div>
             <table>
@@ -29,12 +29,13 @@
                     <th>Password</th>
                     <td><input type="password" name="password"></td>
                 </tr>
+                <div><p class="error"><c:out value="${checkLogin}"/></p></div>
             </table>
             <div>
                 <button type="submit">Login</button>
             </div>
         </form>
-    </div>
+</div>
 </div>
 </body>
 </html>

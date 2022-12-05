@@ -35,10 +35,12 @@
         }
 
         h1 {
+
             font-size: 40px;
             color: red;
             margin-top: 20px;
             margin-bottom: 30px;
+            margin-left: 150px;
 
         }
 
@@ -69,7 +71,7 @@
 
         .btn-info {
             margin-top: 20px;
-            margin-left: 635px;
+            margin-left: 480px;
             width: 180px;
             font-size: 25px;
         }
@@ -87,7 +89,7 @@
             <div class="col-md-3"></div>
             <div class="col-md-6">
                 <br>
-                <h1 class="text-center">REGISTER</h1>
+                <h1 >REGISTER</h1>
                 <label style="color: red" class="label col-md-3 control-label">UserName</label>
                 <div class="col-md-9">
                     <input type="text" class="form-control" name="userName" id="userName" placeholder="username" value="<c:out value="${userName}"/>">
