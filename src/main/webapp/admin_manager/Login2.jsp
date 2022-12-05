@@ -33,13 +33,14 @@
             text-align: left;
         }
         input{
+            border-radius: 3px ;
             width: 300px;
             height: 30px;
         }
-        button{
-            width: 50px;
-            height: 30px;
-        }
+        /*button{*/
+        /*    width: 30px;*/
+        /*    height: 30px;*/
+        /*}*/
         tr td{
             text-align: center;
         }
@@ -56,9 +57,14 @@
             margin-top: 10px;
             margin-left: 5px;
             width: 250px;
-            font-size: 20px;
+            font-size: 15px;
             text-align: center;
             padding-top: 1px;
+        }
+        button{
+            border-radius: 7px;
+            width: 150px;
+            background: #43d066;
         }
     </style>
 </head>
@@ -73,18 +79,19 @@
                 </tr>
                 <tr>
                     <td>
-                        <div class="col-md-9">
-                            <input type="text" class="form-control" name="userName" placeholder="admin">
+                        <div>
+                            <input type="text"  name="userName" placeholder="admin">
                         </div>
                     </td>
                 </tr>
                 <tr>
-                    <th><label class="label col-md-3 control-label" >Password</label></th>
+                    <th><label  >Password</label></th>
                 </tr>
                 <tr>
-                    <td><div class="col-md-9">
-                        <input type="password" class="form-control" name="password" placeholder="password">
-                        <small>Password must be 6 character</small>
+                    <td><div >
+                        <input type="password" name="password" placeholder="password">
+                        <br>
+                        <small style="font-family: initial ">Password must be 6 character</small>
                     </div></td>
                 </tr>
                 <tr>
@@ -92,13 +99,13 @@
                 </tr>
                 <tr>
                     <td>
-                        <button class="btn btn-info" type="submit" >LOGIN</button>
+                        <button type="submit"  style="font-family: initial;" >LOGIN</button>
                     </td>
                 </tr>
             </table>
             <div name="error"></div>
         </form>
-    </div>r
+    </div>
 </div>
 </body>
 <script>

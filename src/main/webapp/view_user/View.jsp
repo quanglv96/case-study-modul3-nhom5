@@ -59,19 +59,22 @@
             padding-right: 10%;
             text-align: center;
         }
-
-        .col-2 {
+        .col-2{
             width: 20%;
         }
-
-        .col-3 {
-            float: left;
+        .col-3{
+            width: 20%;
         }
-
-        .mid {
-
+        .mid{ ;
+            width: 60%;
         }
-
+        button{
+            font-family: "Arial";
+            color: rebeccapurple;
+        }
+        td{
+            font-family: Arial;
+        }
     </style>
 </head>
 <body>
@@ -83,30 +86,25 @@
     </div>
 </div>
 <div>
-    <div class="directional" style="background: #b4d99f ;border:solid 2px black ">
-        <form action="/user?action=&idUser=${idLogin}" method="post">
+    <div class="directional" style="background: #b4d99f ;border:solid 2px wheat ">
+        <form action="/user?action=&idUser=" method="get">
             <button type="submit">Home</button>
         </form>
-        <c:if test="${not empty idLogin}">
-            <form action="/user?action=&idUser=${idLogin}" method="get">
-                <button type="submit">| New Post</button>
-            </form>
-        </c:if>
-        <form action="/user?action=&idUser=${idLogin}" method="post">
+        <form action="/user?action=&idUser=" method="get">
+            <button type="submit">| New Post</button>
+        </form>
+        <form action="/user?action=&idUser=" method="get">
             <button type="submit">| Sport</button>
         </form>
-        <form action="/user?action=&idUser=${idLogin}" method="post">
-            <button type="submit">| Culture</button>
+        <form action="/user?action=&idUser=" method="get">
+            <button type="submit">| Culture  </button>
         </form>
-        <c:if test="${ empty idLogin}">
-        <form action="/user?action=&idUser=${idLogin}" method="post">
-            <button type="submit">| Login</button>
+        <form action="view_user/loginUser.jsp" method="get">
+            <button type="submit">| Login  </button>
         </form>
-
-        <form action="/user?action=&idUser=${idLogin}" method="post">
+        <form action="view_user/Register.jsp" method="get">
             <button type="submit">| Register</button>
         </form>
-        </c:if>
     </div>
 </div>
 <div class="directional" style="background: #b4d99f">
@@ -121,7 +119,7 @@
                         <td><c:out value="${news.getUser().getUserName()}"/></td>
                     </tr>
                     <tr>
-                        <td><a href="/news?action=&idnews=${news.getIdNews()}" <c:out value="${news.getTileNews()}"/></td>
+                        <td><c:out value="${news.getTileNews()}"/></td>
                     </tr>
                     <tr>
                         <td><img src="${news.getImg()}" width="900px" height="600px" style="margin-left: 50px"/></td>
@@ -130,7 +128,7 @@
             </div>
         </c:forEach>
     </div>
-    <div class="col-3      " style="width: 20% ; margin-left: 20px">
+    <div class="col-3      "  style="width: 20% ; margin-left: 20px">
         <div class="ads"><img src="https://viewpro.in/blog/images/animated-gif-banner-ad.gif"/></div>
     </div>
 </div>
