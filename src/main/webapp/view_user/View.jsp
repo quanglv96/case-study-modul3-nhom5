@@ -92,18 +92,18 @@
 </div>
 <div>
     <div class="directional" style="background: #b4d99f ;border:solid 2px wheat ">
-        <form action="/user?action=&idUser=idLogin" method="post">
+        <form action="/user?action=&idUser=${idLogin}" method="post">
             <button type="submit">Home</button>
         </form>
         <c:if test="${not empty idLogin}">
-            <form action="/user?action=&idUser=idLogin" method="post">
+            <form action="/user?action=&idUser=${idLogin}" method="post">
                 <button type="submit">| New Post</button>
             </form>
         </c:if>
-        <form action="/user?action=&idUser=idLogin" method="post">
+        <form action="/user?action=&idUser=${idLogin}" method="post">
             <button type="submit">| Sport</button>
         </form>
-        <form action="/user?action=&idUser=idLogin" method="post">
+        <form action="/user?action=&idUser=${idLogin}" method="post">
             <button type="submit">| Culture</button>
         </form>
         <c:if test="${empty idLogin}">
