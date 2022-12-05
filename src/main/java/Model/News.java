@@ -44,7 +44,13 @@ public class News {
         this.img = img;
     }
 
-
+    public News(String tileNews, String content, Date dateNews, int statusNews, String img) {
+        this.tileNews = tileNews;
+        this.content = content;
+        this.dateNews = dateNews;
+        this.statusNews = statusNews;
+        this.img = img;
+    }
 
     public int getIdNews() {
         return idNews;

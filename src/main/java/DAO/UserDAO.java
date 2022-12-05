@@ -93,16 +93,9 @@ public class UserDAO {
             throw new RuntimeException(e);
         }
     }
-<<<<<<< HEAD
-        private void deleteUser(int id){
-        try (PreparedStatement preparedStatement = connection.prepareStatement(DELETE_USER)){
-            preparedStatement.setInt(1,id);
-=======
-
     public void deleteUser(int id) {
         try (PreparedStatement preparedStatement = connection.prepareStatement(DELETE_USER)) {
             preparedStatement.setInt(1, id);
->>>>>>> 713d0369c6c93a4ce20af2cc6edb87abb67ad7b1
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);
