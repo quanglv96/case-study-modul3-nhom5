@@ -186,32 +186,13 @@
                     </td>
                 </tr>
                 <tr>
-                    <th style="text-align: center" width="61">Date News</th>
-                    <td width="600"><input style="height: 30px; width: 200px" type="text" name="dateNews" id="dateNews">
-                </tr>
-                <tr>
                     <th style="text-align: center">ID User</th>
                     <td>
-                        <select style="width: 200px; height: 30px" class="" name="id_User" id="id_User">
-                            <option>------------------</option>
-                            <c:forEach items="${user}" var="c">
+                    <th style="text-align: center" width="61">Id User</th>
+                    <c:forEach items="${user}" var="c">
                                 <option value="${c.getIdUser()}"><c:out value="${c.getUserName()}"/></option>
                             </c:forEach>
-                        </select>
                     </td>
-                </tr>
-                <tr>
-                    <th style="text-align: center">Status News</th>
-                    <td><p>
-                        <label>
-                            <input type="radio" name="status" value="1" id="on_1" checked="1">
-                            On</label>
-                        <br>
-                        <label>
-                            <input type="radio" name="staus" value="0" id="off_0">
-                            Off</label>
-                        <br>
-                    </p></td>
                 </tr>
                 <tr>
                     <th style="text-align: center">Img</th>
