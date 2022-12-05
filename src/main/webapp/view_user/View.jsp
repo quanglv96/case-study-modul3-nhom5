@@ -93,7 +93,7 @@
         <form action="/user?action=&idUser=" method="get">
             <button type="submit">| Culture  </button>
         </form>
-        <form action="/user?action=&idUser=" method="get">
+        <form action="view_user/loginUser.jsp" method="get">
             <button type="submit">| Login  </button>
         </form>
         <form action="view_user/Register.jsp" method="get">
