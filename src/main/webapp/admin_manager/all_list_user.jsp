@@ -9,7 +9,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
-    <title>Manager Blog</title>
+    <title>All list user</title>
     <style>
         .header {
             background-image: url("https://img.freepik.com/free-photo/silver-dollar-eucalyptus-branch-gray-banner_53876-129660.jpg?w=2000");
@@ -74,13 +74,13 @@
             <button type="submit">Home</button>
         </form>
 
-        <form action="/user?action=&idUser=" method="get">
+        <form action="/manager?action=&idCategory=${1}" method="get">
             <button type="submit">Sport</button>
         </form>
-        <form action="/user?action=&idUser=" method="get">
+        <form action="/manager?action=&idCategory=${2}" method="get">
             <button type="submit">Culture</button>
         </form>
-        <form action="" method="">
+        <form action="/manager?action=&idCategory=${1}" method="">
             <button type="submit">All List News</button>
         </form>
         <form action="" method="">

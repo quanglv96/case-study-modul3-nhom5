@@ -1,9 +1,8 @@
-<%@ page import="java.util.regex.Matcher" %>
-<%@ page import="java.util.regex.Pattern" %><%--
+<%--
   Created by IntelliJ IDEA.
   User: kungf
-  Date: 12/4/2022
-  Time: 11:31 AM
+  Date: 12/5/2022
+  Time: 9:29 AM
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -20,7 +19,7 @@
             integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
             crossorigin="anonymous"></script>
 
-    <title>Create User</title>
+    <title>Edit User</title>
     <style>
         * {
             margin: 0px;
@@ -57,10 +56,12 @@
             color: white;
             margin-top: 20px;
         }
+
         small {
             font-size: 18px;
             color: yellow;
         }
+
         option {
             color: #666;
         }
@@ -74,41 +75,47 @@
     </style>
 </head>
 <body>
-<form action="/register" method="post">
+<form action="/register?action=edit_user" method="post">
     <div class="container">
         <div class="row">
             <div class="col-md-3"></div>
             <div class="col-md-6">
                 <br>
-                <h1 class="text-center">REGISTER</h1>
-                <label style="color: red" class="label col-md-3 control-label" >UserName</label>
+                <h1 class="text-center">EDIT USER</h1>
+                <label style="color: red" class="label col-md-3 control-label">UserName</label>
                 <div class="col-md-9">
-                    <input type="text" class="form-control" name="userName" id="userName" placeholder="username">
+                    <input type="text" class="form-control" name="userName" id="userName" placeholder="username"
+                           value="<c:out value='${user.userName}' />">
                 </div>
 
                 <label style="color: red" class="label col-md-3 control-label">Password</label>
                 <div class="col-md-9">
-                    <input type="password" class="form-control" name="password" placeholder="password">
+                    <input type="password" class="form-control" name="password" placeholder="password"
+                           value="<c:out value='${user.password}' />">
                     <small>Password must be 6 character</small>
                 </div>
                 <label style="color: red" class="label col-md-3 control-label">RePassword</label>
                 <div class="col-md-9">
-                    <input type="password" class="form-control" name="repassword" placeholder="repassword">
+                    <input type="password" class="form-control" name="repassword" placeholder="repassword"
+                           value="<c:out value='${user.password}' />">
                     <small>RePassword must be 6 character</small>
                 </div>
                 <label style="color: red" class="label col-md-3 control-label">PhoneNumber</label>
                 <div class="col-md-9">
-                    <input type="text" class="form-control" name="phonenumber" placeholder="phonenumber">
+                    <input type="text" class="form-control" name="phonenumber" placeholder="phonenumber"
+                           value="<c:out value='${user.phoneNumber}' />">
                     <small>PhoneNumber must be 10 character</small>
                 </div>
                 <label style="color: red" class="label col-md-3 control-label">Email</label>
                 <div class="col-md-9">
-                    <input type="text" class="form-control" name="password" placeholder="Email">
+                    <input type="text" class="form-control" name="password" placeholder="Email"
+                           value="<c:out value='${user.email}' />">
                     <small>Email must be Example@example.xx</small>
                 </div>
                 <label style="color: red" class="label col-md-3 control-label">Address</label>
                 <div class="col-md-9">
-                    <input type="text" class="form-control" name="address" placeholder="address">
+                    <input type="text" class="form-control" name="address" placeholder="address"
+                           value="<c:out value='${user.address}' />">
                     <small>Email must be Example@example.xx</small>
                 </div>
                 <label style="color: red" class="label col-md-3 control-label">Status</label>
