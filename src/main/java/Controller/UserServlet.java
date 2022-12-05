@@ -1,6 +1,7 @@
 package Controller;
 
 import DAO.NewsDAO;
+import DAO.UserDAO;
 import Model.News;
 
 import javax.servlet.*;
@@ -14,6 +15,7 @@ import java.util.List;
 public class UserServlet extends HttpServlet {
 
     private NewsDAO newsDAO = new NewsDAO();
+
 
 
 

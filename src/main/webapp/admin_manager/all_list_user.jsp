@@ -74,14 +74,14 @@
             <button type="submit">Home</button>
         </form>
 
-        <form action="/manager?action=&idCategory=${1}" method="get">
+        <form action="/managers?action=&idCategory=${1}" method="get">
             <button type="submit">Sport</button>
         </form>
-        <form action="/manager?action=&idCategory=${2}" method="get">
+        <form action="/managers?action=&idCategory=${2}" method="get">
             <button type="submit">Culture</button>
         </form>
-        <a href="/manager?action">All List News</a>
-        <a href="">All List User</a>
+        <a href="/managers?action=all_list_news">All List News</a>
+        <a href="/managers?action=all_list_user">All List User</a>
 
     </div>
 </div>
@@ -99,21 +99,18 @@
                 <th>Email User</th>
                 <th>Address</th>
                 <th>Status</th>
-                <th>Actions</th>
+                <th>LockAccount</th>
             </tr>
             <c:forEach var="user" items="${listUser}">
                 <tr>
-                    <td><c:out value="${news.idnews}"/></td>
-                    <td><c:out value="${news.idCategory}"/></td>
-                    <td><c:out value="${news.tileNews}"/></td>
-                    <td><c:out value="${news.content }"/></td>
-                    <td><c:out value="${news.dateNews }"/></td>
-                    <td><c:out value="${news.idUser}"/></td>
-                    <td><c:out value="${news.statusNews}"/></td>
-                    <td><c:out value="${news.img}"/></td>
+                    <td><c:out value="${user.idUser}"/></td>
+                    <td><c:out value="${user.userName}"/></td>
+                    <td><c:out value="${user.phoneNumber}"/></td>
+                    <td><c:out value="${user.email}"/></td>
+                    <td><c:out value="${user.address}"/></td>
+                    <td><c:out value="${user.statusUser}"/></td>
                     <td>
-                        <a href="/news?action=edit_news&idNews=${news.idNews}">Edit</a>
-                        <a href="/news?action=delete_news&idNews=${user.id}" onclick="return test('${news.idNews}')">Delete</a>
+                        <a href="/news?action=delete_news&idUser=${user.id}" onclick="return test('${news.idNews}')">Status</a>
                     </td>
                 </tr>
             </c:forEach>
