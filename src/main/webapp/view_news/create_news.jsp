@@ -117,7 +117,7 @@
 <div>
     <div class="row">
         <div class="header">
-            <h1>Blog</h1>
+            <h1 >Blog</h1>
         </div>
     </div>
 </div>
@@ -158,7 +158,7 @@
     </div>
     <div class="mid" style="width: 80%">
         <form action="/news?action=create_news&idUser=${idUser}" method="post">
-            <table width="800px" border="1">
+            <table width="1300px" border="1">
                 <tr>
                     <th colspan="2"><h1 style="color: red; text-align: center; ">Add News</h1></th>
                 </tr>
