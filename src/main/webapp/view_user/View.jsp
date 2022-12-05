@@ -59,20 +59,25 @@
             padding-right: 10%;
             text-align: center;
         }
-        .col-2{
+
+        .col-2 {
             width: 20%;
         }
-        .col-3{
+
+        .col-3 {
             width: 20%;
         }
-        .mid{ ;
+
+        .mid {;
             width: 60%;
         }
-        button{
+
+        button {
             font-family: "Arial";
             color: rebeccapurple;
         }
-        td{
+
+        td {
             font-family: Arial;
         }
     </style>
@@ -87,24 +92,28 @@
 </div>
 <div>
     <div class="directional" style="background: #b4d99f ;border:solid 2px wheat ">
-        <form action="/user?action=&idUser=" method="get">
+        <form action="/user?action=&idUser=idLogin" method="post">
             <button type="submit">Home</button>
         </form>
-        <form action="/user?action=&idUser=" method="get">
-            <button type="submit">| New Post</button>
-        </form>
-        <form action="/user?action=&idUser=" method="get">
+        <c:if test="${not empty idLogin}">
+            <form action="/user?action=&idUser=idLogin" method="post">
+                <button type="submit">| New Post</button>
+            </form>
+        </c:if>
+        <form action="/user?action=&idUser=idLogin" method="post">
             <button type="submit">| Sport</button>
         </form>
-        <form action="/user?action=&idUser=" method="get">
-            <button type="submit">| Culture  </button>
+        <form action="/user?action=&idUser=idLogin" method="post">
+            <button type="submit">| Culture</button>
         </form>
-        <form action="view_user/loginUser.jsp" method="get">
-            <button type="submit">| Login  </button>
-        </form>
-        <form action="view_user/Register.jsp" method="get">
-            <button type="submit">| Register</button>
-        </form>
+        <c:if test="${empty idLogin}">
+            <form action="view_user/loginUser.jsp" method="post">
+                <button type="submit">| Login</button>
+            </form>
+            <form action="/user?action=&idUser=idLogin" method="post">
+                <button type="submit">| Register</button>
+            </form>
+        </c:if>
     </div>
 </div>
 <div class="directional" style="background: #b4d99f">
@@ -128,7 +137,7 @@
             </div>
         </c:forEach>
     </div>
-    <div class="col-3      "  style="width: 20% ; margin-left: 20px">
+    <div class="col-3 " style="width: 20% ; margin-left: 20px">
         <div class="ads"><img src="https://viewpro.in/blog/images/animated-gif-banner-ad.gif"/></div>
     </div>
 </div>
