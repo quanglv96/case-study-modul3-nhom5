@@ -53,9 +53,9 @@
             opacity: 1;
         }
         .btn-info {
-            margin-top: 20px;
-            margin-left: 50px;
-            width: 200px;
+            margin-top: 10px;
+            margin-left: 5px;
+            width: 250px;
             font-size: 20px;
             text-align: center;
             padding-top: 1px;
@@ -73,7 +73,7 @@
                 </tr>
                 <tr>
                     <td>
-                        <div class="col-md-12">
+                        <div class="col-md-9">
                             <input type="text" class="form-control" name="userName" placeholder="admin">
                         </div>
                     </td>
@@ -82,7 +82,7 @@
                     <th><label class="label col-md-3 control-label" >Password</label></th>
                 </tr>
                 <tr>
-                    <td><div class="col-md-12">
+                    <td><div class="col-md-9">
                         <input type="password" class="form-control" name="password" placeholder="password">
                         <small>Password must be 6 character</small>
                     </div></td>
@@ -92,7 +92,7 @@
                 </tr>
                 <tr>
                     <td>
-                        <input type="submit" class="btn btn-info" value="LOGIN"></td>
+                        <button class="btn btn-info" type="submit" >LOGIN</button>
                     </td>
                 </tr>
             </table>

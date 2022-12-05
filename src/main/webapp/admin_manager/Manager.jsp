@@ -108,6 +108,7 @@
     <div class="col-2">
         <div class="ads"><img src="https://viewpro.in/blog/images/animated-gif-banner-ad.gif"/></div>
     </div>
+
 </div>
 </body>
 </html>
