@@ -110,8 +110,13 @@
             <form action="view_user/loginUser.jsp" method="post">
                 <button type="submit">| Login</button>
             </form>
-            <form action="/user?action=&idUser=idLogin" method="post">
+            <form action="view_user/Register.jsp" method="post">
                 <button type="submit">| Register</button>
+            </form>
+        </c:if>
+        <c:if test="${not empty idLogin}">
+            <form action="/user?action=&idUser" method="get">
+                <button type="submit">| Logout</button>
             </form>
         </c:if>
     </div>
