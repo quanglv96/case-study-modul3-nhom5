@@ -126,11 +126,11 @@
         <div class=" col-8 ads"><img src="https://viewpro.in/blog/images/animated-gif-banner-ad.gif"/></div>
     </div>
     <div class="mid" style="width: 60%">
-        <div><c:out value="${newbyid.getUser().getUserName()}"/></div>
-        <div><c:out value="${newbyid.getDateNews()}"/></div>
-        <div><c:out value="${newbyid.getTileNews()}"/></div>
-        <div><c:out value="${newbyid.getContent()}"/></div>
-        <div><img src="${newbyid.getImg()}"></div>
+        <div><c:out value="${newById.getUser().getUserName()}"/></div>
+        <div><c:out value="${newById.getDateNews()}"/></div>
+        <div><c:out value="${newById.getTileNews()}"/></div>
+        <div><c:out value="${newById.getContent()}"/></div>
+        <div><img src="${newById.getImg()}"></div>
     </div>
     <div class="col-3 " style="width: 20% ; margin-left: 20px">
         <div class="ads"><img src="https://viewpro.in/blog/images/animated-gif-banner-ad.gif"/></div>

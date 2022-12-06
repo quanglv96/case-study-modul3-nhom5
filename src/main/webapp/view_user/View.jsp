@@ -100,10 +100,10 @@
                 <button type="submit">| New Post</button>
             </form>
         </c:if>
-        <form action="/user?action=&idUser=${idLogin}" method="post">
-            <button type="submit">| Sport</button>
+        <form action="/user?action=sort&idCategory=sport&idUser=${idLogin}" method="post">
+            <button type="submit">|Sport</button>
         </form>
-        <form action="/user?action=&idUser=${idLogin}" method="post">
+        <form action="/user?action=sort&idCategory=culture&idUser=${idLogin}" method="post">
             <button type="submit">| Culture</button>
         </form>
         <c:if test="${empty idLogin}">

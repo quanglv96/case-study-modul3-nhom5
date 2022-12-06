@@ -42,6 +42,8 @@ public class UserServlet extends HttpServlet {
             case "login":
                 checkLogin(request, response);
                 break;
+            case "sort":
+                sortByCategory(request, response);
             default:
                 listNews(request, response);
                 break;
@@ -83,6 +85,16 @@ public class UserServlet extends HttpServlet {
         request.setAttribute("newById", newsDAO.selectNews(idNews));
         request.setAttribute("idLogin", idLogin);
         RequestDispatcher dispatcher = request.getRequestDispatcher("view_news/content_news_byID.jsp");
+        dispatcher.forward(request, response);
+    }
+
+    public void sortByCategory(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String category = request.getParameter("idCategory");
+       String idLogin = request.getParameter("idUser");
+        List<News> listNews=newsDAO.selectNewsByCategory(category);
+        request.setAttribute("listNews", listNews);
+        request.setAttribute("idLogin", idLogin);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("view_user/View.jsp");
         dispatcher.forward(request, response);
     }
 }

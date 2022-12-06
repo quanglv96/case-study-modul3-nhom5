@@ -1,4 +1,3 @@
-
 <%--
   Created by IntelliJ IDEA.
   User: QuangMax
@@ -41,6 +40,7 @@
         body {
             text-align: center;
         }
+
         .header {
             background-image: url("https://img.freepik.com/free-photo/silver-dollar-eucalyptus-branch-gray-banner_53876-129660.jpg?w=2000");
             width: 100%;
@@ -117,7 +117,7 @@
 <div>
     <div class="row">
         <div class="header">
-            <h1 >Blog</h1>
+            <h1>Blog</h1>
         </div>
     </div>
 </div>
@@ -192,12 +192,7 @@
                 <tr>
                     <th style="text-align: center">ID User</th>
                     <td>
-                        <select style="width: 200px; height: 30px" class="" name="id_User" id="id_User">
-                            <option>------------------</option>
-                            <c:forEach items="${user}" var="c">
-                                <option value="${c.getIdUser()}"><c:out value="${c.getUserName()}"/></option>
-                            </c:forEach>
-                        </select>
+                      <h5><c:out value="${user.getUserName()}"/></h5>
                     </td>
                 </tr>
                 <tr>
@@ -225,7 +220,8 @@
                 </tr>
                 <tr>
                     <br>
-                    <td colspan="2"><br><input style="width: 120px ;height: 40px; background: red " type="submit" name="btnSave"
+                    <td colspan="2"><br><input style="width: 120px ;height: 40px; background: red " type="submit"
+                                               name="btnSave"
                                                id="btnSave" value="Save"></td>
                 </tr>
             </table>
