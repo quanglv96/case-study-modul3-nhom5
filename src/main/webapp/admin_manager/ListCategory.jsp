@@ -73,7 +73,7 @@
     </div>
 </div>
 <div>
-    <div class="directional">
+    <div class="directional"  style="background: #7875B5" >
         <form action="/managers?" method="get">
             <button type="submit">Home |</button>
         </form>
@@ -96,8 +96,7 @@
 </div>
 <div class="directional">
     <div align="center">
-        <table border="1" cellpadding="5">
-            <caption><h2>List of User</h2></caption>
+        <table border="1" cellpadding="5" style="background: chocolate">
             <tr>
                 <th>ID Category</th>
                 <th>Category</th>

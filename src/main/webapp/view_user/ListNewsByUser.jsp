@@ -128,7 +128,7 @@
             </form>
         </c:if>
         <form action="/user?action=search" method="post">
-            <input type="text" name="search" placeholder="Enter name title search">
+            <input style="height: 50px;width: 200px"type="text" name="search" placeholder="Enter name title search">
         </form>
     </div>
 </div>

@@ -130,7 +130,7 @@
             </form>
         </c:if>
         <form action="/news?action=searchNews&idUser=${idLogin}" method="post">
-            <input type="text" name="search" onsubmit="" placeholder="Enter name title search">
+            <input style="height: 50px;width: 200px" type="text" name="search" onsubmit="" placeholder="Enter name title search">
             <button type="submit">🔍</button>
         </form>
     </div>
