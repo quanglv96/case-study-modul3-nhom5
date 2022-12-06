@@ -30,16 +30,14 @@
             display: flex;
             justify-content: center;
             text-align: center;
-            /*border: 1px solid black;*/
+
         }
 
         .directional form button {
             display: inline-block;
-            margin-left: 15px;
-            margin-right: 15px;
             border: none;
             background: transparent;
-            height: 50px;
+            height: 60px;
             font-size: 15px;
             font-weight: bold;
             text-align: center;
@@ -47,7 +45,7 @@
 
         button:hover {
             color: #ffffff;
-            background-color: #43d066 !important;
+            background-color: #3a3264 !important;
         }
 
         .ads img {
@@ -55,14 +53,9 @@
             display: block;
         }
 
-        .showContent {
-            /*border: 1px solid black;*/
-            width: 90%;
-            padding-left: 10%;
-            padding-right: 10%;
-            text-align: center;
+        .container{
+            width: 1297px;
         }
-
     </style>
 </head>
 <body>
@@ -73,25 +66,25 @@
         </div>
     </div>
 </div>
-<div class="container">
+<div class="container" style="background: #7875B5;max-width: 1297px">
     <div class="directional">
         <form action="/managers?" method="get">
-            <button type="submit">Home</button>
+            <button type="submit">Home |</button>
         </form>
         <form action="/managers?action=listCategory" method="post">
-            <button type="submit">Category</button>
+            <button type="submit">Category |</button>
         </form>
         <form action="/managers?action=sort&category=sport" method="post">
-            <button type="submit">Sport</button>
+            <button type="submit">Sport |</button>
         </form>
         <form action="/managers?action=sort&category=culture" method="post">
-            <button type="submit">Culture</button>
+            <button type="submit">Culture |</button>
         </form>
         <form action="/managers?action=all_list_news" method="post">
-            <button type="submit">All List News</button>
+            <button type="submit">All List News |</button>
         </form>
         <form action="/managers?action=all_list_user" method="post">
-            <button type="submit">All List User</button>
+            <button type="submit">All List User |</button>
         </form>
     </div>
 </div>

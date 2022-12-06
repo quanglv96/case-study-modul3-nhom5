@@ -73,31 +73,30 @@
     </div>
 </div>
 <div>
-    <div class="directional">
+    <div class="directional" style="background: #7875B5">
         <form action="/managers?" method="get">
-            <button type="submit">Home</button>
+            <button type="submit">Home |</button>
         </form>
         <form action="/managers?action=listCategory" method="post">
-            <button type="submit">Category</button>
+            <button type="submit">Category |</button>
         </form>
         <form action="/managers?action=sort&category=sport" method="post">
-            <button type="submit">Sport</button>
+            <button type="submit">Sport |</button>
         </form>
         <form action="/managers?action=sort&category=culture" method="post">
-            <button type="submit">Culture</button>
+            <button type="submit">Culture |</button>
         </form>
         <form action="/managers?action=all_list_news" method="post">
-            <button type="submit">All List News</button>
+            <button type="submit">All List News |</button>
         </form>
         <form action="/managers?action=all_list_user" method="post">
-            <button type="submit">All List User</button>
+            <button type="submit">All List User |</button>
         </form>
     </div>
 </div>
 <div class="directional">
     <div align="center">
-        <table border="1" cellpadding="5">
-            <caption><h2>List of User</h2></caption>
+        <table border="1" cellpadding="5" style="background: #fd99c9">
             <tr>
                 <th>ID Category</th>
                 <th>Category</th>
