@@ -1,16 +1,21 @@
 package Controller;
 
 import DAO.CategoryDAO;
+import DAO.NewsDAO;
 import DAO.UserDAO;
 import Model.Category;
 import Model.News;
-import DAO.NewsDAO;
 import Model.User;
 
-import javax.servlet.*;
-import javax.servlet.http.*;
-import javax.servlet.annotation.*;
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Date;
 import java.util.List;
@@ -142,4 +147,5 @@ public class NewsServlet extends HttpServlet {
         newsDAO.deleteNews(idNews);
         response.sendRedirect("news");
     }
+
 }
