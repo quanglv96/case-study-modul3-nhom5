@@ -19,7 +19,7 @@ public class NewsDAO {
     private final String INSERT_NEWS = "INSERT INTO news (id_category, tile_news, content , date_news ,id_user, status_news, img) VALUES (?, ?, ?, ?, ?, ? ,?);";
     private final String SELECT_BY_ID = "select * from news where id_news = ?  ";
     private final String UPDATE_BY_ID = "update news set tile_news = ? , content = ?, date_news = ?, img = ? where id_news = ?;";
-    private final String SELECT_BY_CATEGORY =" select * from news where id_category in (select id_category from category where name_category= ? );";
+    private final String SELECT_BY_CATEGORY ="select * from news where id_category in (select id_category from category where name_category=?);";
     private final String DELETE_BY_ID = "updte news set status_news = 0 where id_news = ? ";
     private Category category;
     private News news;
@@ -135,10 +135,11 @@ public class NewsDAO {
         }
     }
     public List<News> selectNewsByCategory(String category) {
-        List<News> listNews = null;
+        List<News> listNews=new ArrayList<>();
         try (Connection connection = getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(SELECT_BY_CATEGORY)) {
             preparedStatement.setString(1, category);
+            System.out.println(preparedStatement);
             ResultSet rs = preparedStatement.executeQuery();
             while (rs.next()) {
                 int idNews = rs.getInt("id_news");
