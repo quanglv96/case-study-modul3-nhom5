@@ -188,7 +188,8 @@
                 <tr>
                     <th style="text-align: center">ID User</th>
                     <td><c:out value="${idUser.getUserName()}"/>
-
+                    <td>
+                        <h5><c:out value="${user.getUserName()}"/></h5>
                     </td>
                 </tr>
                 <tr>

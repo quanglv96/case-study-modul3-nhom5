@@ -57,6 +57,9 @@
             padding-right: 10%;
             text-align: center;
         }
+        a{
+            text-decoration: none;
+        }
 
     </style>
 </head>
@@ -100,12 +103,14 @@
             <c:forEach var="news" items="${listNews}">
                 <tr>
                     <td><c:out value="${news.getIdNews()}"/></td>
-                    <td><a href="/news?action=sort" <c:out value="${news.getCategory().getNameCategory()}"/></td>
-                    <td><a href="/news?action=content&id=${news.getIdNews()}" <c:out value="${news.getTileNews()}"/></td>
+                    <td><a href="/news?action=sort&idCategory=${news.getCategory().getNameCategory()}"><c:out value="${news.getCategory().getNameCategory()}"/></a></td>
+                    <td><a href="/news?action=content&id=${news.getIdNews()}"><c:out value="${news.getTileNews()}"/></a></td>
                     <td><c:out value="${news.getDateNews()}"/></td>
                     <td><c:out value="${news.getUser().getUserName()}"/></td>
                     <td>
-                        <a href="/news?action=delete_news&idNews=${user.id}">🗑️</a>
+                        <form onsubmit="confirmDeleteNews()" action="/managers?action=deleteNews&idNews=${news.getIdNews()}" method="get">
+                        <button type="submit">🗑️</button>
+                        </form>
                     </td>
                 </tr>
             </c:forEach>
@@ -113,5 +118,15 @@
     </div>
 </div>
 </body>
+<script>
+    function confirmDeleteNews(){
+        let result = confirm("Are you sure you want to delete?");
+        if(result)  {
+            alert("successful delete");
+            return true;
+        }
+        return false
+    }
+</script>
 </html>
 

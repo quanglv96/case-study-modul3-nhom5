@@ -92,11 +92,9 @@ public class NewsServlet extends HttpServlet {
         User user = userDAO.findUserById(idUser);
         request.setAttribute("idLogin", idUser);
         request.setAttribute("idUser", user);
-
         User listUser = userDAO.findUserById(idUser);
         request.setAttribute("idLogin", idUser);
         request.setAttribute("user", listUser);
-
         request.setAttribute("category", listCategory);
         RequestDispatcher dispatcher = request.getRequestDispatcher("view_news/create_news.jsp");
         dispatcher.forward(request, response);
