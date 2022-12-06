@@ -3,6 +3,21 @@ package Model;
 public class Category {
     protected int idCategory;
     protected String nameCategory;
+    protected int countCategory;
+
+    public Category(int idCategory, String nameCategory, int countCategory) {
+        this.idCategory = idCategory;
+        this.nameCategory = nameCategory;
+        this.countCategory = countCategory;
+    }
+
+    public int getCountCategory() {
+        return countCategory;
+    }
+
+    public void setCountCategory(int countCategory) {
+        this.countCategory = countCategory;
+    }
 
     public Category(int idCategory, String nameCategory) {
         this.idCategory = idCategory;

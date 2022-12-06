@@ -1,15 +1,15 @@
 <%--
   Created by IntelliJ IDEA.
   User: QuangMax
-  Date: 27/11/2022
-  Time: 2:53 CH
+  Date: 06/12/2022
+  Time: 11:53 SA
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <html>
 <head>
-    <title>Manager Blog</title>
+    <title>Title</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
@@ -91,28 +91,19 @@
             <button type="submit">All List News</button>
         </form>
         <form action="/managers?action=all_list_user" method="post">
-            <button type="submit">All List User</button>
+            <button type="submit">All List News</button>
         </form>
     </div>
 </div>
 <div align="center" >
-    <c:forEach items="${listNews}" var="news">
-        <div>
-            <table>
-                <tr>
-                    <td><c:out value="${news.getUser().getUserName()}"/></td>
-                </tr>
-                <tr>
-                    <td><a href="/managers?action=contentByID&&idNews=${news.getIdNews()}"><c:out value="${news.getTileNews()}"/></a></td>
-                </tr>
-                <tr>
-                    <td><img src="${news.getImg()}"/></td>
-                </tr>
-            </table>
-        </div>
-    </c:forEach>
+    <div class="mid" style="width: 60%">
+        <div><p><c:out value="${newById.getUser().getUserName()}"/></p></div>
+        <div><p><c:out value="${newById.getDateNews()}"/></p></div>
+        <div><p><c:out value="${newById.getTileNews()}"/></p></div>
+        <div><p><c:out value="${newById.getContent()}"/></p></div>
+        <div><img src="${newById.getImg()}"></div>
+    </div>
 </div>
 </div>
 </body>
 </html>
-

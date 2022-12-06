@@ -57,6 +57,9 @@
             padding-right: 10%;
             text-align: center;
         }
+        a{
+            text-decoration: none;
+        }
 
     </style>
 </head>
@@ -64,25 +67,30 @@
 <div>
     <div class="row">
         <div class="header">
-            <h1>Manager Blog</h1>
+            <h1>List News</h1>
         </div>
     </div>
 </div>
 <div>
     <div class="directional">
-        <form action="/user?action=&idUser=" method="get">
+        <form action="/managers" method="get">
             <button type="submit">Home</button>
         </form>
-
-        <form action="/managers?action=&idCategory=${1}" method="get">
+        <form action="/managers?action=listCategory" method="post">
+            <button type="submit">Category</button>
+        </form>
+        <form action="/managers?action=sort&category=sport" method="post">
             <button type="submit">Sport</button>
         </form>
-        <form action="/managers?action=&idCategory=${2}" method="get">
+        <form action="/managers?action=sort&category=culture" method="post">
             <button type="submit">Culture</button>
         </form>
-        <a href="/managers?action=all_list_news">All List News</a>
-        <a href="/managers?action=all_list_user">All List User</a>
-
+        <form action="/managers?action=all_list_news" method="post">
+            <button type="submit">All List News</button>
+        </form>
+        <form action="/managers?action=all_list_user" method="post">
+            <button type="submit">All List User</button>
+        </form>
     </div>
 </div>
 <div class="directional">
@@ -100,12 +108,14 @@
             <c:forEach var="news" items="${listNews}">
                 <tr>
                     <td><c:out value="${news.getIdNews()}"/></td>
-                    <td><a href="/news?action=sort" <c:out value="${news.getCategory().getNameCategory()}"/></td>
-                    <td><a href="/news?action=content&id=${news.getIdNews()}" <c:out value="${news.getTileNews()}"/></td>
+                    <td><a href="/news?action=sort&idCategory=${news.getCategory().getNameCategory()}"><c:out value="${news.getCategory().getNameCategory()}"/></a></td>
+                    <td><a href="/news?action=content&id=${news.getIdNews()}"><c:out value="${news.getTileNews()}"/></a></td>
                     <td><c:out value="${news.getDateNews()}"/></td>
                     <td><c:out value="${news.getUser().getUserName()}"/></td>
                     <td>
-                        <a href="/news?action=delete_news&idNews=${user.id}">🗑️</a>
+                        <form onsubmit="return(confirmDeleteNews())" action="/managers?action=deleteNews&idNews=${news.getIdNews()}" method="post">
+                        <button type="submit">🗑️</button>
+                        </form>
                     </td>
                 </tr>
             </c:forEach>
@@ -113,5 +123,15 @@
     </div>
 </div>
 </body>
+<script>
+    function confirmDeleteNews(){
+        let result = confirm("Are you sure you want to delete?");
+        if(result)  {
+            alert("successful delete");
+            return true;
+        }
+        return false
+    }
+</script>
 </html>
 

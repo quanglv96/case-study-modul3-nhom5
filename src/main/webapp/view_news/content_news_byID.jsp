@@ -1,15 +1,15 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: QuangMax
-  Date: 27/11/2022
-  Time: 2:53 CH
+  Date: 06/12/2022
+  Time: 8:50 SA
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <html>
 <head>
-    <title>Blog</title>
+    <title><c:out value="${newById.getTileNews()}"/></title>
     <style>
         .header {
             background-image: url("https://img.freepik.com/free-photo/silver-dollar-eucalyptus-branch-gray-banner_53876-129660.jpg?w=2000");
@@ -100,10 +100,10 @@
                 <button type="submit">| New Post</button>
             </form>
         </c:if>
-        <form action="/user?action=sort&idCategory=sport&idUser=${idLogin}" method="post">
-            <button type="submit">|Sport</button>
+        <form action="/user?action=&idUser=${idLogin}" method="post">
+            <button type="submit">| Sport</button>
         </form>
-        <form action="/user?action=sort&idCategory=culture&idUser=${idLogin}" method="post">
+        <form action="/user?action=&idUser=${idLogin}" method="post">
             <button type="submit">| Culture</button>
         </form>
         <c:if test="${empty idLogin}">
@@ -126,21 +126,11 @@
         <div class=" col-8 ads"><img src="https://viewpro.in/blog/images/animated-gif-banner-ad.gif"/></div>
     </div>
     <div class="mid" style="width: 60%">
-        <c:forEach items="${listNews}" var="news">
-            <div>
-                <table>
-                    <tr>
-                        <td><c:out value="${news.getUser().getUserName()}"/></td>
-                    </tr>
-                    <tr>
-                        <td><a href="/user?action=contentByID&&idNews=${news.getIdNews()}&idUser=${idLogin}"><c:out value="${news.getTileNews()}"/></a></td>
-                    </tr>
-                    <tr>
-                        <td><img src="${news.getImg()}" width="900px" height="600px" style="margin-left: 50px"/></td>
-                    </tr>
-                </table>
-            </div>
-        </c:forEach>
+        <div><c:out value="${newById.getUser().getUserName()}"/></div>
+        <div><c:out value="${newById.getDateNews()}"/></div>
+        <div><c:out value="${newById.getTileNews()}"/></div>
+        <div><c:out value="${newById.getContent()}"/></div>
+        <div><img src="${newById.getImg()}"></div>
     </div>
     <div class="col-3 " style="width: 20% ; margin-left: 20px">
         <div class="ads"><img src="https://viewpro.in/blog/images/animated-gif-banner-ad.gif"/></div>

@@ -9,7 +9,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
-    <title>Login2</title>
+    <title>Login Manager</title>
     <link rel="stylesheet" href="webapp/WEB-INF/bootstrap/css/bootstrap.min.css"/>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
@@ -73,7 +73,7 @@
 <div class="login">
     <div style="clear: both; position: center"><img src="logo.png"/></div>
     <div style="clear: both; position: center">
-        <form action="Manager.jsp" onsubmit="return checkLog()">
+        <form action="/managers" onsubmit="return checkLog()">
             <table>
                 <tr>
                     <th><label class="label col-md-3 control-label" >Account</label></th>
