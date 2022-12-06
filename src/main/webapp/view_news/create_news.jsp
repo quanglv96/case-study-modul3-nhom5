@@ -1,4 +1,3 @@
-
 <%--
   Created by IntelliJ IDEA.
   User: QuangMax
@@ -41,6 +40,7 @@
         body {
             text-align: center;
         }
+
         .header {
             background-image: url("https://img.freepik.com/free-photo/silver-dollar-eucalyptus-branch-gray-banner_53876-129660.jpg?w=2000");
             width: 100%;
@@ -117,7 +117,7 @@
 <div>
     <div class="row">
         <div class="header">
-            <h1 >Blog</h1>
+            <h1>Blog</h1>
         </div>
     </div>
 </div>
@@ -186,32 +186,10 @@
                     </td>
                 </tr>
                 <tr>
-                    <th style="text-align: center" width="61">Date News</th>
-                    <td width="600"><input style="height: 30px; width: 200px" type="text" name="dateNews" id="dateNews">
-                </tr>
-                <tr>
                     <th style="text-align: center">ID User</th>
-                    <td>
-                        <select style="width: 200px; height: 30px" class="" name="id_User" id="id_User">
-                            <option>------------------</option>
-                            <c:forEach items="${user}" var="c">
-                                <option value="${c.getIdUser()}"><c:out value="${c.getUserName()}"/></option>
-                            </c:forEach>
-                        </select>
+                    <td><c:out value="${idUser.getUserName()}"/>
+
                     </td>
-                </tr>
-                <tr>
-                    <th style="text-align: center">Status News</th>
-                    <td><p>
-                        <label>
-                            <input type="radio" name="status" value="1" id="on_1" checked="1">
-                            On</label>
-                        <br>
-                        <label>
-                            <input type="radio" name="staus" value="0" id="off_0">
-                            Off</label>
-                        <br>
-                    </p></td>
                 </tr>
                 <tr>
                     <th style="text-align: center">Img</th>
@@ -225,7 +203,8 @@
                 </tr>
                 <tr>
                     <br>
-                    <td colspan="2"><br><input style="width: 120px ;height: 40px; background: red " type="submit" name="btnSave"
+                    <td colspan="2"><br><input style="width: 120px ;height: 40px; background: red " type="submit"
+                                               name="btnSave"
                                                id="btnSave" value="Save"></td>
                 </tr>
             </table>

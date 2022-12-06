@@ -2,8 +2,10 @@ package Controller;
 
 import DAO.CategoryDAO;
 import DAO.UserDAO;
+import Model.Category;
 import Model.News;
 import DAO.NewsDAO;
+import Model.User;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
@@ -84,8 +86,13 @@ public class NewsServlet extends HttpServlet {
 
     private void showCreatNewsForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int idUser = Integer.parseInt(request.getParameter("idUser"));
+        List<Category> listCategory= categoryDAO.findAll();
+        User user = userDAO.findUserById(idUser);
         request.setAttribute("idLogin", idUser);
-        response.sendRedirect("view_news/create_news.jsp");
+        request.setAttribute("idUser", user);
+        request.setAttribute("category", listCategory);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("view_news/create_news.jsp");
+        dispatcher.forward(request, response);
     }
 
     private void insertNews(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException, ServletException {
@@ -98,7 +105,8 @@ public class NewsServlet extends HttpServlet {
         String img = request.getParameter("img");
         News newNews = new News(categoryDAO.findCategoryById(idCategory), tileNews, content, dateNews, userDAO.findUserById(idUser), statusNews, img);
         newsDAO.insertNews(newNews);
-        response.sendRedirect("/news");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("view_news/list_news.jsp");
+        dispatcher.forward(request, response);
     }
 
     private void showEditNewsForm(HttpServletRequest request, HttpServletResponse response)
