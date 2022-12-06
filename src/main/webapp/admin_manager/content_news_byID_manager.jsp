@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <html>
 <head>
     <title>Title</title>
@@ -74,29 +75,32 @@
 </div>
 <div class="container">
     <div class="directional">
-        <form action="Manager.jsp">
+        <form action="/managers?" method="get">
             <button type="submit">Home</button>
         </form>
-        <form action="/user?action=" method="get">
+        <form action="/managers?action=listCategory" method="post">
+            <button type="submit">Category</button>
+        </form>
+        <form action="/managers?action=sort&category=sport" method="post">
             <button type="submit">Sport</button>
         </form>
-        <form action="/user?action=" method="get">
+        <form action="/managers?action=sort&category=culture" method="post">
             <button type="submit">Culture</button>
         </form>
         <form action="/managers?action=all_list_news" method="post">
             <button type="submit">All List News</button>
         </form>
-        <form action="/managers?action=all_list_user" method="get">
+        <form action="/managers?action=all_list_user" method="post">
             <button type="submit">All List News</button>
         </form>
     </div>
 </div>
 <div align="center" >
     <div class="mid" style="width: 60%">
-        <div><c:out value="${newById.getUser().getUserName()}"/></div>
-        <div><c:out value="${newById.getDateNews()}"/></div>
-        <div><c:out value="${newById.getTileNews()}"/></div>
-        <div><c:out value="${newById.getContent()}"/></div>
+        <div><p><c:out value="${newById.getUser().getUserName()}"/></p></div>
+        <div><p><c:out value="${newById.getDateNews()}"/></p></div>
+        <div><p><c:out value="${newById.getTileNews()}"/></p></div>
+        <div><p><c:out value="${newById.getContent()}"/></p></div>
         <div><img src="${newById.getImg()}"></div>
     </div>
 </div>

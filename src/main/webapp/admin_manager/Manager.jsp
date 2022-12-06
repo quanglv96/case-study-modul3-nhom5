@@ -75,13 +75,16 @@
 </div>
 <div class="container">
     <div class="directional">
-        <form action="Manager.jsp">
+        <form action="/managers?" method="get">
             <button type="submit">Home</button>
+        </form>
+        <form action="/managers?action=listCategory" method="post">
+            <button type="submit">Category</button>
         </form>
         <form action="/managers?action=sort&category=sport" method="post">
             <button type="submit">Sport</button>
         </form>
-        <form action="/managers?action=sort&category=sport" method="post">
+        <form action="/managers?action=sort&category=culture" method="post">
             <button type="submit">Culture</button>
         </form>
         <form action="/managers?action=all_list_news" method="post">
@@ -100,7 +103,7 @@
                     <td><c:out value="${news.getUser().getUserName()}"/></td>
                 </tr>
                 <tr>
-                    <td><a href="/manager?action=contentByID&&idNews=${news.getIdNews()}"><c:out value="${news.getTileNews()}"/></a></td>
+                    <td><a href="/managers?action=contentByID&&idNews=${news.getIdNews()}"><c:out value="${news.getTileNews()}"/></a></td>
                 </tr>
                 <tr>
                     <td><img src="${news.getImg()}"/></td>

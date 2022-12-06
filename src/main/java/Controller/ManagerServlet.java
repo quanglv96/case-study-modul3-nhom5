@@ -1,7 +1,9 @@
 package Controller;
 
+import DAO.CategoryDAO;
 import DAO.NewsDAO;
 import DAO.UserDAO;
+import Model.Category;
 import Model.News;
 import Model.User;
 
@@ -16,6 +18,7 @@ import java.util.List;
 public class ManagerServlet extends HttpServlet {
     private NewsDAO newsDAO = new NewsDAO();
     private UserDAO userDAO = new UserDAO();
+    private CategoryDAO categoryDAO = new CategoryDAO();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -23,14 +26,15 @@ public class ManagerServlet extends HttpServlet {
         if (action == null) {
             action = "";
         }
-            switch (action) {
-                case "contentByID":
-                    contentByID(request, response);
-                    break;
-                default:
-                    listNews(request, response);
-                    break;
-            }
+        switch (action) {
+
+            case "contentByID":
+                contentByID(request, response);
+                break;
+            default:
+                listNews(request, response);
+                break;
+        }
     }
 
 
@@ -43,6 +47,9 @@ public class ManagerServlet extends HttpServlet {
         }
         try {
             switch (action) {
+                case "listCategory":
+                    listCategory(request, response);
+                    break;
                 case "deleteNews":
                     deleteNewByID(request, response);
                     break;
@@ -50,10 +57,10 @@ public class ManagerServlet extends HttpServlet {
                     showAllNewsForm(request, response);
                     break;
                 case "lockUser":
-                    lockUserByID(request,response);
+                    lockUserByID(request, response);
                     break;
                 case "sort":
-                    sortCategory(request,response);
+                    sortCategory(request, response);
                     break;
                 case "all_list_user":
                     showAllUserForm(request, response);
@@ -81,8 +88,8 @@ public class ManagerServlet extends HttpServlet {
 
     public void listNews(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         List<News> listNews = newsDAO.selectAllNews();
-        RequestDispatcher dispatcher = request.getRequestDispatcher("admin_manager/Manager.jsp");
         request.setAttribute("listNews", listNews);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("admin_manager/Manager.jsp");
         dispatcher.forward(request, response);
     }
 
@@ -101,19 +108,28 @@ public class ManagerServlet extends HttpServlet {
         RequestDispatcher dispatcher = request.getRequestDispatcher("admin_manager/all_list_news.jsp");
         dispatcher.forward(request, response);
     }
+
     public void lockUserByID(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
         int idUser = Integer.parseInt(request.getParameter("idUser"));
         userDAO.deleteUser(idUser);
-        List<User> listUser=userDAO.findAll();
+        List<User> listUser = userDAO.findAll();
         request.setAttribute("listUser", listUser);
         RequestDispatcher dispatcher = request.getRequestDispatcher("admin_manager/all_list_user.jsp");
         dispatcher.forward(request, response);
     }
-    private  void sortCategory(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
+
+    private void sortCategory(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
         String category = request.getParameter("category");
-        List<News> listNews=newsDAO.selectNewsByCategory(category);
+        List<News> listNews = newsDAO.selectNewsByCategory(category);
         request.setAttribute("listNews", listNews);
         RequestDispatcher dispatcher = request.getRequestDispatcher("admin_manager/Manager.jsp");
+        dispatcher.forward(request, response);
+    }
+
+    private void listCategory(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
+        List<Category> listCategory = categoryDAO.categoryCount();
+        request.setAttribute("listCategory", listCategory);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("admin_manager/ListCategory.jsp");
         dispatcher.forward(request, response);
     }
 
