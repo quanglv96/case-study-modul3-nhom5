@@ -110,7 +110,7 @@ public class NewsDAO {
     public boolean deleteNews(int idNews) throws SQLException {
         try (PreparedStatement preparedStatement =
                      connection.prepareStatement(DELETE_BY_ID)) {
-            preparedStatement.setLong(1, idNews);
+            preparedStatement.setInt(1, idNews);
             return preparedStatement.executeUpdate() > 0;
         } catch (SQLException e) {
             e.printStackTrace();

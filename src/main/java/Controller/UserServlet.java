@@ -84,7 +84,7 @@ public class UserServlet extends HttpServlet {
         String idLogin = request.getParameter("idUser");
         request.setAttribute("newById", newsDAO.selectNews(idNews));
         request.setAttribute("idLogin", idLogin);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("view_news/content_news_byID.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("view_news/content_news_byID_manager.jsp");
         dispatcher.forward(request, response);
     }
 

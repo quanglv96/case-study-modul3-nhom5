@@ -19,6 +19,25 @@ public class ManagerServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String action = request.getParameter("action");
+        if (action == null) {
+            action = "";
+        }
+        try {
+            switch (action) {
+                case "deleteNews":
+                    deleteNewByID(request, response);
+                    break;
+                case "contentByID":
+                    contentByID(request, response);
+                    break;
+                default:
+                    listNews(request, response);
+                    break;
+            }
+        }catch (SQLException ex) {
+            throw new ServletException(ex);
+        }
     }
 
 
@@ -44,25 +63,41 @@ public class ManagerServlet extends HttpServlet {
         response.sendRedirect("all_list_user.jsp");
     }
 
-    private void listUser(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException, ServletException {
+    public void listUser(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException, ServletException {
         List<User> listUser = userDAO.findAll();
         RequestDispatcher dispatcher = request.getRequestDispatcher("all_list_user.jsp");
         request.setAttribute("listUser", listUser);
         dispatcher.forward(request, response);
     }
 
-    private void showAllNewsForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    public void showAllNewsForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         List<News> listNews = newsDAO.selectAllNews();
-        RequestDispatcher dispatcher = request.getRequestDispatcher("admin_manager/all_list_news.jsp");
         request.setAttribute("listNews", listNews);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("admin_manager/all_list_news.jsp");
         dispatcher.forward(request, response);
     }
 
-    private void listNews(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException, ServletException {
+    public void listNews(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         List<News> listNews = newsDAO.selectAllNews();
         RequestDispatcher dispatcher = request.getRequestDispatcher("all_list_news.jsp");
         request.setAttribute("listNews", listNews);
         dispatcher.forward(request, response);
+    }
+
+    public void contentByID(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        int idNews = Integer.parseInt(request.getParameter("idNews"));
+        request.setAttribute("newById", newsDAO.selectNews(idNews));
+        RequestDispatcher dispatcher = request.getRequestDispatcher("admin_manager/content_news_byID_manager.jsp");
+        dispatcher.forward(request, response);
+    }
+
+    public void deleteNewByID(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
+        int idNews = Integer.parseInt(request.getParameter("idNews"));
+        newsDAO.deleteNews(idNews);
+        List<News> listNews=newsDAO.selectAllNews();
+        request.setAttribute("listNews",listNews);
+        RequestDispatcher dispatcher=request.getRequestDispatcher("admin_manager/all_list_news.jsp");
+        dispatcher.forward(request,response);
     }
 
 }
