@@ -2,14 +2,14 @@
 <%--
   Created by IntelliJ IDEA.
   User: QuangMax
-  Date: 27/11/2022
-  Time: 2:53 CH
+  Date: 06/12/2022
+  Time: 4:23 CH
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Blog</title>
+    <title>News of <c:out value="${nameUser}"/></title>
     <style>
         .header {
             background-image: url("https://img.freepik.com/free-photo/silver-dollar-eucalyptus-branch-gray-banner_53876-129660.jpg?w=2000");
@@ -118,10 +118,8 @@
             <form action="/user?action=newsByIdUser&idUser=${idLogin} " method="post">
                 <button type="submit">| Post Manager</button>
             </form>
-        </c:if>
-        <c:if test="${not empty idLogin}">
             <form action="/user?action=infoAccount&idUser=${idLogin}" method="post">
-                <button type="submit">| Account </button>
+                <button type="submit">| Account</button>
             </form>
         </c:if>
         <c:if test="${not empty idLogin}">
@@ -146,10 +144,22 @@
                         <td><c:out value="${news.getUser().getUserName()}"/></td>
                     </tr>
                     <tr>
-                        <td><a href="/user?action=contentByID&&idNews=${news.getIdNews()}&idUser=${idLogin}"><c:out value="${news.getTileNews()}"/></a></td>
+                        <td><a href="/user?action=contentByID&&idNews=${news.getIdNews()}&idUser=${idLogin}"><c:out
+                                value="${news.getTileNews()}"/></a></td>
                     </tr>
                     <tr>
                         <td><img src="${news.getImg()}" width="900px" height="600px" style="margin-left: 50px"/></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <form onsubmit="return(confirm('Do you want to delete this post?'))"
+                                  action="/user?action=deleteNews&idNews=${news.getIdNews()}&idUser=${idLogin}" method="post">
+                                <button type="submit">Delete</button></form>
+                                <form action="/user?action=formEdit&idNews=${news.getIdNews()}&idUser=${idLogin}" method="post">
+                                    <button type="submit">Edit</button>
+                                </form>
+                            </form>
+                        </td>
                     </tr>
                 </table>
             </div>

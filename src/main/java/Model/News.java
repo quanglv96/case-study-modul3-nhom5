@@ -1,6 +1,8 @@
 package Model;
 
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 public class News {
@@ -8,12 +10,12 @@ public class News {
     protected Category category;   // khóa phụ
     protected String tileNews;
     protected String content;
-    protected Date dateNews;
+    protected LocalDate dateNews;
     protected User user;    // khóa phụ
     protected int statusNews = 1;
     protected String img;
 
-    public News(int idNews, Category category, String tileNews, String content, Date dateNews, User user, int statusNews) {
+    public News(int idNews, Category category, String tileNews, String content, LocalDate dateNews, User user, int statusNews) {
         this.idNews = idNews;
         this.category = category;
         this.tileNews = tileNews;
@@ -23,7 +25,7 @@ public class News {
         this.statusNews = statusNews;
     }
 
-    public News(Category category, String tileNews, String content, Date dateNews, User user, int statusNews, String img) {
+    public News(Category category, String tileNews, String content, LocalDate dateNews, User user, int statusNews, String img) {
         this.category = category;
         this.tileNews = tileNews;
         this.content = content;
@@ -33,7 +35,7 @@ public class News {
         this.img = img;
     }
 
-    public News(int idNews, Category category, String tileNews, String content, Date dateNews, User user, int statusNews, String img) {
+    public News(int idNews, Category category, String tileNews, String content, LocalDate dateNews, User user, int statusNews, String img) {
         this.idNews = idNews;
         this.category = category;
         this.tileNews = tileNews;
@@ -44,7 +46,8 @@ public class News {
         this.img = img;
     }
 
-    public News(String tileNews, String content, Date dateNews, int statusNews, String img) {
+    public News(int idNews,String tileNews, String content, LocalDate dateNews, int statusNews, String img) {
+        this.idNews = idNews;
         this.tileNews = tileNews;
         this.content = content;
         this.dateNews = dateNews;
@@ -84,11 +87,11 @@ public class News {
         this.content = content;
     }
 
-    public Date getDateNews() {
+    public LocalDate getDateNews() {
         return dateNews;
     }
 
-    public void setDateNews(Date dateNews) {
+    public void setDateNews(LocalDate dateNews) {
         this.dateNews = dateNews;
     }
 

@@ -120,7 +120,7 @@
             </form>
         </c:if>
         <c:if test="${not empty idLogin}">
-            <form action="/register?action=openFormEditUser" method="post">
+            <form action="/user?action=infoAccount&idUser=${idLogin}" method="post">foAccount" method="post">
                 <button type="submit">| Account</button>
             </form>
         </c:if>
@@ -129,6 +129,9 @@
                 <button type="submit">| Logout</button>
             </form>
         </c:if>
+        <form action="/user?action=search" method="post">
+            <input type="text" name="search" placeholder="Enter name title search">
+        </form>
     </div>
 </div>
 <div class="directional" style="background: #b4d99f">

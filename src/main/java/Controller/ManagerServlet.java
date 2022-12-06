@@ -19,6 +19,7 @@ public class ManagerServlet extends HttpServlet {
     private NewsDAO newsDAO = new NewsDAO();
     private UserDAO userDAO = new UserDAO();
     private CategoryDAO categoryDAO = new CategoryDAO();
+    private  ReverseList reverseList=new ReverseList();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -80,14 +81,14 @@ public class ManagerServlet extends HttpServlet {
     }
 
     public void showAllNewsForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        List<News> listNews = newsDAO.selectAllNews();
+        List<News> listNews =reverseList.reverse(newsDAO.selectAllNews());
         request.setAttribute("listNews", listNews);
         RequestDispatcher dispatcher = request.getRequestDispatcher("admin_manager/all_list_news.jsp");
         dispatcher.forward(request, response);
     }
 
     public void listNews(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        List<News> listNews = newsDAO.selectAllNews();
+        List<News> listNews = reverseList.reverse(newsDAO.selectAllNews());
         request.setAttribute("listNews", listNews);
         RequestDispatcher dispatcher = request.getRequestDispatcher("admin_manager/Manager.jsp");
         dispatcher.forward(request, response);

@@ -115,10 +115,21 @@
             </form>
         </c:if>
         <c:if test="${not empty idLogin}">
+            <form action="/user?action=newsByIdUser&idUser=${idLogin} " method="post">
+                <button type="submit">| Post Manager</button>
+            </form>
+            <form action="/user?action=infoAccount&idUser=${idLogin}" method="post">
+                <button type="submit">| Account</button>
+            </form>
+        </c:if>
+        <c:if test="${not empty idLogin}">
             <form action="/user?action=&idUser" method="get">
                 <button type="submit">| Logout</button>
             </form>
         </c:if>
+        <form action="/user?action=search" method="post">
+            <input type="text" name="search" placeholder="Enter name title search">
+        </form>
     </div>
 </div>
 <div class="directional" style="background: #b4d99f">
@@ -126,10 +137,10 @@
         <div class=" col-8 ads"><img src="https://viewpro.in/blog/images/animated-gif-banner-ad.gif"/></div>
     </div>
     <div class="mid" style="width: 60%">
-        <div><c:out value="${newById.getUser().getUserName()}"/></div>
-        <div><c:out value="${newById.getDateNews()}"/></div>
-        <div><c:out value="${newById.getTileNews()}"/></div>
-        <div><c:out value="${newById.getContent()}"/></div>
+        <div><p><c:out value="${newById.getUser().getUserName()}"/></p></div>
+        <div><p><c:out value="${newById.getDateNews()}"/></p></div>
+        <div><p><c:out value="${newById.getTileNews()}"/></p></div>
+        <div><p><c:out value="${newById.getContent()}"/></p></div>
         <div><img src="${newById.getImg()}"></div>
     </div>
     <div class="col-3 " style="width: 20% ; margin-left: 20px">

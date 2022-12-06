@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: QuangMax
@@ -89,6 +90,10 @@
             font-size: 24px;
             margin-left: auto;
             color: #7875B5;
+        }
+        .error{
+            color: red;
+            size:25px;
         }
     </style>
 </head>

@@ -18,20 +18,8 @@
         $(document).ready(function () {
             $('#summernote').summernote({
                 placeholder: 'Please enter the content !',
-                tabsize: 2,
-                height: 200,
-                //   minHeight: null,
-                //   maxHeight: null,
-                //   focus: true,
-                //   toolbar: [
-                //     ['style', ['style']],
-                //     ['font', ['bold', 'underline', 'clear']],
-                //     ['color', ['color']],
-                //     ['para', ['ul', 'ol', 'paragraph']],
-                //     ['table', ['table']],
-                //     ['insert', ['link', 'picture', 'video']],
-                //     ['view', ['fullscreen', 'codeview', 'help']]
-                // ]
+                // tabsize: 1,
+                height: 300,
             });
         });
     </script>
@@ -151,7 +139,7 @@
             </form>
         </c:if>
         <c:if test="${not empty idLogin}">
-            <form action="/register?action=openFormEditUser" method="post">
+            <form action="/user?action=infoAccount&idUser=${idLogin}" method="post">
                 <button type="submit">| Account </button>
             </form>
         </c:if>
@@ -160,6 +148,9 @@
                 <button type="submit">| Logout</button>
             </form>
         </c:if>
+        <form action="/user?action=search" method="post">
+            <input type="text" name="search" placeholder="Enter name title search">
+        </form>
     </div>
 </div>
 <div class="directional" style="background: #b4d99f">
@@ -167,7 +158,7 @@
         <div class=" col-8 ads"><img src="https://viewpro.in/blog/images/animated-gif-banner-ad.gif"/></div>
     </div>
     <div class="mid" style="width: 80%">
-        <form action="/news?action=create_news&idUser=${idUser}" method="post">
+        <form action="/news?action=createNews&idUser=${idUser}" method="post">
             <table width="1300px" border="1">
                 <tr>
                     <th colspan="2"><h1 style="color: red; text-align: center; ">Add News</h1></th>
@@ -197,7 +188,6 @@
                 </tr>
                 <tr>
                     <th style="text-align: center">ID User</th>
-                    <td><c:out value="${idUser.getUserName()}"/>
                     <td>
                         <h5><c:out value="${user.getUserName()}"/></h5>
                     </td>

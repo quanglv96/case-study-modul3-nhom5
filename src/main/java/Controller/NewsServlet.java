@@ -17,6 +17,8 @@ import java.io.IOException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 
@@ -26,7 +28,7 @@ public class NewsServlet extends HttpServlet {
     private NewsDAO newsDAO = new NewsDAO();
     private UserDAO userDAO = new UserDAO();
     private CategoryDAO categoryDAO = new CategoryDAO();
-
+    private ReverseList reverseList = new ReverseList();
 
     public void init() {
         newsDAO = new NewsDAO();
@@ -41,9 +43,6 @@ public class NewsServlet extends HttpServlet {
         }
         try {
             switch (action) {
-                case "edit_news":
-                    showEditNewsForm(request, response);
-                    break;
                 case "delete_news":
                     deleteNews(request, response);
                     break;
@@ -65,14 +64,14 @@ public class NewsServlet extends HttpServlet {
         }
         try {
             switch (action) {
+                case "editNew":
+                    editNew(request, response);
+                    break;
                 case "openForm":
                     showCreatNewsForm(request, response);
                     break;
                 case "create_news":
                     insertNews(request, response);
-                    break;
-                case "edit_news":
-                    updateNews(request, response);
                     break;
                 default:
                     listNews(request, response);
@@ -84,7 +83,7 @@ public class NewsServlet extends HttpServlet {
     }
 
     private void listNews(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException, ServletException {
-        List<News> listNews = newsDAO.selectAllNews();
+        List<News> listNews = reverseList.reverse(newsDAO.selectAllNews());
         RequestDispatcher dispatcher = request.getRequestDispatcher("list_news.jsp");
         request.setAttribute("listNews", listNews);
         dispatcher.forward(request, response);
@@ -92,8 +91,7 @@ public class NewsServlet extends HttpServlet {
 
     private void showCreatNewsForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int idUser = Integer.parseInt(request.getParameter("idUser"));
-        List<Category> listCategory= categoryDAO.findAll();
-
+        List<Category> listCategory = categoryDAO.findAll();
         User user = userDAO.findUserById(idUser);
         request.setAttribute("idLogin", idUser);
         request.setAttribute("idUser", user);
@@ -109,7 +107,7 @@ public class NewsServlet extends HttpServlet {
         int idCategory = Integer.parseInt(request.getParameter("id_category"));
         String tileNews = request.getParameter("tile_news");
         String content = request.getParameter("content");
-        Date dateNews = new Date(); // gọi thời gian hện tại của hệ thống
+        LocalDate dateNews = LocalDate.now();; // gọi thời gian hện tại của hệ thống
         int idUser = Integer.parseInt(request.getParameter("id_user"));
         int statusNews = Integer.parseInt(request.getParameter("status_news"));
         String img = request.getParameter("img");
@@ -119,28 +117,6 @@ public class NewsServlet extends HttpServlet {
         dispatcher.forward(request, response);
     }
 
-    private void showEditNewsForm(HttpServletRequest request, HttpServletResponse response)
-            throws SQLException, ServletException, IOException {
-        int idNews = Integer.parseInt(request.getParameter("id_news"));
-        News existingUser = newsDAO.selectNews(idNews);
-        request.setAttribute("news", existingUser);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("edit_news.jsp");
-        dispatcher.forward(request, response);
-
-    }
-
-    private void updateNews(HttpServletRequest request, HttpServletResponse response)
-            throws SQLException, IOException, ServletException {
-        String tileNews = request.getParameter("tile_news");
-        String content = request.getParameter("content");
-        Date dateNews = new Date();
-        int statusNews = Integer.parseInt(request.getParameter("status_news"));
-        String img = request.getParameter("img");
-        News newNews = new News(tileNews, content, dateNews, statusNews, img);
-        newsDAO.updateNews(newNews);
-        response.sendRedirect("/news");
-    }
-
     private void deleteNews(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, IOException, ServletException {
         int idNews = Integer.parseInt(request.getParameter("id_news"));
@@ -148,4 +124,22 @@ public class NewsServlet extends HttpServlet {
         response.sendRedirect("news");
     }
 
+    private void editNew(HttpServletRequest request, HttpServletResponse response)
+            throws SQLException, IOException, ServletException {
+        int idLogin = Integer.parseInt(request.getParameter("idLogin"));
+        int idNews = Integer.parseInt(request.getParameter("idNews"));
+        User user = userDAO.findUserById(idLogin);
+        request.setAttribute("nameUser", user.getUserName());
+        request.setAttribute("idLogin", idLogin);
+        request.setAttribute("idNews", idNews);
+        request.setAttribute("news", newsDAO.selectNews(idNews));
+        String title=request.getParameter("titleNews");
+        String content=request.getParameter("content");
+        LocalDate date= LocalDate.now();
+        String img=request.getParameter("img");
+        News news=new News(idNews,title,content,date,1,img);
+        newsDAO.updateNews(news);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/user?action=newsByIdUser&idUser="+idLogin);
+        dispatcher.forward(request, response);
+    }
 }
