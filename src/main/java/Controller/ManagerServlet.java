@@ -54,6 +54,9 @@ public class ManagerServlet extends HttpServlet {
                 case "deleteNews":
                     deleteNewByID(request, response);
                     break;
+                case "unLockUser":
+                    unLockUser(request,response);
+                    break;
                 case "all_list_news":
                     showAllNewsForm(request, response);
                     break;
@@ -104,7 +107,7 @@ public class ManagerServlet extends HttpServlet {
     public void deleteNewByID(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
         int idNews = Integer.parseInt(request.getParameter("idNews"));
         newsDAO.deleteNews(idNews);
-        List<News> listNews = newsDAO.selectAllNews();
+        List<News> listNews = reverseList.reverse(newsDAO.selectAllNews());
         request.setAttribute("listNews", listNews);
         RequestDispatcher dispatcher = request.getRequestDispatcher("admin_manager/all_list_news.jsp");
         dispatcher.forward(request, response);
@@ -113,6 +116,14 @@ public class ManagerServlet extends HttpServlet {
     public void lockUserByID(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
         int idUser = Integer.parseInt(request.getParameter("idUser"));
         userDAO.deleteUser(idUser);
+        List<User> listUser = userDAO.findAll();
+        request.setAttribute("listUser", listUser);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("admin_manager/all_list_user.jsp");
+        dispatcher.forward(request, response);
+    }
+    private void unLockUser(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
+        int idUser = Integer.parseInt(request.getParameter("idUser"));
+        userDAO.unLockUser(idUser);
         List<User> listUser = userDAO.findAll();
         request.setAttribute("listUser", listUser);
         RequestDispatcher dispatcher = request.getRequestDispatcher("admin_manager/all_list_user.jsp");

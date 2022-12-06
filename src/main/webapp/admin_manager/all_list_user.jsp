@@ -91,9 +91,6 @@
     </div>
 </div>
 <div class="directional">
-    <div class="col-2">
-        <div class=" col-8 ads"><img src="https://viewpro.in/blog/images/animated-gif-banner-ad.gif"/></div>
-    </div>
     <div align="center">
         <table border="1" cellpadding="5">
             <caption><h2>List of User</h2></caption>
@@ -123,8 +120,13 @@
                     </c:choose>
                     </td>
                     <td>
-                       <form onsubmit="return(confirmDeleteUser(${user.userName}))" action="/managers?action=lockUser&idUser=${user.idUser}" method="post">
-                        <c:choose>
+                        <c:if test="${user.statusUser==1}">
+                       <form onsubmit="return(confirmDeleteUser())" action="/managers?action=lockUser&idUser=${user.idUser}" method="post">
+                           </c:if>
+                           <c:if test="${user.statusUser==0}">
+                               <form onsubmit="return(confirmUnlockUser())" action="/managers?action=unLockUser&idUser=${user.idUser}" method="post">
+                               </c:if>
+                           <c:choose>
                             <c:when test="${user.statusUser ==1}">
                                 <button type="submit">🚫</button>
                             </c:when>
@@ -138,16 +140,22 @@
             </c:forEach>
         </table>
     </div>
-    <div class="col-2">
-        <div class="ads"><img src="https://viewpro.in/blog/images/animated-gif-banner-ad.gif"/></div>
-    </div>
+
 </div>
 </body>
 <script>
-    function confirmDeleteUser(userName){
-        let result = confirm("Are you sure you want to lock this account: "+userName+"?");
+    function confirmDeleteUser(){
+        let result = confirm("Are you sure you want to lock this account?");
         if(result)  {
             alert("Account lock successful!");
+            return true;
+        }
+        return false
+    }
+    function confirmUnlockUser(){
+        let result = confirm("Are you sure you want to unlock this account?");
+        if(result)  {
+            alert("Account Unlock successful!");
             return true;
         }
         return false

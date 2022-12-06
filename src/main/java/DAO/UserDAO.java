@@ -16,6 +16,7 @@ public class UserDAO {
     private final String INSERT_USER = "insert into user(username_user,password,phoneNumber_user,email_user,address_user,status_user) value(?,?,?,?,?,?);";
     private final String UPDATE_USER = "update user set username_user = ?, phoneNumber_user = ?,email_user = ?, address_user = ? where id_user = ?;";
     private final String DELETE_USER = "update user set status_user = 0 where id_user = ? ";
+    private final String UNLOCK_USER = "update user set status_user = 1 where id_user = ? ";
     private final String LOCK_USER_AND_NEWS = "update user u, news m set u.status_user = 0, m.status_news = 0 where u.id_user = ? and m.id_user = ?;";
 
     public UserDAO() {
@@ -90,6 +91,14 @@ public class UserDAO {
 
     public void deleteUser(int id) {
         try (PreparedStatement preparedStatement = connection.prepareStatement(DELETE_USER)) {
+            preparedStatement.setInt(1, id);
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    public void unLockUser(int id) {
+        try (PreparedStatement preparedStatement = connection.prepareStatement(UNLOCK_USER)) {
             preparedStatement.setInt(1, id);
             preparedStatement.executeUpdate();
         } catch (SQLException e) {

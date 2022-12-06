@@ -25,13 +25,20 @@ public class UserServlet extends HttpServlet {
         if (action == null) {
             action = "";
         }
-        switch (action) {
-            case "contentByID":
-                contentByID(request, response);
-                break;
-            default:
-                listNews(request, response);
-                break;
+        try {
+            switch (action) {
+                case "infoAccount":
+                    infoAccount(request, response);
+                    break;
+                case "contentByID":
+                    contentByID(request, response);
+                    break;
+                default:
+                    listNews(request, response);
+                    break;
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
     }
 
@@ -203,7 +210,7 @@ public class UserServlet extends HttpServlet {
         String address = request.getParameter("addressUser");
         User user1 = new User(idLogin, name, phone, email, address);
         userDAO.upDateUser(user1);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/user?action=infoAccount&idUser="+idLogin);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/user?action=infoAccount&idUser=" + idLogin);
         dispatcher.forward(request, response);
     }
 }

@@ -121,7 +121,7 @@
         </c:if>
         <c:if test="${not empty idLogin}">
             <form action="/user?action=infoAccount&idUser=${idLogin}" method="post">
-                <button type="submit">| Account </button>
+                <button type="submit">| Account</button>
             </form>
         </c:if>
         <c:if test="${not empty idLogin}">
@@ -130,7 +130,8 @@
             </form>
         </c:if>
         <form action="/news?action=searchNews&idUser=${idLogin}" method="post">
-            <input style="height: 50px;width: 200px" type="text" name="search" onsubmit="" placeholder="Enter name title search">
+            <input style="height: 50px;width: 200px" type="text" name="search" onsubmit=""
+                   placeholder="Enter name title search">
             <button type="submit">🔍</button>
         </form>
     </div>
@@ -185,8 +186,7 @@
                             <button type="submit">Save</button>
                         </td>
                         <td>
-                            <form action="/user?action=infoAccount&idUser=${idLogin}" method="post">
-                            <button type="submit">Skip</button></form>
+                            <button type="button" onclick="reloadPage(${idLogin})">Skip</button>
                         </td>
                     </c:if>
                     <c:if test="${empty edit}">
@@ -196,8 +196,12 @@
                     </c:if>
                 </tr>
             </table>
-
         </form>
 </div>
 </body>
+<script>
+    function reloadPage(id){
+        window.location="/user?action=infoAccount&idUser="+id;
+    }
+</script>
 </html>
