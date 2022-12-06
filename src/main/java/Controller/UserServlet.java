@@ -81,7 +81,7 @@ public class UserServlet extends HttpServlet {
 
     public void contentByID(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int idNews = Integer.parseInt(request.getParameter("idNews"));
-        int idLogin = Integer.parseInt(request.getParameter("idUser"));
+        String idLogin = request.getParameter("idUser");
         request.setAttribute("newById", newsDAO.selectNews(idNews));
         request.setAttribute("idLogin", idLogin);
         RequestDispatcher dispatcher = request.getRequestDispatcher("view_news/content_news_byID.jsp");
