@@ -1,15 +1,20 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: QuangMax
-  Date: 27/11/2022
-  Time: 2:53 CH
+  Date: 06/12/2022
+  Time: 2:55 CH
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
-    <title>All list user</title>
+    <title>List Category</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+            crossorigin="anonymous"></script>
     <style>
         .header {
             background-image: url("https://img.freepik.com/free-photo/silver-dollar-eucalyptus-branch-gray-banner_53876-129660.jpg?w=2000");
@@ -57,14 +62,13 @@
             padding-right: 10%;
             text-align: center;
         }
-
     </style>
 </head>
 <body>
 <div>
     <div class="row">
         <div class="header">
-            <h1>List User</h1>
+            <h1>List Category</h1>
         </div>
     </div>
 </div>
@@ -91,67 +95,23 @@
     </div>
 </div>
 <div class="directional">
-    <div class="col-2">
-        <div class=" col-8 ads"><img src="https://viewpro.in/blog/images/animated-gif-banner-ad.gif"/></div>
-    </div>
     <div align="center">
         <table border="1" cellpadding="5">
             <caption><h2>List of User</h2></caption>
             <tr>
-                <th>Id User</th>
-                <th>User Name</th>
-                <th>Phone User</th>
-                <th>Email User</th>
-                <th>Address</th>
-                <th>Status</th>
-                <th>LockAccount</th>
+                <th>ID Category</th>
+                <th>Category</th>
+                <th>Number of posts</th>
             </tr>
-            <c:forEach var="user" items="${listUser}">
+            <c:forEach var="cate" items="${listCategory}">
                 <tr>
-                    <td><c:out value="${user.idUser}"/></td>
-                    <td><c:out value="${user.userName}"/></td>
-                    <td><c:out value="${user.phoneNumber}"/></td>
-                    <td><c:out value="${user.email}"/></td>
-                    <td><c:out value="${user.address}"/></td>
-                    <td><c:choose>
-                        <c:when test="${user.statusUser ==1}">
-                            <p>Active</p>
-                        </c:when>
-                        <c:when test="${user.statusUser ==0}">
-                            <p>Looked</p>
-                        </c:when>
-                    </c:choose>
-                    </td>
-                    <td>
-                       <form onsubmit="return(confirmDeleteUser(${user.userName}))" action="/managers?action=lockUser&idUser=${user.idUser}" method="post">
-                        <c:choose>
-                            <c:when test="${user.statusUser ==1}">
-                                <button type="submit">🚫</button>
-                            </c:when>
-                            <c:when test="${user.statusUser ==0}">
-                                <button type="submit">🔐</button>
-                            </c:when>
-                        </c:choose>
-                       </form>
-                    </td>
+                    <td><c:out value="${cate.getIdCategory()}"/></td>
+                    <td><c:out value="${cate.getNameCategory()}"/></td>
+                    <td><c:out value="${cate.getCountCategory()}"/></td>
                 </tr>
             </c:forEach>
         </table>
     </div>
-    <div class="col-2">
-        <div class="ads"><img src="https://viewpro.in/blog/images/animated-gif-banner-ad.gif"/></div>
-    </div>
 </div>
 </body>
-<script>
-    function confirmDeleteUser(userName){
-        let result = confirm("Are you sure you want to lock this account: "+userName+"?");
-        if(result)  {
-            alert("Account lock successful!");
-            return true;
-        }
-        return false
-    }
-</script>
 </html>
-
