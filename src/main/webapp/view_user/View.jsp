@@ -129,8 +129,9 @@
                 <button type="submit">| Logout</button>
             </form>
         </c:if>
-        <form action="/user?action=search" method="post">
-            <input type="text" name="search" placeholder="Enter name title search">
+        <form action="/news?action=searchNews&idUser=${idLogin}" method="post">
+            <input type="text" name="search" onsubmit="" placeholder="Enter name title search">
+            <button type="submit">🔍</button>
         </form>
     </div>
 </div>

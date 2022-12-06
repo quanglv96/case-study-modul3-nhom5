@@ -25,6 +25,7 @@ public class NewsDAO {
     private final String SELECT_BY_CATEGORY = "select * from news where id_category in (select id_category from category where name_category=?);";
     private final String DELETE_BY_ID = "update news set status_news = 0 where id_news = ? ";
     private final String SELECT_BY_USERS = "select * from news where status_news= 1 and id_user=?;";
+    private final String SELECT_BY_LIKE="select *from news where tile_news like ?;";
 
     private Category category;
     private News news;
@@ -172,6 +173,31 @@ public class NewsDAO {
         try (Connection connection = getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(SELECT_BY_USERS) ){
             preparedStatement.setInt(1, id);
+            System.out.println(preparedStatement);
+            ResultSet rs = preparedStatement.executeQuery();
+            while (rs.next()) {
+                int idNews = rs.getInt("id_news");
+                int idCategory = rs.getInt("id_category");
+                String tileNews = rs.getString("tile_news");
+                String content = rs.getString("content");
+                LocalDate dateNews = rs.getDate("date_news").toLocalDate();
+                int idUser = rs.getInt("id_user");
+                int statusNews = rs.getInt("status_news");
+                String img = rs.getString("img");
+                Category category1 = categoryDAO.findCategoryById(idCategory);
+                System.out.println(category1.getNameCategory());
+                listNews.add(new News(idNews, categoryDAO.findCategoryById(idCategory), tileNews, content, dateNews, userDAO.findUserById(idUser), statusNews, img));
+            }
+        } catch (SQLException e) {
+            printSQLException(e);
+        }
+        return listNews;
+    }
+    public List<News> selectNewsTiles(String text) {
+        List<News> listNews = new ArrayList<>();
+        try (Connection connection = getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(SELECT_BY_LIKE) ){
+            preparedStatement.setString(1, text);
             System.out.println(preparedStatement);
             ResultSet rs = preparedStatement.executeQuery();
             while (rs.next()) {

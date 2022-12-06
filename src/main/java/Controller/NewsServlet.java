@@ -64,6 +64,9 @@ public class NewsServlet extends HttpServlet {
         }
         try {
             switch (action) {
+                case "searchNews":
+                    searchNews(request, response);
+                    break;
                 case "editNew":
                     editNew(request, response);
                     break;
@@ -84,8 +87,8 @@ public class NewsServlet extends HttpServlet {
 
     private void listNews(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException, ServletException {
         List<News> listNews = reverseList.reverse(newsDAO.selectAllNews());
-        RequestDispatcher dispatcher = request.getRequestDispatcher("list_news.jsp");
         request.setAttribute("listNews", listNews);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("list_news.jsp");
         dispatcher.forward(request, response);
     }
 
@@ -107,7 +110,7 @@ public class NewsServlet extends HttpServlet {
         int idCategory = Integer.parseInt(request.getParameter("id_category"));
         String tileNews = request.getParameter("tile_news");
         String content = request.getParameter("content");
-        LocalDate dateNews = LocalDate.now();; // gọi thời gian hện tại của hệ thống
+        LocalDate dateNews = LocalDate.now();
         int idUser = Integer.parseInt(request.getParameter("id_user"));
         int statusNews = Integer.parseInt(request.getParameter("status_news"));
         String img = request.getParameter("img");
@@ -133,13 +136,24 @@ public class NewsServlet extends HttpServlet {
         request.setAttribute("idLogin", idLogin);
         request.setAttribute("idNews", idNews);
         request.setAttribute("news", newsDAO.selectNews(idNews));
-        String title=request.getParameter("titleNews");
-        String content=request.getParameter("content");
-        LocalDate date= LocalDate.now();
-        String img=request.getParameter("img");
-        News news=new News(idNews,title,content,date,1,img);
+        String title = request.getParameter("titleNews");
+        String content = request.getParameter("content");
+        LocalDate date = LocalDate.now();
+        String img = request.getParameter("img");
+        News news = new News(idNews, title, content, date, 1, img);
         newsDAO.updateNews(news);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/user?action=newsByIdUser&idUser="+idLogin);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/user?action=newsByIdUser&idUser=" + idLogin);
+        dispatcher.forward(request, response);
+    }
+
+    private void searchNews(HttpServletRequest request, HttpServletResponse response)
+            throws SQLException, IOException, ServletException {
+        String idLogin = request.getParameter("idUser");
+        request.setAttribute("idLogin", idLogin);
+        String text = "'%"+request.getParameter("search")+"%'";
+        List<News> listNews = newsDAO.selectNewsTiles(text);
+        request.setAttribute("listNews", listNews);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("view_news/list_news.jsp");
         dispatcher.forward(request, response);
     }
 }
