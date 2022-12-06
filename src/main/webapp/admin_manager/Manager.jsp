@@ -78,17 +78,17 @@
         <form action="Manager.jsp">
             <button type="submit">Home</button>
         </form>
-        <form action="/user?action=" method="get">
+        <form action="/managers?action=sort&category=sport" method="post">
             <button type="submit">Sport</button>
         </form>
-        <form action="/user?action=" method="get">
+        <form action="/managers?action=sort&category=sport" method="post">
             <button type="submit">Culture</button>
         </form>
         <form action="/managers?action=all_list_news" method="post">
             <button type="submit">All List News</button>
         </form>
-        <form action="/managers?action=all_list_user" method="get">
-            <button type="submit">All List News</button>
+        <form action="/managers?action=all_list_user" method="post">
+            <button type="submit">All List User</button>
         </form>
     </div>
 </div>

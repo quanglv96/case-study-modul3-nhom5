@@ -83,9 +83,12 @@
         <form action="/managers?action=&idCategory=${2}" method="get">
             <button type="submit">Culture</button>
         </form>
-        <a href="/managers?action=all_list_news">All List News</a>
-        <a href="/managers?action=all_list_user">All List User</a>
-
+        <form action="/managers?action=all_list_news" method="post">
+            <button type="submit">All List News</button>
+        </form>
+        <form action="/managers?action=all_list_user" method="post">
+            <button type="submit">All List User</button>
+        </form>
     </div>
 </div>
 <div class="directional">
@@ -108,7 +111,7 @@
                     <td><c:out value="${news.getDateNews()}"/></td>
                     <td><c:out value="${news.getUser().getUserName()}"/></td>
                     <td>
-                        <form onsubmit="confirmDeleteNews()" action="/managers?action=deleteNews&idNews=${news.getIdNews()}" method="get">
+                        <form onsubmit="return(confirmDeleteNews())" action="/managers?action=deleteNews&idNews=${news.getIdNews()}" method="post">
                         <button type="submit">🗑️</button>
                         </form>
                     </td>
