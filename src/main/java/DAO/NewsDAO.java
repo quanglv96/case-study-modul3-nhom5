@@ -15,7 +15,7 @@ import static DAO.MyConnection.getConnection;
 
 public class NewsDAO {
     private final Connection connection;
-    private final String SELECT_ALL_NEWS = "select * from news;";
+    private final String SELECT_ALL_NEWS = "select * from news where status_news=1;";
     private final String INSERT_NEWS = "INSERT INTO news (id_category, tile_news, content , date_news ,id_user, status_news, img) VALUES (?, ?, ?, ?, ?, ? ,?);";
     private final String SELECT_BY_ID = "select * from news where id_news = ?  ";
     private final String UPDATE_BY_ID = "update news set tile_news = ? , content = ?, date_news = ?, img = ? where id_news = ?;";
@@ -45,6 +45,8 @@ public class NewsDAO {
                 int idUser = rs.getInt("id_user");
                 int statusNews = rs.getInt("status_news");
                 String img = rs.getString("img");
+                Category category1 = categoryDAO.findCategoryById(idCategory);
+                System.out.println(category1.getNameCategory());
                 news.add(new News(idNews, categoryDAO.findCategoryById(idCategory), tileNews, content, dateNews, userDAO.findUserById(idUser), statusNews, img));
             }
         } catch (SQLException e) {
@@ -94,8 +96,7 @@ public class NewsDAO {
 
     //
     public void updateNews(News news) throws SQLException {
-        try (Connection connection = getConnection();
-             PreparedStatement statement = connection.prepareStatement(UPDATE_BY_ID);) {
+        try (Connection connection = getConnection(); PreparedStatement statement = connection.prepareStatement(UPDATE_BY_ID);) {
             statement.setString(1, news.getTileNews());
             statement.setString(2, news.getContent());
             statement.setDate(3, java.sql.Date.valueOf(java.time.LocalDate.now()));
@@ -106,15 +107,15 @@ public class NewsDAO {
     }
 
     public boolean deleteNews(int idNews) throws SQLException {
-            try (PreparedStatement preparedStatement =
-                         connection.prepareStatement(DELETE_BY_ID)) {
-                preparedStatement.setLong(1, idNews);
-                return preparedStatement.executeUpdate() > 0;
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-            return false;
+        try (PreparedStatement preparedStatement =
+                     connection.prepareStatement(DELETE_BY_ID)) {
+            preparedStatement.setLong(1, idNews);
+            return preparedStatement.executeUpdate() > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
+        return false;
+    }
 
 
     private void printSQLException(SQLException ex) {

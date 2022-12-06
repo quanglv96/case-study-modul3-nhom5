@@ -84,6 +84,7 @@ public class RegisterServlet extends HttpServlet {
             User user;
             user = new User(username, password, phoneNumber, email, address, 1);
             userDAO.insertUser(user);
+            response.sendRedirect("http://localhost:8081/view_user/loginUser.jsp");
         }
     }
 }

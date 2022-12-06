@@ -10,6 +10,11 @@
 <html>
 <head>
     <title>Manager Blog</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+            crossorigin="anonymous"></script>
     <style>
         .header {
             background-image: url("https://img.freepik.com/free-photo/silver-dollar-eucalyptus-branch-gray-banner_53876-129660.jpg?w=2000");
@@ -68,19 +73,18 @@
         </div>
     </div>
 </div>
-<div>
+<div class="container">
     <div class="directional">
-        <form action="/user?action=&idUser=" method="get">
+        <form action="Manager.jsp">
             <button type="submit">Home</button>
         </form>
-
         <form action="/user?action=&idUser=" method="get">
             <button type="submit">Sport</button>
         </form>
         <form action="/user?action=&idUser=" method="get">
             <button type="submit">Culture</button>
         </form>
-        <form action="/managers?action=all_list_news" method="get">
+        <form action="/managers?action=all_list_news" method="post">
             <button type="submit">All List News</button>
         </form>
         <form action="/managers?action=all_list_user" method="get">
@@ -88,31 +92,23 @@
         </form>
     </div>
 </div>
-<div class="directional">
-    <div class="col-2">
-        <div class=" col-8 ads"><img src="https://viewpro.in/blog/images/animated-gif-banner-ad.gif"/></div>
-    </div>
-    <div>
-        <c:forEach items="${listNews}" var="news">
-            <div>
-                <table>
-                    <tr>
-                        <td><c:out value="${news.getUser().getUserName()}"/></td>
-                    </tr>
-                    <tr>
-                        <td><c:out value="${news.getTileNews()}"/></td>
-                    </tr>
-                    <tr>
-                        <td><img src="${news.getImg()}" /></td>
-                    </tr>
-                </table>
-            </div>
-        </c:forEach>
-    </div>
-    <div class="col-2">
-        <div class="ads"><img src="https://viewpro.in/blog/images/animated-gif-banner-ad.gif"/></div>
-    </div>
-
+<div align="center" >
+    <c:forEach items="${listNews}" var="news">
+        <div>
+            <table>
+                <tr>
+                    <td><c:out value="${news.getUser().getUserName()}"/></td>
+                </tr>
+                <tr>
+                    <td><c:out value="${news.getTileNews()}"/></td>
+                </tr>
+                <tr>
+                    <td><img src="${news.getImg()}"/></td>
+                </tr>
+            </table>
+        </div>
+    </c:forEach>
+</div>
 </div>
 </body>
 </html>

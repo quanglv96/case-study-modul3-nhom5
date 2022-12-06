@@ -24,6 +24,8 @@ public class UserServlet extends HttpServlet {
             action = "";
         }
         switch (action) {
+            case "contentByID":
+                contentByID(request, response);
             default:
                 listNews(request, response);
                 break;
@@ -39,6 +41,7 @@ public class UserServlet extends HttpServlet {
         switch (action) {
             case "login":
                 checkLogin(request, response);
+                break;
             default:
                 listNews(request, response);
                 break;
@@ -47,9 +50,9 @@ public class UserServlet extends HttpServlet {
 
     public void listNews(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         List<News> listNews = newsDAO.selectAllNews();
-        String idLogin=request.getParameter("idUser");
+        String idLogin = request.getParameter("idUser");
         request.setAttribute("listNews", listNews);
-        request.setAttribute("idLogin",idLogin);
+        request.setAttribute("idLogin", idLogin);
         RequestDispatcher dispatcher = request.getRequestDispatcher("view_user/View.jsp");
         dispatcher.forward(request, response);
     }
@@ -58,11 +61,11 @@ public class UserServlet extends HttpServlet {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
         List<User> listUser = userDAO.findAll();
-        boolean flag=true;
+        boolean flag = true;
         for (User u : listUser) {
             if (u.getUserName().equals(username) && u.getPassword().equals(password)) {
-                flag=false;
-                request.setAttribute("idLogin",u.getIdUser());
+                flag = false;
+                request.setAttribute("idLogin", u.getIdUser());
                 RequestDispatcher dispatcher = request.getRequestDispatcher("view_user/View.jsp");
                 dispatcher.forward(request, response);
             }
@@ -72,5 +75,14 @@ public class UserServlet extends HttpServlet {
             RequestDispatcher dispatcher = request.getRequestDispatcher("view_user/loginUser.jsp");
             dispatcher.forward(request, response);
         }
+    }
+
+    public void contentByID(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        int idNews = Integer.parseInt(request.getParameter("idNews"));
+        int idLogin = Integer.parseInt(request.getParameter("idUser"));
+        request.setAttribute("newById", newsDAO.selectNews(idNews));
+        request.setAttribute("idLogin", idLogin);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("view_news/content_news_byID.jsp");
+        dispatcher.forward(request, response);
     }
 }

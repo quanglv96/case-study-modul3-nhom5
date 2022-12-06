@@ -13,7 +13,7 @@ import java.util.List;
 public class CategoryDAO {
     private final Connection connection;
     private final String SELECT_ALL_CATEGORY = "select * from category;";
-    private final String SELECT_CATEGORY_BY_ID = "select * from category where id = ?;";
+    private final String SELECT_CATEGORY_BY_ID = "select * from category where id_category = ?;";
     public CategoryDAO() {
         connection = MyConnection.getConnection();
     }
@@ -32,19 +32,19 @@ public class CategoryDAO {
         return categories;
     }
     public Category findCategoryById(int id) {
-        try (PreparedStatement preparedStatement =
-                     connection.prepareStatement(SELECT_CATEGORY_BY_ID)){
-            preparedStatement.setLong(1, id);
+        Category category = null;
+        try (PreparedStatement preparedStatement = connection.prepareStatement(SELECT_CATEGORY_BY_ID)){
+            preparedStatement.setInt(1, id);
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
-                int idDb = resultSet.getInt("id_category");
                 String name = resultSet.getString("name_category");
-                return new Category(idDb, name);
+                System.out.println(name);
+                category= new Category(id, name);
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return null;
+        return category;
     }
 
 }
