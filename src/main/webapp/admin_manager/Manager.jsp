@@ -30,7 +30,7 @@
             display: flex;
             justify-content: center;
             text-align: center;
-            /*border: 1px solid black;*/
+
         }
 
         .directional form button {
@@ -62,7 +62,6 @@
             padding-right: 10%;
             text-align: center;
         }
-
     </style>
 </head>
 <body>

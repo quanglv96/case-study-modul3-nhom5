@@ -75,22 +75,22 @@
 <div>
     <div class="directional">
         <form action="/managers?" method="get">
-            <button type="submit">Home</button>
+            <button type="submit">Home |</button>
         </form>
         <form action="/managers?action=listCategory" method="post">
-            <button type="submit">Category</button>
+            <button type="submit">Category |</button>
         </form>
         <form action="/managers?action=sort&category=sport" method="post">
-            <button type="submit">Sport</button>
+            <button type="submit">Sport |</button>
         </form>
         <form action="/managers?action=sort&category=culture" method="post">
-            <button type="submit">Culture</button>
+            <button type="submit">Culture |</button>
         </form>
         <form action="/managers?action=all_list_news" method="post">
-            <button type="submit">All List News</button>
+            <button type="submit">All List News |</button>
         </form>
         <form action="/managers?action=all_list_user" method="post">
-            <button type="submit">All List User</button>
+            <button type="submit">All List User |</button>
         </form>
     </div>
 </div>
