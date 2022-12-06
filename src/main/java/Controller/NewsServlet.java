@@ -88,21 +88,13 @@ public class NewsServlet extends HttpServlet {
     private void showCreatNewsForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int idUser = Integer.parseInt(request.getParameter("idUser"));
         List<Category> listCategory= categoryDAO.findAll();
-<<<<<<< HEAD
-<<<<<<< HEAD
-        List<User> listUser = userDAO.findUserById(idUser);
-        request.setAttribute("idLogin", idUser);
-        request.setAttribute("user", listUser);
-=======
+
         User user = userDAO.findUserById(idUser);
         request.setAttribute("idLogin", idUser);
         request.setAttribute("idUser", user);
->>>>>>> origin/dophuongnam
-=======
-        User user = userDAO.findUserById(idUser);
+        User listUser = userDAO.findUserById(idUser);
         request.setAttribute("idLogin", idUser);
-        request.setAttribute("user", user);
->>>>>>> 868ea74cb4db8b031d45b752fa54795e119ec8a7
+        request.setAttribute("user", listUser);
         request.setAttribute("category", listCategory);
         RequestDispatcher dispatcher = request.getRequestDispatcher("view_news/create_news.jsp");
         dispatcher.forward(request, response);

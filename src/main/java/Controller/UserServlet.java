@@ -31,7 +31,6 @@ public class UserServlet extends HttpServlet {
                 break;
         }
     }
-
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String action = request.getParameter("action");
@@ -44,10 +43,21 @@ public class UserServlet extends HttpServlet {
                 break;
             case "sort":
                 sortByCategory(request, response);
+                break;
+            case "all_list_news":
+                showAllNewsForm(request, response);
+                break;
             default:
                 listNews(request, response);
                 break;
         }
+    }
+
+    private void showAllNewsForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        List<News> listNews = newsDAO.selectAllNews();
+        request.setAttribute("listNews", listNews);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("view_news/list_news.jsp");
+        dispatcher.forward(request, response);
     }
 
     public void listNews(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

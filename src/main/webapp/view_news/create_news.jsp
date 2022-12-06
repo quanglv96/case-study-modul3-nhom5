@@ -127,14 +127,14 @@
             <button type="submit">Home</button>
         </form>
         <c:if test="${not empty idLogin}">
-            <form action="/user?action=create_news&idUser=${idLogin}" method="post">
+            <form action="/news?action=openForm&idUser=${idLogin}" method="post">
                 <button type="submit">| New Post</button>
             </form>
         </c:if>
-        <form action="/user?action=&idUser=${idLogin}" method="post">
-            <button type="submit">| Sport</button>
+        <form action="/user?action=sort&idCategory=sport&idUser=${idLogin}" method="post">
+            <button type="submit">|Sport</button>
         </form>
-        <form action="/user?action=&idUser=${idLogin}" method="post">
+        <form action="/user?action=sort&idCategory=culture&idUser=${idLogin}" method="post">
             <button type="submit">| Culture</button>
         </form>
         <c:if test="${empty idLogin}">
@@ -143,6 +143,16 @@
             </form>
             <form action="view_user/Register.jsp" method="post">
                 <button type="submit">| Register</button>
+            </form>
+        </c:if>
+        <c:if test="${not empty idLogin}">
+            <form action="/user?action=all_list_news&" method="post">
+                <button type="submit">| Post Manager</button>
+            </form>
+        </c:if>
+        <c:if test="${not empty idLogin}">
+            <form action="/register?action=openFormEditUser" method="post">
+                <button type="submit">| Account </button>
             </form>
         </c:if>
         <c:if test="${not empty idLogin}">
@@ -186,39 +196,11 @@
                     </td>
                 </tr>
                 <tr>
-                    <th style="text-align: center" width="61">Date News</th>
-                    <td width="600"><input style="height: 30px; width: 200px" type="text" name="dateNews" id="dateNews">
-                </tr>
-                <tr>
                     <th style="text-align: center">ID User</th>
-<<<<<<< HEAD
-                    <td>
-<<<<<<< HEAD
-                    <th style="text-align: center" width="61">Id User</th>
-                    <c:forEach items="${user}" var="c">
-                                <option value="${c.getIdUser()}"><c:out value="${c.getUserName()}"/></option>
-                            </c:forEach>
-=======
                     <td><c:out value="${idUser.getUserName()}"/>
-
->>>>>>> origin/dophuongnam
-=======
-                      <h5><c:out value="${user.getUserName()}"/></h5>
->>>>>>> 868ea74cb4db8b031d45b752fa54795e119ec8a7
+                    <td>
+                        <h5><c:out value="${user.getUserName()}"/></h5>
                     </td>
-                </tr>
-                <tr>
-                    <th style="text-align: center">Status News</th>
-                    <td><p>
-                        <label>
-                            <input type="radio" name="status" value="1" id="on_1" checked="1">
-                            On</label>
-                        <br>
-                        <label>
-                            <input type="radio" name="staus" value="0" id="off_0">
-                            Off</label>
-                        <br>
-                    </p></td>
                 </tr>
                 <tr>
                     <th style="text-align: center">Img</th>

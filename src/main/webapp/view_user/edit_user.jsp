@@ -118,7 +118,6 @@
                            value="<c:out value='${user.address}' />">
                     <small>Email must be Example@example.xx</small>
                 </div>
-                <label style="color: red" class="label col-md-3 control-label">Status</label>
                 <div class="col-md-9">
                     <select class="form-control">
                         <option>On</option>

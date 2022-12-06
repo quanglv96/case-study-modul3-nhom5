@@ -115,6 +115,16 @@
             </form>
         </c:if>
         <c:if test="${not empty idLogin}">
+            <form action="/user?action=all_list_news&" method="post">
+                <button type="submit">| Post Manager</button>
+            </form>
+        </c:if>
+        <c:if test="${not empty idLogin}">
+            <form action="/register?action=openFormEditUser" method="post">
+                <button type="submit">| Account </button>
+            </form>
+        </c:if>
+        <c:if test="${not empty idLogin}">
             <form action="/user?action=&idUser" method="get">
                 <button type="submit">| Logout</button>
             </form>

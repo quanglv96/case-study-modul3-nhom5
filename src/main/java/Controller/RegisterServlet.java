@@ -1,6 +1,7 @@
 package Controller;
 
 import DAO.UserDAO;
+import Model.Category;
 import Model.User;
 
 import javax.servlet.*;
@@ -17,6 +18,20 @@ public class RegisterServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String action = request.getParameter("action");
+        switch (action) {
+            case "openFormEditUser":
+                showEditNewsFormUser(request, response);
+                break;
+        }
+    }
+
+    private void showEditNewsFormUser(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+//        int idUser = Integer.parseInt(request.getParameter("idUser"));
+//       request.setAttribute("idLogin", idUser);
+//        RequestDispatcher dispatcher = request.getRequestDispatcher("edit_user.jsp");
+//        dispatcher.forward(request, response);
+        response.sendRedirect("view_user/edit_user.jsp");
     }
 
     @Override
@@ -26,8 +41,12 @@ public class RegisterServlet extends HttpServlet {
             case "check":
                 checkValidate(request, response);
                 break;
+                case "openFormEditUser":
+                    showEditNewsFormUser(request, response);
+                    break;
+            }
         }
-    }
+
 
     public void checkValidate(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int count = 0;
