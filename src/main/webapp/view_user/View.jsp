@@ -129,6 +129,10 @@
                 <button type="submit">| Logout</button>
             </form>
         </c:if>
+        <form action="/user?action=search" method="post">
+            <input type="text" name="search" placeholder="Enter name title search">
+            <button class="btn btn-primary">Search</button>
+        </form>
     </div>
 </div>
 <div class="directional" style="background: #b4d99f">

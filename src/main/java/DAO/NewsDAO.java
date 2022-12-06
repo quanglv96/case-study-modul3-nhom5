@@ -19,8 +19,9 @@ public class NewsDAO {
     private final String INSERT_NEWS = "INSERT INTO news (id_category, tile_news, content , date_news ,id_user, status_news, img) VALUES (?, ?, ?, ?, ?, ? ,?);";
     private final String SELECT_BY_ID = "select * from news where id_news = ?  ";
     private final String UPDATE_BY_ID = "update news set tile_news = ? , content = ?, date_news = ?, img = ? where id_news = ?;";
-    private final String SELECT_BY_CATEGORY ="select * from news where status_news=1 and id_category in (select id_category from category where name_category=?);";
-    private final String DELETE_BY_ID = "update news set status_news = 0 where id_news = ? ";
+    private final String SELECT_BY_CATEGORY ="select * from news where id_category in (select id_category from category where name_category=?);";
+    private final String DELETE_BY_ID = "updte news set status_news = 0 where id_news = ? ";
+//    private final String SELECT_NEWS_BY_TITLE = "select * from news where tile_new like '%?%';";
     private Category category;
     private News news;
     private UserDAO userDAO;
@@ -159,4 +160,43 @@ public class NewsDAO {
         }
         return listNews;
     }
+//    public List<News> findAllByNameTitleContaining(String titleSearch) {
+//        try(PreparedStatement preparedStatement =
+//                    connection.prepareStatement(SELECT_NEWS_BY_TITLE)) {
+//            preparedStatement.setString(1, "%" + titleSearch + "%");
+//            ResultSet resultSet = preparedStatement.executeQuery();
+//            while (resultSet.next()) {
+//                Long id_news = Long.parseLong(resultSet.getString("id_news"));
+////                String id_category = resultSet.getString("id_category");
+//                Long id_category = Long.parseLong(resultSet.getString("id_category"));
+//                String tile_news = resultSet.getString("tile_news");
+//                String content = resultSet.getString("content");
+//                Date date_news = resultSet.getDate("date_news");
+//                Long id_user = Long.parseLong(resultSet.getString("id_user"));
+//                Long status_news = Long.parseLong(resultSet.getString("status_news"));
+//                String img = resultSet.getString("img");
+//
+//
+//
+//                listNews.add(new News(id_news, id_category, tile_news, content, date_news, id_user, status_news, img));
+//            }
+//            getListNews(listNews, preparedStatement);
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
+//        return listNews;
+//    }
+//    private void getListNews(List<News> listNews, PreparedStatement preparedStatement) throws SQLException {
+//        ResultSet resultSet = preparedStatement.executeQuery();
+//        while (resultSet.next()) {
+//            Long id_news = Long.parseLong(resultSet.getString("id_news"));
+//            Long id_category = Long.parseLong(resultSet.getString("id_category"));
+//            String tile_news = resultSet.getString("tile_news");
+//            String content = resultSet.getString("content");
+//            Date date_news = resultSet.getDate("date_news");
+//            Long id_user = Long.parseLong(resultSet.getString("id_user"));
+//            Long status_news = Long.parseLong(resultSet.getString("status_news"));
+//            String img = resultSet.getString("img");
+//        }
+//    }
 }
