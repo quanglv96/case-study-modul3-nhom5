@@ -15,7 +15,7 @@ import static DAO.MyConnection.getConnection;
 
 public class NewsDAO {
     private final Connection connection;
-    private final String SELECT_ALL_NEWS = "select * from news;";
+    private final String SELECT_ALL_NEWS = "select * from news where status_news=1;";
     private final String INSERT_NEWS = "INSERT INTO news (id_category, tile_news, content , date_news ,id_user, status_news, img) VALUES (?, ?, ?, ?, ?, ? ,?);";
     private final String SELECT_BY_ID = "select * from news where id_news = ?  ";
     private final String UPDATE_BY_ID = "update news set tile_news = ? , content = ?, date_news = ?, img = ? where id_news = ?;";

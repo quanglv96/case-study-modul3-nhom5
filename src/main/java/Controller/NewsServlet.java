@@ -85,7 +85,8 @@ public class NewsServlet extends HttpServlet {
     private void showCreatNewsForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int idUser = Integer.parseInt(request.getParameter("idUser"));
         request.setAttribute("idLogin", idUser);
-        response.sendRedirect("view_news/create_news.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("view_news/create_news.jsp");
+        dispatcher.forward(request, response);
     }
 
     private void insertNews(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException, ServletException {

@@ -24,6 +24,8 @@ public class UserServlet extends HttpServlet {
             action = "";
         }
         switch (action) {
+            case "contentByID":
+                contentByID(request, response);
             default:
                 listNews(request, response);
                 break;
