@@ -27,10 +27,11 @@ public class RegisterServlet extends HttpServlet {
     }
 
     private void showEditNewsFormUser(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        int idUser = Integer.parseInt(request.getParameter("idUser"));
-//        request.setAttribute("idLogin", idUser);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("edit_user.jsp");
-        dispatcher.forward(request, response);
+//        int idUser = Integer.parseInt(request.getParameter("idUser"));
+//       request.setAttribute("idLogin", idUser);
+//        RequestDispatcher dispatcher = request.getRequestDispatcher("edit_user.jsp");
+//        dispatcher.forward(request, response);
+        response.sendRedirect("view_user/edit_user.jsp");
     }
 
     @Override
