@@ -158,7 +158,7 @@
         <div class=" col-8 ads"><img src="https://viewpro.in/blog/images/animated-gif-banner-ad.gif"/></div>
     </div>
     <div class="mid" style="width: 80%">
-        <form action="/news?action=createNews&idUser=${idUser}" method="post">
+        <form action="/news?action=createNews&idUser=${idLogin}" method="post">
             <table width="1300px" border="1">
                 <tr>
                     <th colspan="2"><h1 style="color: red; text-align: center; ">Add News</h1></th>

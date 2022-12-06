@@ -4,14 +4,10 @@ import Model.Category;
 import Model.News;
 
 import javax.servlet.ServletException;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import static DAO.MyConnection.getConnection;
@@ -90,7 +86,7 @@ public class NewsDAO {
             preparedStatement.setInt(1, news.getCategory().getIdCategory());
             preparedStatement.setString(2, news.getTileNews());
             preparedStatement.setString(3, news.getContent());
-            preparedStatement.setDate(4, java.sql.Date.valueOf(java.time.LocalDate.now()));
+            preparedStatement.setDate(4, Date.valueOf(news.getDateNews()));
             preparedStatement.setInt(5, news.getUser().getIdUser());
             preparedStatement.setInt(6, news.getStatusNews());
             preparedStatement.setString(7, news.getImg());

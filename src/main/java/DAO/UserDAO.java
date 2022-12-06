@@ -70,7 +70,6 @@ public class UserDAO {
             preparedStatement.setString(5, user.getAddress());
             preparedStatement.setInt(6, user.getStatusUser());
             preparedStatement.executeUpdate();
-
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

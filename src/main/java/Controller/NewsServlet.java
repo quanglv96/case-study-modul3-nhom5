@@ -73,7 +73,7 @@ public class NewsServlet extends HttpServlet {
                 case "openForm":
                     showCreatNewsForm(request, response);
                     break;
-                case "create_news":
+                case "createNews":
                     insertNews(request, response);
                     break;
                 default:
@@ -108,15 +108,15 @@ public class NewsServlet extends HttpServlet {
 
     private void insertNews(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException, ServletException {
         int idCategory = Integer.parseInt(request.getParameter("id_category"));
-        String tileNews = request.getParameter("tile_news");
+        String tileNews = request.getParameter("titleNews");
         String content = request.getParameter("content");
         LocalDate dateNews = LocalDate.now();
-        int idUser = Integer.parseInt(request.getParameter("id_user"));
-        int statusNews = Integer.parseInt(request.getParameter("status_news"));
+        int idUser = Integer.parseInt(request.getParameter("idUser"));
+        int statusNews = 1;
         String img = request.getParameter("img");
         News newNews = new News(categoryDAO.findCategoryById(idCategory), tileNews, content, dateNews, userDAO.findUserById(idUser), statusNews, img);
         newsDAO.insertNews(newNews);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("view_news/list_news.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/user?action=&idUser="+idUser);
         dispatcher.forward(request, response);
     }
 
