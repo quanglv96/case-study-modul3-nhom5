@@ -20,14 +20,12 @@
             padding-top: 20px;
             font-size: 40px;
         }
-
         .directional {
             display: flex;
             justify-content: center;
             text-align: center;
             /*border: 1px solid black;*/
         }
-
         .directional form button {
             display: inline-block;
             margin-left: 15px;
@@ -39,17 +37,14 @@
             font-weight: bold;
             text-align: center;
         }
-
         button:hover {
             color: #ffffff;
             background-color: #43d066 !important;
         }
-
         .ads img {
             width: 100%;
             display: block;
         }
-
         .showContent {
             /*border: 1px solid black;*/
             width: 90%;
@@ -57,7 +52,6 @@
             padding-right: 10%;
             text-align: center;
         }
-
     </style>
 </head>
 <body>
@@ -80,9 +74,12 @@
         <form action="/managers?action=&idCategory=${2}" method="get">
             <button type="submit">Culture</button>
         </form>
-        <a href="/managers?action=all_list_news">All List News</a>
-        <a href="/managers?action=all_list_user">All List User</a>
-
+        <form action="/managers?action=all_list_news" method="post">
+            <button type="submit">All List News</button>
+        </form>
+        <form action="/managers?action=all_list_user" method="post">
+            <button type="submit">All List User</button>
+        </form>
     </div>
 </div>
 <div class="directional">
@@ -108,9 +105,26 @@
                     <td><c:out value="${user.phoneNumber}"/></td>
                     <td><c:out value="${user.email}"/></td>
                     <td><c:out value="${user.address}"/></td>
-                    <td><c:out value="${user.statusUser}"/></td>
+                    <td><c:choose>
+                        <c:when test="${user.statusUser ==1}">
+                            <p>Active</p>
+                        </c:when>
+                        <c:when test="${user.statusUser ==0}">
+                            <p>Looked</p>
+                        </c:when>
+                    </c:choose>
+                    </td>
                     <td>
-                        <a href="/news?action=delete_news&idUser=${user.id}" onclick="return test('${news.idNews}')">Status</a>
+                        <form onsubmit="return(confirmDeleteUser(${user.userName}))" action="/managers?action=lockUser&idUser=${user.idUser}" method="post">
+                            <c:choose>
+                                <c:when test="${user.statusUser ==1}">
+                                    <button type="submit">🚫</button>
+                                </c:when>
+                                <c:when test="${user.statusUser ==0}">
+                                    <button type="submit">🔐</button>
+                                </c:when>
+                            </c:choose>
+                        </form>
                     </td>
                 </tr>
             </c:forEach>
@@ -121,5 +135,14 @@
     </div>
 </div>
 </body>
+<script>
+    function confirmDeleteUser(userName){
+        let result = confirm("Are you sure you want to lock this account: "+userName+"?");
+        if(result)  {
+            alert("Account lock successful!");
+            return true;
+        }
+        return false
+    }
+</script>
 </html>
-
