@@ -14,7 +14,7 @@ public class UserDAO {
     private final String SELECT_ALL_USER = "select * from user;";
     private final String SELECT_USER_BY_ID = "select * from user where id_user = ?;";
     private final String INSERT_USER = "insert into user(username_user,password,phoneNumber_user,email_user,address_user,status_user) value(?,?,?,?,?,?);";
-    private final String UPDATE_USER = "update user set username_user = ?, password = ?, phoneNumber_user = ?,email_user = ?, address_user = ?, status_user = ? where id_user = ?;";
+    private final String UPDATE_USER = "update user set username_user = ?, phoneNumber_user = ?,email_user = ?, address_user = ? where id_user = ?;";
     private final String DELETE_USER = "update user set status_user = 0 where id_user = ? ";
     private final String LOCK_USER_AND_NEWS = "update user u, news m set u.status_user = 0, m.status_news = 0 where u.id_user = ? and m.id_user = ?;";
 
@@ -78,11 +78,10 @@ public class UserDAO {
     public void upDateUser(User user) {
         try (PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_USER)) {
             preparedStatement.setString(1, user.getUserName());
-            preparedStatement.setString(2, user.getPassword());
-            preparedStatement.setString(3, user.getPhoneNumber());
-            preparedStatement.setString(4, user.getEmail());
-            preparedStatement.setString(5, user.getAddress());
-            preparedStatement.setInt(6, user.getStatusUser());
+            preparedStatement.setString(2, user.getPhoneNumber());
+            preparedStatement.setString(3, user.getEmail());
+            preparedStatement.setString(4, user.getAddress());
+            preparedStatement.setInt(5, user.getIdUser());
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);

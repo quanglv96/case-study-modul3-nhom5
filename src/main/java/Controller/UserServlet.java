@@ -43,11 +43,17 @@ public class UserServlet extends HttpServlet {
         }
         try {
             switch (action) {
+                case "saveAccount":
+                    saveAccount(request, response);
+                    break;
+                case "editAccount":
+                    editAccount(request, response);
+                    break;
                 case "infoAccount":
-                    infoAccount(request,response);
+                    infoAccount(request, response);
                     break;
                 case "formEdit":
-                    formEdit(request,response);
+                    formEdit(request, response);
                     break;
                 case "deleteNews":
                     deleteNews(request, response);
@@ -98,7 +104,7 @@ public class UserServlet extends HttpServlet {
             if (u.getUserName().equals(username) && u.getPassword().equals(password)) {
                 flag = false;
                 request.setAttribute("idLogin", u.getIdUser());
-                RequestDispatcher dispatcher = request.getRequestDispatcher("/user?action=&idUser="+u.getIdUser());
+                RequestDispatcher dispatcher = request.getRequestDispatcher("/user?action=&idUser=" + u.getIdUser());
                 dispatcher.forward(request, response);
             }
         }
@@ -151,20 +157,22 @@ public class UserServlet extends HttpServlet {
         RequestDispatcher dispatcher = request.getRequestDispatcher("view_user/ListNewsByUser.jsp");
         dispatcher.forward(request, response);
     }
+
     private void formEdit(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
         int idLogin = Integer.parseInt(request.getParameter("idUser"));
         int idNews = Integer.parseInt(request.getParameter("idNews"));
         User user = userDAO.findUserById(idLogin);
         request.setAttribute("nameUser", user.getUserName());
         request.setAttribute("idLogin", idLogin);
-        request.setAttribute("idNews",idNews);
+        request.setAttribute("idNews", idNews);
         request.setAttribute("news", newsDAO.selectNews(idNews));
         RequestDispatcher dispatcher = request.getRequestDispatcher("view_news/edit_news.jsp");
         dispatcher.forward(request, response);
     }
-    private  void infoAccount(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
+
+    private void infoAccount(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
         int idLogin = Integer.parseInt(request.getParameter("idUser"));
-        User user=userDAO.findUserById(idLogin);
+        User user = userDAO.findUserById(idLogin);
         request.setAttribute("user", user);
         request.setAttribute("nameUser", user.getUserName());
         request.setAttribute("idLogin", idLogin);
@@ -172,4 +180,30 @@ public class UserServlet extends HttpServlet {
         dispatcher.forward(request, response);
     }
 
+    private void editAccount(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
+        int idLogin = Integer.parseInt(request.getParameter("idUser"));
+        User user = userDAO.findUserById(idLogin);
+        request.setAttribute("user", user);
+        request.setAttribute("nameUser", user.getUserName());
+        request.setAttribute("idLogin", idLogin);
+        request.setAttribute("edit", "true");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("view_user/InfoAccount.jsp");
+        dispatcher.forward(request, response);
+    }
+
+    private void saveAccount(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
+        int idLogin = Integer.parseInt(request.getParameter("idUser"));
+        User user = userDAO.findUserById(idLogin);
+        request.setAttribute("user", user);
+        request.setAttribute("nameUser", user.getUserName());
+        request.setAttribute("idLogin", idLogin);
+        String name = request.getParameter("nameUser");
+        String phone = request.getParameter("phoneUser");
+        String email = request.getParameter("emailUser");
+        String address = request.getParameter("addressUser");
+        User user1 = new User(idLogin, name, phone, email, address);
+        userDAO.upDateUser(user1);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/user?action=infoAccount&idUser="+idLogin);
+        dispatcher.forward(request, response);
+    }
 }

@@ -193,7 +193,8 @@ public class NewsDAO {
         List<News> listNews = new ArrayList<>();
         try (Connection connection = getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(SELECT_BY_LIKE) ){
-            preparedStatement.setString(1, text);
+            String text1='%'+text+'%';
+            preparedStatement.setString(1, text1);
             System.out.println(preparedStatement);
             ResultSet rs = preparedStatement.executeQuery();
             while (rs.next()) {

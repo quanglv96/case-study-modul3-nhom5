@@ -78,6 +78,14 @@ public class User {
         this.statusUser = statusUser;
     }
 
+    public User(int idUser, String userName, String phoneNumber, String email, String address) {
+        this.idUser = idUser;
+        this.userName = userName;
+        this.phoneNumber = phoneNumber;
+        this.email = email;
+        this.address = address;
+    }
+
     public User(int idUser, String userName, String password, String phoneNumber, String email, String address, int statusUser) {
         this.idUser = idUser;
         this.userName = userName;

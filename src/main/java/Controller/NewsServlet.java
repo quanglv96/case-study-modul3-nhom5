@@ -13,6 +13,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.swing.text.View;
 import java.io.IOException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -150,10 +151,10 @@ public class NewsServlet extends HttpServlet {
             throws SQLException, IOException, ServletException {
         String idLogin = request.getParameter("idUser");
         request.setAttribute("idLogin", idLogin);
-        String text = "'%"+request.getParameter("search")+"%'";
+        String text = request.getParameter("search");
         List<News> listNews = newsDAO.selectNewsTiles(text);
         request.setAttribute("listNews", listNews);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("view_news/list_news.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("view_user/View.jsp");
         dispatcher.forward(request, response);
     }
 }
