@@ -11,6 +11,8 @@ import javax.servlet.annotation.*;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 //
 
 @WebServlet(name = "UserServlet", value = "/user")
@@ -199,18 +201,55 @@ public class UserServlet extends HttpServlet {
     }
 
     private void saveAccount(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
+        int count = 0;
         int idLogin = Integer.parseInt(request.getParameter("idUser"));
         User user = userDAO.findUserById(idLogin);
         request.setAttribute("user", user);
-        request.setAttribute("nameUser", user.getUserName());
+        request.setAttribute("userName", user.getUserName());
         request.setAttribute("idLogin", idLogin);
-        String name = request.getParameter("nameUser");
-        String phone = request.getParameter("phoneUser");
+        String username = request.getParameter("userName");
+        Pattern patternUserName = Pattern.compile("^[a-zA-Z0-9]+");
+        Matcher matcherUserName = patternUserName.matcher(username);
+        if (!matcherUserName.matches()) {
+            request.setAttribute("checkUser", "*Username without spaces");
+            count++;
+        }
+        List<User> listUser=userDAO.findAll();
+        for (User u: listUser){
+            if(username.equals(u.getUserName())){
+                request.setAttribute("checkUser", "*Username available");
+                count++;
+                break;
+            }
+        }
+        String phoneNumber = request.getParameter("phoneUser");
+        Pattern patternPhone = Pattern.compile("^0[1-9][0-9]{8}$");
+        Matcher matcherPhone = patternPhone.matcher(phoneNumber);
+        if (!matcherPhone.matches()) {
+            request.setAttribute("checkPhone", "*Your phone number is incorrect");
+            count++;
+        }
         String email = request.getParameter("emailUser");
+        Pattern patternEmail = Pattern.compile("^(.+)@(.+)$");
+        Matcher matcherEmail = patternEmail.matcher(email);
+        if (!matcherEmail.matches()) {
+            request.setAttribute("checkEmail", "*Your email is incorrect");
+            count++;
+        }
         String address = request.getParameter("addressUser");
-        User user1 = new User(idLogin, name, phone, email, address);
-        userDAO.upDateUser(user1);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/user?action=infoAccount&idUser=" + idLogin);
-        dispatcher.forward(request, response);
+        if (count != 0) {
+            request.setAttribute("edit","true");
+            request.setAttribute("userName", username);
+            request.setAttribute("phoneUser", phoneNumber);
+            request.setAttribute("emailUser", email);
+            request.setAttribute("addressUser", address);
+            RequestDispatcher dispatcher = request.getRequestDispatcher("view_user/InfoAccount.jsp");
+            dispatcher.forward(request, response);
+        } else {
+            User user1 = new User(idLogin, username, phoneNumber, email, address);
+            userDAO.upDateUser(user1);
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/user?action=infoAccount&idUser=" + idLogin);
+            dispatcher.forward(request, response);}
+
     }
 }

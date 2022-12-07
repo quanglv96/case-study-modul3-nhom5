@@ -80,6 +80,11 @@
         td {
             font-family: Arial;
         }
+
+        .error {
+            color: red;
+            size: 25px;
+        }
     </style>
 </head>
 <body>
@@ -93,40 +98,40 @@
 <div>
     <div class="directional" style="background: #b4d99f ;border:solid 2px wheat ">
         <form action="/user?action=&idUser=${idLogin}" method="post">
-            <button style=" font-size: 30px"  type="submit">Home</button>
+            <button style=" font-size: 30px" type="submit">Home</button>
         </form>
         <c:if test="${not empty idLogin}">
             <form action="/news?action=openForm&idUser=${idLogin}" method="post">
-                <button style=" font-size: 30px"  type="submit">|New Post</button>
+                <button style=" font-size: 30px" type="submit">|New Post</button>
             </form>
         </c:if>
         <form action="/user?action=sort&idCategory=sport&idUser=${idLogin}" method="post">
-            <button style=" font-size: 30px"  type="submit">|Sport</button>
+            <button style=" font-size: 30px" type="submit">|Sport</button>
         </form>
         <form action="/user?action=sort&idCategory=culture&idUser=${idLogin}" method="post">
-            <button style=" font-size: 30px"  type="submit">| Culture</button>
+            <button style=" font-size: 30px" type="submit">| Culture</button>
         </form>
         <c:if test="${empty idLogin}">
             <form action="view_user/loginUser.jsp" method="post">
-                <button style=" font-size: 30px"  type="submit">| Login</button>
+                <button style=" font-size: 30px" type="submit">| Login</button>
             </form>
             <form action="view_user/Register.jsp" method="post">
-                <button style=" font-size: 30px"  type="submit">| Register</button>
+                <button style=" font-size: 30px" type="submit">| Register</button>
             </form>
         </c:if>
         <c:if test="${not empty idLogin}">
             <form action="/user?action=newsByIdUser&idUser=${idLogin} " method="post">
-                <button style=" font-size: 30px"  type="submit">| Post Manager</button>
+                <button style=" font-size: 30px" type="submit">| Post Manager</button>
             </form>
         </c:if>
         <c:if test="${not empty idLogin}">
             <form action="/user?action=infoAccount&idUser=${idLogin}" method="post">
-                <button  style=" font-size: 30px" type="submit">| Account</button>
+                <button style=" font-size: 30px" type="submit">| Account</button>
             </form>
         </c:if>
         <c:if test="${not empty idLogin}">
             <form action="/user?action=&idUser" method="get">
-                <button style=" font-size: 30px"  type="submit">| Logout</button>
+                <button style=" font-size: 30px" type="submit">| Logout</button>
             </form>
         </c:if>
         <form action="/news?action=searchNews&idUser=${idLogin}" method="post">
@@ -147,12 +152,17 @@
                 <tr>
                     <th>Name:</th>
                     <c:if test="${not empty edit}">
-                        <td><input type="text" name="nameUser" value="${user.getUserName()}"/></td>
+                        <td><input type="text" name="userName" value="${user.getUserName()}"/></td>
                     </c:if>
                     <c:if test="${empty edit}">
                         <td><c:out value="${user.getUserName()}"/></td>
                     </c:if>
                 </tr>
+                <c:if test="${not empty edit}">
+                    <tr>
+                        <td colspan="2"><p class="error"><c:out value="${checkUser}"/></p></td>
+                    </tr>
+                </c:if>
                 <tr>
                     <th>Phone:</th>
                     <c:if test="${not empty edit}">
@@ -162,6 +172,11 @@
                         <td><c:out value="${user.getPhoneNumber()}"/></td>
                     </c:if>
                 </tr>
+                <c:if test="${not empty edit}">
+                    <tr>
+                        <td colspan="2"><p class="error" ><c:out value="${checkPhone}"/></p></td>
+                    </tr>
+                </c:if>
                 <tr>
                     <th>Email:</th>
                     <c:if test="${not empty edit}">
@@ -171,6 +186,11 @@
                         <td><c:out value="${user.getEmail()}"/></td>
                     </c:if>
                 </tr>
+                <c:if test="${not empty edit}">
+                    <tr>
+                        <td colspan="2"><p class="error" ><c:out value="${checkEmail}"/></p></td>
+                    </tr>
+                </c:if>
                 <tr>
                     <th>Address:</th>
                     <c:if test="${not empty edit}">
@@ -191,7 +211,9 @@
                     </c:if>
                     <c:if test="${empty edit}">
                         <td>
-                            <button style="padding: 30px 100px; background: seagreen; font-size: 50px" type="submit">Edit</button>
+                            <button style="padding: 30px 100px; background: seagreen; font-size: 50px" type="submit">
+                                Edit
+                            </button>
                         </td>
                     </c:if>
                 </tr>
@@ -200,8 +222,8 @@
 </div>
 </body>
 <script>
-    function reloadPage(id){
-        window.location="/user?action=infoAccount&idUser="+id;
+    function reloadPage(id) {
+        window.location = "/user?action=infoAccount&idUser=" + id;
     }
 </script>
 </html>
