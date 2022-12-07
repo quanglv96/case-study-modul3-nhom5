@@ -107,6 +107,7 @@
         <form action="/user?action=sort&idCategory=culture&idUser=${idLogin}" method="post">
             <button style=" font-size: 30px" type="submit">| Culture</button>
         </form>
+
         <c:if test="${empty idLogin}">
             <form action="view_user/loginUser.jsp" method="post">
                 <button style=" font-size: 30px" type="submit">| Login</button>
@@ -164,6 +165,8 @@
                     </tr>
                 </table>
             </div>
+            <br>
+            <br>
         </c:forEach>
     </div>
     <div class="col-3 " style="width: 20% ; margin-left: 20px">
