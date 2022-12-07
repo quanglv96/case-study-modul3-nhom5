@@ -143,7 +143,7 @@
         <c:if test="${not empty edit}">
         <form action="/user?action=saveAccount&idUser=${idLogin}" method="post">
             </c:if>
-            <table style="font-size: 50px;font-family: Arial ;background: #bb708b ;border: seagreen solid; margin-left: 500px ; line-height: 100px">
+            <table style="font-size: 50px;font-family: Arial ;background: #bb708b ;border-radius: 10px;border: seagreen solid; margin-left: 500px ; line-height: 100px">
                 <tr>
                     <th>Name:</th>
                     <c:if test="${not empty edit}">

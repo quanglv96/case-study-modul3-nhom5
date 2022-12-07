@@ -97,7 +97,7 @@
 <div align="center">
     <div><h3>Account</h3></div>
     <div>
-        <table style="font-size: 50px;font-family: Arial ;background: #bb708b ;border: seagreen solid; margin-left: 700px ; line-height: 150px">
+        <table style="font-size: 40px;font-family: Arial ;background: #ffffff ;border: #161716 solid; margin-left: 0px ;border-radius: 10px; line-height: 100px">
             <tr>
                 <th>Name:</th>
                 <td><c:out value="${user.getUserName()}"/></td>

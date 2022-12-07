@@ -148,10 +148,10 @@
             <div>
                 <table>
                     <tr>
-                        <td><c:out value="${news.getUser().getUserName()}"/></td>
+                        <td style="font-size: 30px ; text-align: center; font-family: Arial"><c:out value="${news.getUser().getUserName()}"/></td>
                     </tr>
                     <tr>
-                        <td><a href="/user?action=contentByID&&idNews=${news.getIdNews()}&idUser=${idLogin}"><c:out value="${news.getTileNews()}"/></a></td>
+                        <td style="font-size: 25px"><a href="/user?action=contentByID&&idNews=${news.getIdNews()}&idUser=${idLogin}"><c:out value="${news.getTileNews()}"/></a></td>
                     </tr>
                     <tr>
                         <td><img src="${news.getImg()}" width="900px" height="600px" style="margin-left: 50px"/></td>
