@@ -109,7 +109,7 @@
                 <tr>
                     <td><c:out value="${news.getIdNews()}"/></td>
                     <td><a href="/news?action=sort&idCategory=${news.getCategory().getNameCategory()}"><c:out value="${news.getCategory().getNameCategory()}"/></a></td>
-                    <td><a href="/news?action=content&id=${news.getIdNews()}"><c:out value="${news.getTileNews()}"/></a></td>
+                    <td><a href="/news?action=content&idNews=${news.getIdNews()}"><c:out value="${news.getTileNews()}"/></a></td>
                     <td><c:out value="${news.getDateNews()}"/></td>
                     <td><c:out value="${news.getUser().getUserName()}"/></td>
                     <td>

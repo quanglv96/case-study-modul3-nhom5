@@ -97,10 +97,10 @@
 </div>
 <div align="center" >
     <div class="mid" style="width: 60%">
-        <div><p><c:out value="${newById.getUser().getUserName()}"/></p></div>
-        <div><p><c:out value="${newById.getDateNews()}"/></p></div>
-        <div><p><c:out value="${newById.getTileNews()}"/></p></div>
-        <div><p><c:out value="${newById.getContent()}"/></p></div>
+        <div><c:out value="${newById.getUser().getUserName()}"/></div>
+        <div><c:out value="${newById.getDateNews()}"/></div>
+        <div><c:out value="${newById.getTileNews()}"/></div>
+        <div><c:out value="${newById.getContent()}"/></div>
         <div><img src="${newById.getImg()}"></div>
     </div>
 </div>

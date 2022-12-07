@@ -47,6 +47,9 @@ public class NewsServlet extends HttpServlet {
                 case "delete_news":
                     deleteNews(request, response);
                     break;
+                case "content":
+                    content(request,response);
+                    break;
                 default:
                     listNews(request, response);
                     break;
@@ -155,6 +158,13 @@ public class NewsServlet extends HttpServlet {
         List<News> listNews = newsDAO.selectNewsTiles(text);
         request.setAttribute("listNews", listNews);
         RequestDispatcher dispatcher = request.getRequestDispatcher("view_user/View.jsp");
+        dispatcher.forward(request, response);
+    }
+    private void content(HttpServletRequest request, HttpServletResponse response)
+            throws SQLException, IOException, ServletException {
+        int idNews = Integer.parseInt(request.getParameter("idNews"));
+        request.setAttribute("newById", newsDAO.selectNews(idNews));
+        RequestDispatcher dispatcher = request.getRequestDispatcher("admin_manager/content_news_byID_manager.jsp");
         dispatcher.forward(request, response);
     }
 }
