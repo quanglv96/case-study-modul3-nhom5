@@ -97,7 +97,7 @@
         </form>
         <c:if test="${not empty idLogin}">
             <form action="/news?action=openForm&idUser=${idLogin}" method="post">
-                <button type="submit">| New Post</button>
+                <button type="submit">|New Post</button>
             </form>
         </c:if>
         <form action="/user?action=sort&idCategory=sport&idUser=${idLogin}" method="post">
@@ -136,14 +136,14 @@
         </form>
     </div>
 </div>
-<div>
+<div style="background: #7875B5">
     <c:if test="${empty edit}">
     <form action="/user?action=editAccount&idUser=${idLogin}" method="post">
         </c:if>
         <c:if test="${not empty edit}">
         <form action="/user?action=saveAccount&idUser=${idLogin}" method="post">
             </c:if>
-            <table>
+            <table style="font-size: 50px;font-family: Arial ;background: #bb708b ;border: seagreen solid; margin-left: 700px ; line-height: 150px">
                 <tr>
                     <th>Name:</th>
                     <c:if test="${not empty edit}">
@@ -191,7 +191,7 @@
                     </c:if>
                     <c:if test="${empty edit}">
                         <td>
-                            <button type="submit">Edit</button>
+                            <button style="padding: 30px 100px; background: seagreen; font-size: 50px" type="submit">Edit</button>
                         </td>
                     </c:if>
                 </tr>
