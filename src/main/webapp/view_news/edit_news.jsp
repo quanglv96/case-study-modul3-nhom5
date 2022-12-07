@@ -174,7 +174,7 @@
                 <td>
                     <input type="file" name="fileToUpload" id="fileToUpload">
                     <br>
-                    <input type="text" name="img" id="img" value="${news.getImg()}'">
+                    <input type="text" name="img" id="img" value="${news.getImg()}">
                     <span stype="color:red;">url"Img"</span>
                 </td>
                 </td>

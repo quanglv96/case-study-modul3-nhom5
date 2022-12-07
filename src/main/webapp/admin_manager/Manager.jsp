@@ -105,7 +105,7 @@
                     <td><a href="/managers?action=contentByID&&idNews=${news.getIdNews()}"><c:out value="${news.getTileNews()}"/></a></td>
                 </tr>
                 <tr>
-                    <td><img src="${news.getImg()}"/></td>
+                    <td><img src="${news.getImg()}" width="900px" height="600px" style="margin-left: 50px"/></td>
                 </tr>
             </table>
         </div>

@@ -208,20 +208,6 @@ public class UserServlet extends HttpServlet {
         request.setAttribute("userName", user.getUserName());
         request.setAttribute("idLogin", idLogin);
         String username = request.getParameter("userName");
-        Pattern patternUserName = Pattern.compile("^[a-zA-Z0-9]+");
-        Matcher matcherUserName = patternUserName.matcher(username);
-        if (!matcherUserName.matches()) {
-            request.setAttribute("checkUser", "*Username without spaces");
-            count++;
-        }
-        List<User> listUser=userDAO.findAll();
-        for (User u: listUser){
-            if(username.equals(u.getUserName())){
-                request.setAttribute("checkUser", "*Username available");
-                count++;
-                break;
-            }
-        }
         String phoneNumber = request.getParameter("phoneUser");
         Pattern patternPhone = Pattern.compile("^0[1-9][0-9]{8}$");
         Matcher matcherPhone = patternPhone.matcher(phoneNumber);

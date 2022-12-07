@@ -151,18 +151,8 @@
             <table style="font-size: 50px;font-family: Arial ;background: #fffefe ;border-radius: 10px;border: #0e0e0e solid; margin-left: 500px ; line-height: 100px">
                 <tr>
                     <th>Name:</th>
-                    <c:if test="${not empty edit}">
-                        <td><input  style="height: 50px" type="text" name="userName" value="${user.getUserName()}"/></td>
-                    </c:if>
-                    <c:if test="${empty edit}">
                         <td><c:out value="${user.getUserName()}"/></td>
-                    </c:if>
                 </tr>
-                <c:if test="${not empty edit}">
-                    <tr>
-                        <td colspan="2"><p class="error"><c:out value="${checkUser}"/></p></td>
-                    </tr>
-                </c:if>
                 <tr>
                     <th>Phone:</th>
                     <c:if test="${not empty edit}">
