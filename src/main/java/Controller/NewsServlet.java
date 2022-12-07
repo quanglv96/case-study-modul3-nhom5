@@ -167,4 +167,5 @@ public class NewsServlet extends HttpServlet {
         RequestDispatcher dispatcher = request.getRequestDispatcher("admin_manager/content_news_byID_manager.jsp");
         dispatcher.forward(request, response);
     }
+
 }

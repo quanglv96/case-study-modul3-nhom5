@@ -27,14 +27,23 @@ public class ManagerServlet extends HttpServlet {
         if (action == null) {
             action = "";
         }
+        try {
         switch (action) {
-
+            case "infoAccount":
+                infoAccount(request,response);
+                break;
+            case "sort":
+                sortCategory(request, response);
+                break;
             case "contentByID":
                 contentByID(request, response);
                 break;
             default:
                 listNews(request, response);
                 break;
+        }
+        } catch (SQLException ex) {
+            throw new ServletException(ex);
         }
     }
 
@@ -144,5 +153,12 @@ public class ManagerServlet extends HttpServlet {
         RequestDispatcher dispatcher = request.getRequestDispatcher("admin_manager/ListCategory.jsp");
         dispatcher.forward(request, response);
     }
+    private void infoAccount(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
+        int idLogin = Integer.parseInt(request.getParameter("idUser"));
+        User user = userDAO.findUserById(idLogin);
+        request.setAttribute("user", user);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("admin_manager/infoAccount.jsp");
+        dispatcher.forward(request, response);
+    }
 
-}
+    }

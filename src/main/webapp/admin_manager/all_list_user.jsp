@@ -106,7 +106,7 @@
             <c:forEach var="user" items="${listUser}">
                 <tr>
                     <td><c:out value="${user.idUser}"/></td>
-                    <td><c:out value="${user.userName}"/></td>
+                    <td><a href="/managers?action=infoAccount&idUser=${user.idUser}"><c:out value="${user.userName}"/></a></td>
                     <td><c:out value="${user.phoneNumber}"/></td>
                     <td><c:out value="${user.email}"/></td>
                     <td><c:out value="${user.address}"/></td>

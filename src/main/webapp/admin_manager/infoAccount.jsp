@@ -1,15 +1,15 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: QuangMax
-  Date: 27/11/2022
-  Time: 2:53 CH
+  Date: 07/12/2022
+  Time: 8:40 SA
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
-    <title>All list News</title>
+    <title>Account User</title>
     <style>
         .header {
             background-image: url("https://img.freepik.com/free-photo/silver-dollar-eucalyptus-branch-gray-banner_53876-129660.jpg?w=2000");
@@ -57,7 +57,8 @@
             padding-right: 10%;
             text-align: center;
         }
-        a{
+
+        a {
             text-decoration: none;
         }
 
@@ -93,45 +94,28 @@
         </form>
     </div>
 </div>
-<div class="directional">
-    <div align="center">
-        <table border="1" cellpadding="5">
-            <caption><h2>List of News</h2></caption>
+<div align="center">
+    <div><h3>Account</h3></div>
+    <div>
+        <table style="font-size: 50px;font-family: Arial ;background: #bb708b ;border: seagreen solid; margin-left: 700px ; line-height: 150px">
             <tr>
-                <th>ID</th>
-                <th>Category</th>
-                <th>Tile</th>
-                <th>Date</th>
-                <th>User</th>
-                <th>Delete News</th>
+                <th>Name:</th>
+                <td><c:out value="${user.getUserName()}"/></td>
             </tr>
-            <c:forEach var="news" items="${listNews}">
-                <tr>
-                    <td><c:out value="${news.getIdNews()}"/></td>
-                    <td><a href="/managers?action=sort&category=${news.getCategory().getNameCategory()}"><c:out value="${news.getCategory().getNameCategory()}"/></a></td>
-                    <td><a href="/news?action=content&idNews=${news.getIdNews()}"><c:out value="${news.getTileNews()}"/></a></td>
-                    <td><c:out value="${news.getDateNews()}"/></td>
-                    <td><c:out value="${news.getUser().getUserName()}"/></td>
-                    <td>
-                        <form onsubmit="return(confirmDeleteNews())" action="/managers?action=deleteNews&idNews=${news.getIdNews()}" method="post">
-                        <button type="submit">🗑️</button>
-                        </form>
-                    </td>
-                </tr>
-            </c:forEach>
+            <tr>
+                <th>Phone:</th>
+                <td><c:out value="${user.getPhoneNumber()}"/></td>
+            </tr>
+            <tr>
+                <th>Email:</th>
+                <td><c:out value="${user.getEmail()}"/></td>
+            </tr>
+            <tr>
+                <th>Address:</th>
+                <td><c:out value="${user.getAddress()}"/></td>
+            </tr>
         </table>
     </div>
 </div>
 </body>
-<script>
-    function confirmDeleteNews(){
-        let result = confirm("Are you sure you want to delete?");
-        if(result)  {
-            alert("successful delete");
-            return true;
-        }
-        return false
-    }
-</script>
 </html>
-
