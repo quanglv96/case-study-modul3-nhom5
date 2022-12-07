@@ -9,7 +9,7 @@
     <style>
 
         .abc{
-            padding-top: 18%;
+            padding-top: 8%;
             text-align: center;
         }
         body{
@@ -19,8 +19,10 @@
     </style>
 </head>
 <body>
-<h1 style="font-family: Arial;color: #d21971">FLY TO THE WORLD</h1>
-<h1 style="font-family: Arial;color: rgba(16,52,183,0.68)">Designer : Five Group</h1>
+<h1 style="font-family: Arial;color: #d21971 ; text-align: center">FLY TO THE WORLD</h1>
+<h1 style="font-family: Arial;color: rgba(16,52,183,0.68);text-align: center">Designer :Group Five </h1>
+<br>
+<br>
 <div class="abc">
     <form action="admin_manager/Login2.jsp">
         <button class="btn btn-success" type="submit" style="width: 200px ;height: 100px;font-family: Arial">Login Admin</button>
