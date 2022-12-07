@@ -105,7 +105,7 @@ public class UserServlet extends HttpServlet {
     public void checkLogin(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
-        List<User> listUser = userDAO.findAll();
+        List<User> listUser = userDAO.findAllUserByStatus();
         boolean flag = true;
         for (User u : listUser) {
             if (u.getUserName().equals(username) && u.getPassword().equals(password)) {

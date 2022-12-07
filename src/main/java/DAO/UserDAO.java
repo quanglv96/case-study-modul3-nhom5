@@ -12,6 +12,7 @@ import java.util.List;
 public class UserDAO {
     private Connection connection;
     private final String SELECT_ALL_USER = "select * from user;";
+    private final String SELECT_ALL_USER_STATUS = "select * from user where status_user = 1 ;";
     private final String SELECT_USER_BY_ID = "select * from user where id_user = ?;";
     private final String INSERT_USER = "insert into user(username_user,password,phoneNumber_user,email_user,address_user,status_user) value(?,?,?,?,?,?);";
     private final String UPDATE_USER = "update user set username_user = ?, phoneNumber_user = ?,email_user = ?, address_user = ? where id_user = ?;";
@@ -23,6 +24,25 @@ public class UserDAO {
         connection = MyConnection.getConnection();
     }
 
+    public List<User> findAllUserByStatus() {
+        List<User> users = new ArrayList<>();
+        try (PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ALL_USER_STATUS)) {
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                int idUser = Integer.parseInt(resultSet.getString("id_user"));
+                String userName = resultSet.getString("username_user");
+                String password = resultSet.getString("password");
+                String phoneNumber = resultSet.getString("phoneNumber_user");
+                String email = resultSet.getString("email_user");
+                String address = resultSet.getString("address_user");
+                int statusUser = Integer.parseInt(resultSet.getString("status_user"));
+                users.add(new User(idUser, userName, password, phoneNumber, email, address, statusUser));
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return users;
+    }
     public List<User> findAll() {
         List<User> users = new ArrayList<>();
         try (PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ALL_USER)) {
