@@ -93,40 +93,40 @@
 <div>
     <div class="directional" style="background: #b4d99f ;border:solid 2px wheat ">
         <form action="/user?action=&idUser=${idLogin}" method="post">
-            <button type="submit">Home</button>
+            <button style=" font-size: 30px"  type="submit">Home</button>
         </form>
         <c:if test="${not empty idLogin}">
             <form action="/news?action=openForm&idUser=${idLogin}" method="post">
-                <button type="submit">|New Post</button>
+                <button style=" font-size: 30px"  type="submit">|New Post</button>
             </form>
         </c:if>
         <form action="/user?action=sort&idCategory=sport&idUser=${idLogin}" method="post">
-            <button type="submit">|Sport</button>
+            <button style=" font-size: 30px"  type="submit">|Sport</button>
         </form>
         <form action="/user?action=sort&idCategory=culture&idUser=${idLogin}" method="post">
-            <button type="submit">| Culture</button>
+            <button style=" font-size: 30px"  type="submit">| Culture</button>
         </form>
         <c:if test="${empty idLogin}">
             <form action="view_user/loginUser.jsp" method="post">
-                <button type="submit">| Login</button>
+                <button style=" font-size: 30px"  type="submit">| Login</button>
             </form>
             <form action="view_user/Register.jsp" method="post">
-                <button type="submit">| Register</button>
+                <button style=" font-size: 30px"  type="submit">| Register</button>
             </form>
         </c:if>
         <c:if test="${not empty idLogin}">
             <form action="/user?action=newsByIdUser&idUser=${idLogin} " method="post">
-                <button type="submit">| Post Manager</button>
+                <button style=" font-size: 30px"  type="submit">| Post Manager</button>
             </form>
         </c:if>
         <c:if test="${not empty idLogin}">
             <form action="/user?action=infoAccount&idUser=${idLogin}" method="post">
-                <button type="submit">| Account</button>
+                <button  style=" font-size: 30px" type="submit">| Account</button>
             </form>
         </c:if>
         <c:if test="${not empty idLogin}">
             <form action="/user?action=&idUser" method="get">
-                <button type="submit">| Logout</button>
+                <button style=" font-size: 30px"  type="submit">| Logout</button>
             </form>
         </c:if>
         <form action="/news?action=searchNews&idUser=${idLogin}" method="post">
@@ -143,7 +143,7 @@
         <c:if test="${not empty edit}">
         <form action="/user?action=saveAccount&idUser=${idLogin}" method="post">
             </c:if>
-            <table style="font-size: 50px;font-family: Arial ;background: #bb708b ;border: seagreen solid; margin-left: 700px ; line-height: 150px">
+            <table style="font-size: 50px;font-family: Arial ;background: #bb708b ;border: seagreen solid; margin-left: 500px ; line-height: 100px">
                 <tr>
                     <th>Name:</th>
                     <c:if test="${not empty edit}">
