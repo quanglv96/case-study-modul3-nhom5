@@ -152,7 +152,7 @@
                 <tr>
                     <th>Name:</th>
                     <c:if test="${not empty edit}">
-                        <td><input type="text" name="userName" value="${user.getUserName()}"/></td>
+                        <td><input  style="height: 50px" type="text" name="userName" value="${user.getUserName()}"/></td>
                     </c:if>
                     <c:if test="${empty edit}">
                         <td><c:out value="${user.getUserName()}"/></td>
@@ -166,7 +166,7 @@
                 <tr>
                     <th>Phone:</th>
                     <c:if test="${not empty edit}">
-                        <td><input type="text" name="phoneUser" value="${user.getPhoneNumber()}"/></td>
+                        <td><input style="height: 50px" type="text" name="phoneUser" value="${user.getPhoneNumber()}"/></td>
                     </c:if>
                     <c:if test="${empty edit}">
                         <td><c:out value="${user.getPhoneNumber()}"/></td>
@@ -180,7 +180,7 @@
                 <tr>
                     <th>Email:</th>
                     <c:if test="${not empty edit}">
-                        <td><input type="text" name="emailUser" value="${user.getEmail()}"/></td>
+                        <td><input style="height: 50px"  type="text" name="emailUser" value="${user.getEmail()}"/></td>
                     </c:if>
                     <c:if test="${empty edit}">
                         <td><c:out value="${user.getEmail()}"/></td>
@@ -194,7 +194,7 @@
                 <tr>
                     <th>Address:</th>
                     <c:if test="${not empty edit}">
-                        <td><input type="text" name="addressUser" value="${user.getAddress()}"/></td>
+                        <td><input style="height: 50px"  type="text" name="addressUser" value="${user.getAddress()}"/></td>
                     </c:if>
                     <c:if test="${empty edit}">
                         <td><c:out value="${user.getAddress()}"/></td>
@@ -203,10 +203,10 @@
                 <tr>
                     <c:if test="${not empty edit}">
                         <td>
-                            <button type="submit">Save</button>
+                            <button style="padding: 20px 100px; background: #dff3e8; font-size: 50px" type="submit">Save</button>
                         </td>
                         <td>
-                            <button type="button" onclick="reloadPage(${idLogin})">Skip</button>
+                            <button style="padding: 20px 100px; background: #dff3e8; font-size: 50px" type="button" onclick="reloadPage(${idLogin})">Skip</button>
                         </td>
                     </c:if>
                     <c:if test="${empty edit}">
