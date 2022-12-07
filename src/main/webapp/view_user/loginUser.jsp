@@ -99,7 +99,7 @@
 </head>
 <body>
 <div class="container">
-    <form action="/user?action=login" method="post"><h1 style="color: gray">LOGIN</h1>
+   <div style="border: #797983 solid 30px ; border-radius: 20px ; padding: 50px""> <form action="/user?action=login" method="post"><h1 style="color: gray ">LOGIN</h1>
         <div class="login__field">
             <i class="login__icon fas fa-user"></i>
             <input type="text" class="login__input" placeholder="Username/Email" name="username">
@@ -115,7 +115,7 @@
             <i class="button__icon fas fa-chevron-right"></i>
         </button>
         </div>
-    </form>
+    </form></div>
 </div>
 </body>
 </html>
