@@ -96,7 +96,7 @@
 </div>
 <div class="directional">
     <div align="center">
-        <table border="1" cellpadding="5" style="background: chocolate">
+        <table border="1" cellpadding="5">
             <tr>
                 <th>ID Category</th>
                 <th>Category</th>

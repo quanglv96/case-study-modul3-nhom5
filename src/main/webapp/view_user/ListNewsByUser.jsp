@@ -140,9 +140,9 @@
     <div class="mid" style="width: 60%">
         <c:forEach items="${listNews}" var="news">
             <div>
-                <table>
-                    <tr>
-                        <td><c:out value="${news.getUser().getUserName()}"/></td>
+                <table border="1" style="margin-left: 25px">
+                    <tr >
+                        <td style="font-size: 30px"><c:out value="${news.getUser().getUserName()}"/></td>
                     </tr>
                     <tr>
                         <td><a href="/user?action=contentByID&&idNews=${news.getIdNews()}&idUser=${idLogin}"><c:out
@@ -155,9 +155,9 @@
                         <td>
                             <form onsubmit="return(confirm('Do you want to delete this post?'))"
                                   action="/user?action=deleteNews&idNews=${news.getIdNews()}&idUser=${idLogin}" method="post">
-                                <button type="submit">Delete</button></form>
+                                <button style="float: left" type="submit">Delete</button></form>
                                 <form action="/user?action=formEdit&idNews=${news.getIdNews()}&idUser=${idLogin}" method="post">
-                                    <button type="submit">Edit</button>
+                                    <button style="float: right" type="submit">Edit</button>
                                 </form>
                             </form>
                         </td>

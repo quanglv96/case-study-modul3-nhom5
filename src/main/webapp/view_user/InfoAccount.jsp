@@ -141,14 +141,14 @@
         </form>
     </div>
 </div>
-<div style="background: #7875B5">
+<div style="background: #fafafc">
     <c:if test="${empty edit}">
     <form action="/user?action=editAccount&idUser=${idLogin}" method="post">
         </c:if>
         <c:if test="${not empty edit}">
         <form action="/user?action=saveAccount&idUser=${idLogin}" method="post">
             </c:if>
-            <table style="font-size: 50px;font-family: Arial ;background: #bb708b ;border-radius: 10px;border: seagreen solid; margin-left: 500px ; line-height: 100px">
+            <table style="font-size: 50px;font-family: Arial ;background: #fffefe ;border-radius: 10px;border: #0e0e0e solid; margin-left: 500px ; line-height: 100px">
                 <tr>
                     <th>Name:</th>
                     <c:if test="${not empty edit}">
@@ -211,7 +211,7 @@
                     </c:if>
                     <c:if test="${empty edit}">
                         <td>
-                            <button style="padding: 30px 100px; background: seagreen; font-size: 50px" type="submit">
+                            <button style="padding: 20px 100px; background: #dff3e8; font-size: 50px" type="submit">
                                 Edit
                             </button>
                         </td>
